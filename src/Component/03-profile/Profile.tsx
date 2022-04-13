@@ -16,7 +16,7 @@ import {
 } from 'redux/selectors';
 import { logOutTC, setNameTC } from 'redux/thunk';
 
-export const Profile = (): any => {
+export const Profile: React.FC = () => {
   const [nameValue, setNameValue] = useState<string>('');
   const name = useSelector(getProfileName);
   const avatar = useSelector(getProfileAvatar);
@@ -40,10 +40,10 @@ export const Profile = (): any => {
   const onLogOutClick = (): void => {
     dispatch(logOutTC());
   };
+  console.log(loginStatus);
   if (!loginStatus) {
     return <Navigate to="/login" />;
   }
-
   return (
     <div className={style.profile}>
       <div className={style.profile__profile}>

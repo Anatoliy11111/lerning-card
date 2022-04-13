@@ -6,7 +6,6 @@ import { DoubleRange, onChangeCountRangeType } from '../DoubleRange/DoubleRange'
 
 import style from './SettingCardCount.module.scss';
 
-import { ResponseGetPacksList } from 'api/auth-api/types';
 import { GeneralButton } from 'Component/01-common';
 import { setMaxMinCardsCount } from 'redux/reducers';
 import { RootState } from 'redux/store/Store';
@@ -19,14 +18,12 @@ export const SettingCardCount: React.FC = () => {
   const maxCard = useSelector<RootState, number>(
     state => state.packsListReducer.maxCardsCount,
   );
-  // const obj = useSelector<RootState, ResponseGetPacksList>(
-  //   state => state.packsListReducer,
-  // );
+
   const postSettingCardCount = (): void => {};
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
     dispatch(setMaxMinCardsCount(max, min));
   };
-  // console.log(obj);
+
   return (
     <div className={style.containerCardCount}>
       <h2>Show packs cards</h2>

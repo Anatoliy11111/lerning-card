@@ -10,27 +10,27 @@ export const NavigateMenu: React.FC = () => {
 
   return (
     <div className={style.navigateContainer}>
-      <NavLink to="login" className={className}>
-        Login
-      </NavLink>
-      <NavLink to="registration" className={className}>
-        Registration
-      </NavLink>
-      <NavLink to="restorePassword" className={className}>
-        сменить пароль
-      </NavLink>
+      {/* <NavLink to="login" className={className}> */}
+      {/*  Login */}
+      {/* </NavLink> */}
+      {/* <NavLink to="registration" className={className}> */}
+      {/*  Registration */}
+      {/* </NavLink> */}
+      {/* <NavLink to="restorePassword" className={className}> */}
+      {/*  сменить пароль */}
+      {/* </NavLink> */}
       <NavLink to="pageCard" className={className}>
         Packs List
       </NavLink>
       <NavLink to="profile" className={className}>
         Profile
       </NavLink>
-      <NavLink to="newPassword" className={className}>
-        NewPassword
-      </NavLink>
-      <NavLink to="authMe" className={className}>
-        AuthMe
-      </NavLink>
+      {/* <NavLink to="newPassword" className={className}> */}
+      {/*  NewPassword */}
+      {/* </NavLink> */}
+      {/* <NavLink to="authMe" className={className}> */}
+      {/*  AuthMe */}
+      {/* </NavLink> */}
     </div>
   );
 };

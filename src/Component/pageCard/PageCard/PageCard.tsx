@@ -37,7 +37,7 @@ export const PageCard: React.FC = () => {
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
 
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 500);
+  const debouncedSearch = useDebounce(value, 1500);
 
   useEffect(() => {
     dispatch(getPacksListTC());
@@ -91,7 +91,7 @@ export const PageCard: React.FC = () => {
           <GeneralButton
             onClickCallback={onCreateCardClick}
             type="button"
-            value="Add pack"
+            value="Add new pack"
           />
         </div>
 
@@ -106,7 +106,7 @@ export const PageCard: React.FC = () => {
             </div>
           </div>
           <div className={style.cards}>
-            {cards.map(card => (
+            {filteredValue.map(card => (
               <Card /* eslint-disable-next-line no-underscore-dangle */
                 key={card._id} /* eslint-disable-next-line no-underscore-dangle */
                 _id={card._id}
@@ -120,30 +120,11 @@ export const PageCard: React.FC = () => {
               />
             ))}
           </div>
-          <div>
-            <Pagination pagesCount={pagesCount} fetchPageCb={fetchPageCb} />
-          </div>
+        </div>
+        <div>
+          <Pagination pagesCount={pagesCount} fetchPageCb={fetchPageCb} />
         </div>
       </div>
     </div>
   );
-
-  //   <div className={style.cards}>
-  //     {filteredValue.map(card => (
-  //       <Card /* eslint-disable-next-line no-underscore-dangle */
-  //         key={card._id} /* eslint-disable-next-line no-underscore-dangle */
-  //         _id={card._id}
-  //         created={card.created}
-  //         cardsCount={card.cardsCount}
-  //         name={card.user_name}
-  //         updated={card.updated}
-  //       />
-  //     ))}
-  //   </div>
-  //   <div>
-  //     <Pagination pagesCount={pagesCount} fetchPageCb={fetchPageCb} />
-  //   </div>
-  // </div>
-  // );
-  // };
 };

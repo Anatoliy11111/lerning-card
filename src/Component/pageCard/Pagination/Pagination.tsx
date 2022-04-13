@@ -23,14 +23,16 @@ export const Pagination: React.FC<PaginationProps> = ({ pagesCount, fetchPageCb 
   return (
     <div className={style.pages}>
       {page.map(el => (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-        <span
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => onClickHandler(el)}
           className={currentPage === el ? style.current_page : style.page}
           key={`${el}_2`}
         >
           {el}
-        </span>
+        </div>
       ))}
     </div>
   );
