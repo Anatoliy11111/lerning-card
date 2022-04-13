@@ -1,0 +1,14 @@
+.pages {
+  margin: 0 10px;
+  .page {
+    // border: 1px solid black;
+    //border-radius: 100%;
+    padding: 5px 10px;
+    // margin: 0 10px;
+    cursor: pointer;
+  }
+  .current_page {
+    border: 2px solid white;
+    font-weight: 700;
+  }
+}
