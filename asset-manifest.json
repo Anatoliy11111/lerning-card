@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lerning-card/static/css/main.4a32f382.css",
+    "main.js": "/lerning-card/static/js/main.c8e07d7d.js",
+    "static/js/787.370794a7.chunk.js": "/lerning-card/static/js/787.370794a7.chunk.js",
+    "index.html": "/lerning-card/index.html",
+    "main.4a32f382.css.map": "/lerning-card/static/css/main.4a32f382.css.map",
+    "main.c8e07d7d.js.map": "/lerning-card/static/js/main.c8e07d7d.js.map",
+    "787.370794a7.chunk.js.map": "/lerning-card/static/js/787.370794a7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4a32f382.css",
+    "static/js/main.c8e07d7d.js"
+  ]
+}
