@@ -1,0 +1,29 @@
+/*
+.containerButton button{
+    width: auto;
+    height: auto;
+    padding: 4px;
+    border: none;
+    border-radius: 7px;
+}
+
+
+.activeButton {
+    color: #faeaf8;
+    background-color: #52bd1d;
+}
+
+.activeButton:hover {
+    color: #faeaf8;
+    background-color: #52bd1d;
+    box-shadow: 0 1px 7px black;
+    cursor: pointer;
+}
+*/
+
+
+.disabledButton {
+    color: #faeaf8;
+    background-color: #959a92;
+}
+

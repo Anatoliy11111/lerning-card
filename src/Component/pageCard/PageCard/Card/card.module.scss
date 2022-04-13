@@ -1,0 +1,30 @@
+.card {
+  display: grid;
+  grid-template-columns: repeat(5 , 1fr);
+  align-items: center;
+  min-height: 48px;
+  padding: 16px 24px;
+  justify-content: space-between;
+
+  &:nth-child(even) {
+    background: #ECECF9;
+  }
+
+  .button {
+    display: flex;
+    flex-wrap: wrap;
+    button {
+      padding: 0 5px;
+
+    }
+  }
+}
+
+.cardItem{
+  flex: 0 1 20%;
+  div{
+    padding: 0 5px;
+
+  }
+
+}
