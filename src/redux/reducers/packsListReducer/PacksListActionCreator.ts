@@ -17,6 +17,8 @@ export const sortUpdatedCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-UPDATE-PACKS-LIST' } as const);
 export const sortCreatedCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-CREATED-PACKS-LIST' } as const);
+export const setPacNameAC = (packName: string) =>
+  ({ type: 'packsList/SET-NAME-PACK', packName } as const);
 
 type SetPacksListACType = ReturnType<typeof setPacksListAC>;
 type setMaxMinCardsCountType = ReturnType<typeof setMaxMinCardsCount>;
@@ -24,6 +26,8 @@ type SortNamePacksListACType = ReturnType<typeof sortNamePacksListAC>;
 type SortCountCardPacksListAC = ReturnType<typeof sortCountCardPacksListAC>;
 type SortUpdatedCardPacksListACType = ReturnType<typeof sortUpdatedCardPacksListAC>;
 type SortCreatedCardPacksListACType = ReturnType<typeof sortCreatedCardPacksListAC>;
+type SetPackName = ReturnType<typeof setPacNameAC>;
+type SetPagination = ReturnType<typeof setPaginationAC>;
 
 export type PacksListActionType =
   | SetPacksListACType
@@ -32,4 +36,5 @@ export type PacksListActionType =
   | SortCountCardPacksListAC
   | SortUpdatedCardPacksListACType
   | SortCreatedCardPacksListACType
-  | ReturnType<typeof setPaginationAC>;
+  | SetPackName
+  | SetPagination;

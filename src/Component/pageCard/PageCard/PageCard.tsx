@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,7 +6,6 @@ import { Card } from './Card/Card';
 import style from './pageCard.module.scss';
 import { SortItem } from './sortItem/SortItem';
 
-import { GetPacksListCard } from 'api/auth-api/types';
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
@@ -16,10 +15,12 @@ import {
   sortUpdatedCardPacksListAC,
   sortCreatedCardPacksListAC,
   sortNamePacksListAC,
+  setPacNameAC,
 } from 'redux/reducers';
 import {
   getCardPacksTotalCount,
   getCards,
+  getPackName,
   getPageCount,
 } from 'redux/selectors/selectorsPacksList/selectorsPacksList';
 import {
@@ -31,23 +32,31 @@ import {
 export const PageCard: React.FC = () => {
   const dispatch = useDispatch();
   const cards = useSelector(getCards);
+  const packName = useSelector(getPackName);
   const cardPacksTotalCount = useSelector(getCardPacksTotalCount);
   const pageCount = useSelector(getPageCount);
   const [value, setValue] = useState('');
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
-
+  const setName = (): void => {
+    console.log('setName is called');
+    dispatch(setPacNameAC(value));
+  };
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 500);
+  const debouncedSearch = useDebounce(value, 750, setName);
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, []);
+  }, [packName]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
   };
   const fetchPageCb = (num: number): void => {
     dispatch(getNewPageTC(num));
+  };
+  const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
+    setValue(e.currentTarget.value);
+    debouncedSearch();
   };
   const onSortNameCardClick = (): void => {
     dispatch(sortNamePacksListAC());
@@ -62,16 +71,16 @@ export const PageCard: React.FC = () => {
   const onSortCreatedCardClick = (): void => {
     dispatch(sortCreatedCardPacksListAC());
   };
-  const searchFn = (
-    searchValue: string,
-    itemsList: GetPacksListCard[],
-  ): GetPacksListCard[] => {
-    if (!searchValue) {
-      return itemsList;
-    }
-    return itemsList.filter(el => el.user_name.includes(searchValue));
-  };
-  const filteredValue = searchFn(debouncedSearch, cards);
+  // const searchFn = (
+  //   searchValue: string,
+  //   itemsList: GetPacksListCard[],
+  // ): GetPacksListCard[] => {
+  //   if (!searchValue) {
+  //     return itemsList;
+  //   }
+  //   return itemsList.filter(el => el.user_name.includes(searchValue));
+  // };
+  // const filteredValue = searchFn(debouncedSearch, cards);
 
   return (
     <div className={style.packsList}>
@@ -86,7 +95,7 @@ export const PageCard: React.FC = () => {
             id="34"
             name="text"
             value={value}
-            changeInputCallback={e => setValue(e.currentTarget.value)}
+            changeInputCallback={e => onChangeSearching(e)}
           />
           <GeneralButton
             onClickCallback={onCreateCardClick}

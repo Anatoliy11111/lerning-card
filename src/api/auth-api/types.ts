@@ -89,6 +89,7 @@ export type ResponseGetPacksList = {
   tokenDeathTime: number;
   maxCount?: number;
   minCount?: number;
+  packName?: string;
 };
 
 export type GetPacksListCard = {
