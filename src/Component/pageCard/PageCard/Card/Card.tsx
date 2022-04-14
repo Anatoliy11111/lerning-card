@@ -19,14 +19,41 @@ type CardType = {
 
 export const Card = memo(
   ({ userId, _id, name, cardsCount, created, updated }: CardType) => {
+    const myId = useSelector(getMyId);
     const dispatch = useDispatch();
 
     const onDeleteCardClick = (idCard: string): void => {
       dispatch(deleteCardFromPacksListTC(idCard));
     };
 
-    const myId = useSelector(getMyId);
-
+    if (myId !== userId) {
+      return (
+        <div className={style.card}>
+          <div className={style.cardItem}>
+            <div className={style.name}> {name}</div>
+          </div>
+          <div className={style.cardItem}>
+            <div className={style.count}>{cardsCount}</div>
+          </div>
+          <div className={style.cardItem}>
+            <div className={style.date}>{created}</div>
+          </div>
+          <div className={style.cardItem}>
+            <div className={style.date}>{updated}</div>
+          </div>
+          <div className={style.cardItem}>
+            <div className={style.button}>
+              <GeneralButton
+                type="button"
+                onClickCallback={() => {}}
+                disabled={false}
+                value="Learn"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className={style.card}>
         <div className={style.cardItem}>
@@ -46,13 +73,13 @@ export const Card = memo(
             <GeneralButton
               type="button"
               onClickCallback={e => onDeleteCardClick(_id)}
-              disabled={myId !== userId}
+              disabled={false}
               value="delete"
             />
             <GeneralButton
               type="button"
               onClickCallback={() => {}}
-              disabled={myId !== userId}
+              disabled={false}
               value="Edit"
             />
             <GeneralButton

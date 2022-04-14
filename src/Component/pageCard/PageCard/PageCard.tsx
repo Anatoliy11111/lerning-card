@@ -22,6 +22,7 @@ import {
   getCards,
   getPageCount,
 } from 'redux/selectors/selectorsPacksList/selectorsPacksList';
+import { RootState } from 'redux/store/Store';
 import {
   createCardPacksListTC,
   getNewPageTC,
@@ -38,10 +39,14 @@ export const PageCard: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const debouncedSearch = useDebounce(value, 500);
+  const sortPacks = useSelector<RootState, string>(
+    state => state.packsListReducer.sortPacks,
+  );
+  const page = useSelector<RootState, number>(state => state.packsListReducer.page);
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, []);
+  }, [sortPacks, page, pageCount]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
@@ -106,7 +111,7 @@ export const PageCard: React.FC = () => {
             </div>
           </div>
           <div className={style.cards}>
-            {cards.map(card => (
+            {filteredValue.map(card => (
               <Card /* eslint-disable-next-line no-underscore-dangle */
                 key={card._id} /* eslint-disable-next-line no-underscore-dangle */
                 _id={card._id}
@@ -127,23 +132,4 @@ export const PageCard: React.FC = () => {
       </div>
     </div>
   );
-
-  //   <div className={style.cards}>
-  //     {filteredValue.map(card => (
-  //       <Card /* eslint-disable-next-line no-underscore-dangle */
-  //         key={card._id} /* eslint-disable-next-line no-underscore-dangle */
-  //         _id={card._id}
-  //         created={card.created}
-  //         cardsCount={card.cardsCount}
-  //         name={card.user_name}
-  //         updated={card.updated}
-  //       />
-  //     ))}
-  //   </div>
-  //   <div>
-  //     <Pagination pagesCount={pagesCount} fetchPageCb={fetchPageCb} />
-  //   </div>
-  // </div>
-  // );
-  // };
 };

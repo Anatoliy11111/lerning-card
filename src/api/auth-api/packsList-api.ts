@@ -2,9 +2,9 @@ import { instance } from 'api/auth-api/auth-api';
 import { ResponseGetPacksList } from 'api/auth-api/types';
 
 export const packsListAPI = {
-  getPacksList() {
+  getPacksList(params: any) {
     return instance.get<ResponseGetPacksList>('cards/pack/', {
-      params: { pageCount: 8 },
+      params,
     });
   },
   getNewPage(pageNumber: number) {

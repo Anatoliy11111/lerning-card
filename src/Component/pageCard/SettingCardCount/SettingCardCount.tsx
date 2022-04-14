@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,10 +22,11 @@ export const SettingCardCount: React.FC = () => {
   // const obj = useSelector<RootState, ResponseGetPacksList>(
   //   state => state.packsListReducer,
   // );
-  const postSettingCardCount = (): void => {};
+
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
     dispatch(setMaxMinCardsCount(max, min));
   };
+  const postSettingCardCount = (): void => {};
   // console.log(obj);
   return (
     <div className={style.containerCardCount}>

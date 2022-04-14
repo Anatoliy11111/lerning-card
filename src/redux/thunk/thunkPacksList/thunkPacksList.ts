@@ -1,12 +1,19 @@
 import { Dispatch } from 'redux';
 
-import { instance } from 'api/auth-api/auth-api';
 import { packsListAPI } from 'api/auth-api/packsList-api';
 import { setPacksListAC, setPaginationAC } from 'redux/reducers';
+import { store } from 'redux/store/Store';
 
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
-    const promise = await packsListAPI.getPacksList();
+    const { sortPacks, page, pageCount, max, min } = store.getState().packsListReducer;
+    const promise = await packsListAPI.getPacksList({
+      sortPacks,
+      page,
+      pageCount,
+      max,
+      min,
+    });
     dispatch(setPacksListAC(promise.data.cardPacks));
     dispatch(setPaginationAC(promise.data));
   } catch (e: any) {

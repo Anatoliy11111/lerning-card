@@ -1,7 +1,6 @@
 import { PacksListActionType } from './PacksListActionCreator';
 
 import { ResponseGetPacksList } from 'api/auth-api/types';
-import { ResultMethodeSort } from 'enum/enum';
 
 const initialState = {
   cardPacks: [
@@ -19,11 +18,12 @@ const initialState = {
   maxCardsCount: 60,
   minCardsCount: 1,
   page: 0,
-  pageCount: 0,
+  pageCount: 8,
   token: '',
   tokenDeathTime: 1650119451390,
-  maxCount: 100,
-  minCount: 1,
+  max: 100,
+  min: 1,
+  sortPacks: '0created',
 };
 
 export const packsListReducer = (
@@ -38,7 +38,7 @@ export const packsListReducer = (
       return { ...state, ...action.data };
     }
     case 'packsList/SET-MAX-MIN-CARDS-COUNT': {
-      return { ...state, maxCount: action.max, minCount: action.min };
+      return { ...state, max: action.max, min: action.min };
     }
     /*    case 'packsList/DELETE-CARD': {
           return {
@@ -50,37 +50,25 @@ export const packsListReducer = (
     case 'packsList/SET-SORT-NAME-PACKS-LIST': {
       return {
         ...state,
-        cardPacks: [...state.cardPacks].sort((a, b): any => {
-          if (a.user_name > b.user_name) return ResultMethodeSort.Ascending;
-          if (a.user_name < b.user_name) return ResultMethodeSort.Descending;
-          return ResultMethodeSort.Default;
-        }),
+        sortPacks: '1name',
       };
     }
     case 'packsList/SET-SORT-COUNT-PACKS-LIST': {
       return {
         ...state,
-        cardPacks: [...state.cardPacks].sort((a, b) => b.cardsCount - a.cardsCount),
+        sortPacks: '0cardsCount',
       };
     }
     case 'packsList/SET-SORT-CREATED-PACKS-LIST': {
       return {
         ...state,
-        cardPacks: [...state.cardPacks].sort((a, b): any => {
-          if (a.created < b.created) return ResultMethodeSort.Ascending;
-          if (a.created > b.created) return ResultMethodeSort.Descending;
-          return ResultMethodeSort.Default;
-        }),
+        sortPacks: '0created',
       };
     }
     case 'packsList/SET-SORT-UPDATE-PACKS-LIST': {
       return {
         ...state,
-        cardPacks: [...state.cardPacks].sort((a, b) => {
-          if (a.updated < b.updated) return ResultMethodeSort.Ascending;
-          if (a.updated > b.updated) return ResultMethodeSort.Descending;
-          return ResultMethodeSort.Default;
-        }),
+        sortPacks: '1updated',
       };
     }
 
