@@ -38,7 +38,6 @@ export const PageCard: React.FC = () => {
   const [value, setValue] = useState('');
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
   const setName = (): void => {
-    console.log('setName is called');
     dispatch(setPacNameAC(value));
   };
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
