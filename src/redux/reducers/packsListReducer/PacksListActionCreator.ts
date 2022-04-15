@@ -1,4 +1,8 @@
-import { GetPacksListCard, ResponseGetPacksList } from 'api/auth-api/types';
+import {
+  GetPacksListCard,
+  ResponseGetPacksList,
+  StatusLoadingType,
+} from 'api/auth-api/types';
 
 export const setPacksListAC = (data: GetPacksListCard[]) =>
   ({ type: 'packsList/SET-PACKS-LIST', data } as const);
@@ -18,12 +22,16 @@ export const sortUpdatedCardPacksListAC = () =>
 export const sortCreatedCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-CREATED-PACKS-LIST' } as const);
 
+export const setStatusLoadingPacksListAC = (value: StatusLoadingType) =>
+  ({ type: 'packsList/SET-STATUS-LOADING', value } as const);
+
 type SetPacksListACType = ReturnType<typeof setPacksListAC>;
 type setMaxMinCardsCountType = ReturnType<typeof setMaxMinCardsCount>;
 type SortNamePacksListACType = ReturnType<typeof sortNamePacksListAC>;
 type SortCountCardPacksListAC = ReturnType<typeof sortCountCardPacksListAC>;
 type SortUpdatedCardPacksListACType = ReturnType<typeof sortUpdatedCardPacksListAC>;
 type SortCreatedCardPacksListACType = ReturnType<typeof sortCreatedCardPacksListAC>;
+type SetStatusLoadingPacksListACType = ReturnType<typeof setStatusLoadingPacksListAC>;
 
 export type PacksListActionType =
   | SetPacksListACType
@@ -32,4 +40,5 @@ export type PacksListActionType =
   | SortCountCardPacksListAC
   | SortUpdatedCardPacksListACType
   | SortCreatedCardPacksListACType
-  | ReturnType<typeof setPaginationAC>;
+  | ReturnType<typeof setPaginationAC>
+  | SetStatusLoadingPacksListACType;

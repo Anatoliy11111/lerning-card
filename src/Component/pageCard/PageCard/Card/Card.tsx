@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import style from './card.module.scss';
 
@@ -30,7 +31,10 @@ export const Card = memo(
       return (
         <div className={style.card}>
           <div className={style.cardItem}>
-            <div className={style.name}> {name}</div>
+            <Link to="/cards" className={style.name}>
+              {' '}
+              {name}
+            </Link>
           </div>
           <div className={style.cardItem}>
             <div className={style.count}>{cardsCount}</div>
@@ -57,7 +61,10 @@ export const Card = memo(
     return (
       <div className={style.card}>
         <div className={style.cardItem}>
-          <div className={style.name}> {name}</div>
+          <Link to="/cards" className={style.name}>
+            {' '}
+            {name}
+          </Link>
         </div>
         <div className={style.cardItem}>
           <div className={style.count}>{cardsCount}</div>

@@ -24,6 +24,7 @@ const initialState = {
   max: 100,
   min: 1,
   sortPacks: '0created',
+  statusLoading: 'succeeded',
 };
 
 export const packsListReducer = (
@@ -39,6 +40,9 @@ export const packsListReducer = (
     }
     case 'packsList/SET-MAX-MIN-CARDS-COUNT': {
       return { ...state, max: action.max, min: action.min };
+    }
+    case 'packsList/SET-STATUS-LOADING': {
+      return { ...state, statusLoading: action.value };
     }
     /*    case 'packsList/DELETE-CARD': {
           return {
