@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import style from './card.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
-import { getMyId } from 'redux/selectors';
+import { Preloader } from 'Component/01-common/preloader/Preloader';
+import { getMyId, getStatusLoading } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
 
 type CardType = {

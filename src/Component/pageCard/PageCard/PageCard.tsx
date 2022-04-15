@@ -7,6 +7,7 @@ import style from './pageCard.module.scss';
 import { SortItem } from './sortItem/SortItem';
 
 import { GeneralButton, GeneralInput } from 'Component/01-common';
+import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
@@ -86,16 +87,6 @@ export const PageCard: React.FC = () => {
   const onSortCreatedCardClick = (): void => {
     dispatch(sortCreatedCardPacksListAC());
   };
-  // const searchFn = (
-  //   searchValue: string,
-  //   itemsList: GetPacksListCard[],
-  // ): GetPacksListCard[] => {
-  //   if (!searchValue) {
-  //     return itemsList;
-  //   }
-  //   return itemsList.filter(el => el.user_name.includes(searchValue));
-  // };
-  // const filteredValue = searchFn(debouncedSearch, cards);
 
   return (
     <div className={style.packsList}>
@@ -130,19 +121,23 @@ export const PageCard: React.FC = () => {
             </div>
           </div>
           <div className={style.cards}>
-            {cards.map(card => (
-              <Card /* eslint-disable-next-line no-underscore-dangle */
-                key={card._id} /* eslint-disable-next-line no-underscore-dangle */
-                _id={card._id}
-                userId={card.user_id}
-                /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-                created={card.created.substring(0, 10)}
-                cardsCount={card.cardsCount}
-                name={card.user_name}
-                /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-                updated={card.updated.substring(0, 10)}
-              />
-            ))}
+            {statusLoading === 'loading' ? (
+              <Preloader />
+            ) : (
+              cards.map(card => (
+                <Card /* eslint-disable-next-line no-underscore-dangle */
+                  key={card._id} /* eslint-disable-next-line no-underscore-dangle */
+                  _id={card._id}
+                  userId={card.user_id}
+                  /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+                  created={card.created.substring(0, 10)}
+                  cardsCount={card.cardsCount}
+                  name={card.user_name}
+                  /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+                  updated={card.updated.substring(0, 10)}
+                />
+              ))
+            )}
           </div>
         </div>
         <div>
