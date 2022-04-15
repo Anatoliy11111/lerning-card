@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,21 +6,23 @@ import { Card } from './Card/Card';
 import style from './pageCard.module.scss';
 import { SortItem } from './sortItem/SortItem';
 
-import { GetPacksListCard } from 'api/auth-api/types';
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
 import {
+  setCurrentNumberPageAC,
+  setPacNameAC,
   sortCountCardPacksListAC,
   sortCreatedCardPacksListAC,
   sortNamePacksListAC,
   sortUpdatedCardPacksListAC,
-  setPacNameAC,
 } from 'redux/reducers';
 import {
   getCardPacksTotalCount,
   getCards,
+  getMaxCardCount,
+  getMinCardCount,
   getPackName,
   getPage,
   getPageCount,
@@ -29,7 +31,6 @@ import {
 } from 'redux/selectors/selectorsPacksList/selectorsPacksList';
 import {
   createCardPacksListTC,
-  getNewPageTC,
   getPacksListTC,
 } from 'redux/thunk/thunkPacksList/thunkPacksList';
 
@@ -44,7 +45,8 @@ export const PageCard: React.FC = () => {
   const statusLoading = useSelector(getStatusLoading);
   const sortPacks = useSelector(getSortPacks);
   const page = useSelector(getPage);
-
+  const minCardCount = useSelector(getMinCardCount);
+  const maxCardCount = useSelector(getMaxCardCount);
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
   const setName = (): void => {
     dispatch(setPacNameAC(value));
@@ -54,14 +56,17 @@ export const PageCard: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, [packName, sortPacks, page, pageCount]);
+  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
   };
-  const fetchPageCb = (num: number): void => {
-    dispatch(getNewPageTC(num));
-  };
+  const fetchPageCb = useCallback(
+    (num: number): void => {
+      dispatch(setCurrentNumberPageAC(num));
+    },
+    [dispatch],
+  );
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value);
     debouncedSearch();
@@ -155,5 +160,4 @@ export const PageCard: React.FC = () => {
     </div>
   );
   // filteredValue
-
 };

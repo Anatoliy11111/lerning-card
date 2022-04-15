@@ -1,5 +1,8 @@
 import { instance } from 'api/auth-api/auth-api';
-import { ResponseGetPacksList } from 'api/auth-api/types';
+import {
+  ResponseAddAndDeletePacksListType,
+  ResponseGetPacksList,
+} from 'api/auth-api/types';
 
 export const packsListAPI = {
   getPacksList(params: any) {

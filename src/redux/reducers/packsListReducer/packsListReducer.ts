@@ -22,8 +22,8 @@ const initialState = {
   pageCount: 8,
   token: '',
   tokenDeathTime: 1650119451390,
-  max: 100,
-  min: 1,
+  maxCount: 100,
+  minCount: 1,
   sortPacks: '0created',
   statusLoading: 'succeeded',
 };
@@ -40,18 +40,14 @@ export const packsListReducer = (
       return { ...state, ...action.data };
     }
     case 'packsList/SET-MAX-MIN-CARDS-COUNT': {
-      return { ...state, max: action.max, min: action.min };
+      return { ...state, maxCount: action.max, minCount: action.min };
     }
     case 'packsList/SET-STATUS-LOADING': {
       return { ...state, statusLoading: action.value };
     }
-    /*    case 'packsList/DELETE-CARD': {
-          return {
-            ...state,
-            // eslint-disable-next-line no-underscore-dangle
-            cardPacks: state.cardPacks.filter(card => card._id !== action.idCard),
-          };
-        } */
+    case 'packsList/SET-CURRENT-NUMBER-PAGE': {
+      return { ...state, page: action.page };
+    }
     case 'packsList/SET-SORT-NAME-PACKS-LIST': {
       return {
         ...state,
