@@ -26,6 +26,7 @@ const initialState = {
   minCount: 1,
   sortPacks: '0created',
   statusLoading: 'succeeded',
+  user_id: '',
 };
 
 export const packsListReducer = (
@@ -35,6 +36,9 @@ export const packsListReducer = (
   switch (action.type) {
     case 'packsList/SET-PACKS-LIST': {
       return { ...state, cardPacks: action.data };
+    }
+    case 'packsList/SET-SELECT-CARD': {
+      return { ...state, user_id: action.userId };
     }
     case 'packsList/SET-PAGINATION': {
       return { ...state, ...action.data };

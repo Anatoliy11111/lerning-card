@@ -7,21 +7,20 @@ import { DoubleRange, onChangeCountRangeType } from '../DoubleRange/DoubleRange'
 import style from './SettingCardCount.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
-import { setMaxMinCardsCount } from 'redux/reducers';
-import { getMaxCount, getMinCount } from 'redux/selectors';
+import { setMaxMinCardsCount, setSelectCardAC } from 'redux/reducers';
+import { getMaxCount, getMinCount, getMyId } from 'redux/selectors';
 
 export const SettingCardCount: React.FC = () => {
-  const [valueSelectCard, setValueSelectCard] = useState(false);
+  const myID = useSelector(getMyId);
 
   const dispatch = useDispatch();
   const minCard = useSelector(getMinCount);
   const maxCard = useSelector(getMaxCount);
-
   const [minCardCount, setMinCardCount] = useState<number>(minCard);
   const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
 
-  const onClickButton = (value: boolean): void => {
-    setValueSelectCard(value);
+  const onClickButton = (id: string): void => {
+    dispatch(setSelectCardAC(id));
   };
 
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
@@ -40,20 +39,25 @@ export const SettingCardCount: React.FC = () => {
           type="button"
           value="My"
           onClickCallback={() => {
-            onClickButton(true);
+            onClickButton(myID);
           }}
         />
         <GeneralButton
           type="button"
           value="All"
           onClickCallback={() => {
-            onClickButton(false);
+            onClickButton('');
           }}
         />
       </div>
       <h2> Number of cards</h2>
       <div role="button" onBlur={() => {}} tabIndex={0} onMouseOut={postSettingCardCount}>
-        <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
+        <DoubleRange
+          min={minCard}
+          /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+          max={maxCard === 0 ? 1 : maxCard}
+          onChange={changeCardCount}
+        />
       </div>
     </div>
   );

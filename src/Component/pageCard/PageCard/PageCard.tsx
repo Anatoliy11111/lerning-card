@@ -21,6 +21,7 @@ import {
 import {
   getCardPacksTotalCount,
   getCards,
+  getIsMyCard,
   getMaxCardCount,
   getMinCardCount,
   getPackName,
@@ -47,6 +48,7 @@ export const PageCard: React.FC = () => {
   const page = useSelector(getPage);
   const minCardCount = useSelector(getMinCardCount);
   const maxCardCount = useSelector(getMaxCardCount);
+  const isMyCard = useSelector(getIsMyCard);
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
   const setName = (): void => {
     dispatch(setPacNameAC(value));
@@ -56,7 +58,7 @@ export const PageCard: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount]);
+  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());

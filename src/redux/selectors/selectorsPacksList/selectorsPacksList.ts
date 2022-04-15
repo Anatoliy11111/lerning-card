@@ -25,3 +25,6 @@ export const getMinCardCount = (state: RootState): number | undefined =>
   state.packsListReducer.minCount;
 export const getMaxCardCount = (state: RootState): number | undefined =>
   state.packsListReducer.maxCount;
+
+export const getIsMyCard = (state: RootState): string | undefined =>
+  state.packsListReducer.user_id;

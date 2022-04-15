@@ -15,6 +15,8 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       sortPacks,
       page,
       pageCount,
+      // eslint-disable-next-line camelcase
+      user_id,
       minCount: min,
       maxCount: max,
       packName,
@@ -26,6 +28,8 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       min,
       max,
       packName,
+      // eslint-disable-next-line camelcase
+      user_id,
     });
     dispatch(setStatusLoadingPacksListAC('succeeded'));
     dispatch(setPacksListAC(promise.data.cardPacks));

@@ -25,6 +25,8 @@ export const setStatusLoadingPacksListAC = (value: StatusLoadingType) =>
   ({ type: 'packsList/SET-STATUS-LOADING', value } as const);
 export const setCurrentNumberPageAC = (page: number) =>
   ({ type: 'packsList/SET-CURRENT-NUMBER-PAGE', page } as const);
+export const setSelectCardAC = (userId: string) =>
+  ({ type: 'packsList/SET-SELECT-CARD', userId } as const);
 
 type SetPacksListACType = ReturnType<typeof setPacksListAC>;
 type setMaxMinCardsCountType = ReturnType<typeof setMaxMinCardsCount>;
@@ -36,6 +38,7 @@ type SetStatusLoadingPacksListACType = ReturnType<typeof setStatusLoadingPacksLi
 type SetPackName = ReturnType<typeof setPacNameAC>;
 type SetPagination = ReturnType<typeof setPaginationAC>;
 type setCurrentNumberPage = ReturnType<typeof setCurrentNumberPageAC>;
+type setSelectCard = ReturnType<typeof setSelectCardAC>;
 
 export type PacksListActionType =
   | SetPacksListACType
@@ -47,4 +50,5 @@ export type PacksListActionType =
   | setCurrentNumberPage
   | SetStatusLoadingPacksListACType
   | SetPackName
+  | setSelectCard
   | SetPagination;
