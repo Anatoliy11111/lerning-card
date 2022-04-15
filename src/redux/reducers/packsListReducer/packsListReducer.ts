@@ -18,7 +18,7 @@ const initialState = {
   cardPacksTotalCount: 0,
   maxCardsCount: 60,
   minCardsCount: 1,
-  page: 0,
+  page: 1,
   pageCount: 8,
   token: '',
   tokenDeathTime: 1650119451390,
