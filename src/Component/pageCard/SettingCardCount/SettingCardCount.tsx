@@ -17,10 +17,8 @@ export const SettingCardCount: React.FC = () => {
   const minCard = useSelector(getMinCount);
   const maxCard = useSelector(getMaxCount);
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const [minCardCount, setMinCardCount] = useState<number>(0);
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const [maxCardCount, setMaxCardCount] = useState<number>(60);
+  const [minCardCount, setMinCardCount] = useState<number>(minCard);
+  const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
 
   const onClickButton = (value: boolean): void => {
     setValueSelectCard(value);
