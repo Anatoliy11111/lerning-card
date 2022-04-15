@@ -12,18 +12,19 @@ export const sortNamePacksListAC = () =>
   ({ type: 'packsList/SET-SORT-NAME-PACKS-LIST' } as const);
 export const sortCountCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-COUNT-PACKS-LIST' } as const);
-/* export const deleteCardAC = (idCard: string) =>
-  ({ type: 'packsList/DELETE-CARD', idCard } as const); */
 export const setPaginationAC = (data: Omit<ResponseGetPacksList, 'cardPacks'>) =>
   ({ type: 'packsList/SET-PAGINATION', data } as const);
-// type DeleteCardACType = ReturnType<typeof deleteCardAC>;
 export const sortUpdatedCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-UPDATE-PACKS-LIST' } as const);
 export const sortCreatedCardPacksListAC = () =>
   ({ type: 'packsList/SET-SORT-CREATED-PACKS-LIST' } as const);
+export const setPacNameAC = (packName: string) =>
+  ({ type: 'packsList/SET-NAME-PACK', packName } as const);
 
 export const setStatusLoadingPacksListAC = (value: StatusLoadingType) =>
   ({ type: 'packsList/SET-STATUS-LOADING', value } as const);
+export const setCurrentNumberPageAC = (page: number) =>
+  ({ type: 'packsList/SET-CURRENT-NUMBER-PAGE', page } as const);
 
 type SetPacksListACType = ReturnType<typeof setPacksListAC>;
 type setMaxMinCardsCountType = ReturnType<typeof setMaxMinCardsCount>;
@@ -32,6 +33,9 @@ type SortCountCardPacksListAC = ReturnType<typeof sortCountCardPacksListAC>;
 type SortUpdatedCardPacksListACType = ReturnType<typeof sortUpdatedCardPacksListAC>;
 type SortCreatedCardPacksListACType = ReturnType<typeof sortCreatedCardPacksListAC>;
 type SetStatusLoadingPacksListACType = ReturnType<typeof setStatusLoadingPacksListAC>;
+type SetPackName = ReturnType<typeof setPacNameAC>;
+type SetPagination = ReturnType<typeof setPaginationAC>;
+type setCurrentNumberPage = ReturnType<typeof setCurrentNumberPageAC>;
 
 export type PacksListActionType =
   | SetPacksListACType
@@ -40,5 +44,7 @@ export type PacksListActionType =
   | SortCountCardPacksListAC
   | SortUpdatedCardPacksListACType
   | SortCreatedCardPacksListACType
-  | ReturnType<typeof setPaginationAC>
-  | SetStatusLoadingPacksListACType;
+  | setCurrentNumberPage
+  | SetStatusLoadingPacksListACType
+  | SetPackName
+  | SetPagination;

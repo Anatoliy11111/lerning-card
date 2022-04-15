@@ -9,7 +9,7 @@ import { HashRouter } from 'react-router-dom';
 
 import reportWebVitals from './reportWebVitals';
 
-import { App } from 'Component/pageCard/PageCard/App';
+import { App } from 'App';
 import { store } from 'redux/store/Store';
 
 ReactDOM.render(

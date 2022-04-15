@@ -1,33 +1,62 @@
-.packsList{
+.packsList {
   background-color: #F9F9FE;
   padding: 16px 24px;
   display: flex;
-flex:4
+  flex: 4;
+  margin-top: 30px;
+  border-radius: 8px;
 }
-.title{
+
+.title {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 150%;
   margin-bottom: 2rem;
 }
-.cardCount{
-  background-color:#ECECF9 ;
-  flex:1}
+
+.cardCount {
+  background-color: #ECECF9;
+  flex: 1
+}
 
 .form {
   display: flex;
 }
-.packListContainer{
-  flex:3
+
+.packListContainer {
+  flex: 3;
+
+  h1 {
+    display: flex;
+    margin: 10px 42px;
+    justify-content: flex-start;
+  }
 }
-//.form{
-//  display: flex;
-//}
+
+.packsList__cards {
+  margin: 40px;
+  box-shadow: 0 3px 8px #afafc4;
+}
+
+.form {
+  display: flex;
+  justify-content: space-around;
+
+  input {
+    border: 1px solid #c7c7c7;
+    width: 51em;
+    height: 40px;
+  }
+
+  button {
+    padding: 20px 40px;
+  }
+}
 
 .packsList__sort {
   display: flex;
   flex-wrap: wrap;
-  background: #ECECF9;
+  background: #d2ccf6;
   min-height: 48px;
   align-items: center;
   padding: 0 24px;

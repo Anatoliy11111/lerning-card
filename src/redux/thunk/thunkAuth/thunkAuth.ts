@@ -32,7 +32,6 @@ export const changePasswordTC =
       const promise = await authAPI.changePassword(data);
       dispatch(setMessageRestorePassword(promise.data.info));
     } catch (error: any) {
-      debugger;
       dispatch(setMessageRestorePassword(error.response.data.error));
     }
   };

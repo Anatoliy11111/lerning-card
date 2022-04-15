@@ -2,40 +2,54 @@
     grid-template-columns: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: flex-end;
     min-height: 80px;
-    margin-bottom: 5rem;
+    padding-top: 2rem;
+    background-color: #EBE0E9;
+
+
 }
 
 .active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: azure;
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: uppercase;
-    margin-right: 10px;
+    background-color: #bcabba;
+    width: 200px;
+    height: 80px;
+
 
 }
 
 .NotActive {
-    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #020a0a;
     text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    margin-right: 10px;
+    font-size: 1.5rem;
     font-weight: 600;
+    text-transform: uppercase;
+    width: 200px;
+    height: 80px;
 }
-.NotActive:last-child{
-    margin-right: 0;
-}
+
+/*.NotActive:last-child {*/
+/*    margin-right: 0;*/
+/*}*/
 
 .NotActive:hover {
     color: inherit;
 }
 
-@media (max-width:767px) {
-    .NotActive ,
+@media (max-width: 767px) {
+    .NotActive,
     .active {
         font-weight: 500;
     }

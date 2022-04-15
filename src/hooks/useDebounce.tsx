@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 
-export function useDebounce(value: string, delay: number): string {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+import { useDispatch } from 'react-redux';
 
+import { setPacNameAC } from 'redux/reducers';
+
+export function useDebounce(value: string, delay: number, fn: () => void): () => void {
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedValue(value);
+      fn();
     }, delay);
     return () => {
       clearTimeout(handler);
     };
   }, [value, delay]);
 
-  return debouncedValue;
+  return () => {};
 }

@@ -26,9 +26,9 @@
   "rules": {
 
     "no-shadow": "off",
-    "no-console": "off",
+    "no-console": "error",
     "no-alert": "error",
-    "no-debugger": "off",
+    "no-debugger": "error",
     "no-plusplus": "error",
     "no-unused-vars": "off",
     "no-magic-numbers": "off",
