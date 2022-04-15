@@ -93,6 +93,7 @@ export type ResponseGetPacksList = {
   sortPacks?: string;
   statusLoading?: string | StatusLoadingType;
   packName?: string;
+  user_id?: string;
 };
 
 export type GetPacksListCard = {
