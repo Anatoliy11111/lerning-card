@@ -13,14 +13,17 @@ import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCar
 import { useDebounce } from 'hooks/useDebounce';
 import {
   sortCountCardPacksListAC,
-  sortUpdatedCardPacksListAC,
   sortCreatedCardPacksListAC,
   sortNamePacksListAC,
+  sortUpdatedCardPacksListAC,
 } from 'redux/reducers';
 import {
   getCardPacksTotalCount,
   getCards,
+  getPage,
   getPageCount,
+  getSortPacks,
+  getStatusLoading,
 } from 'redux/selectors/selectorsPacksList/selectorsPacksList';
 import {
   createCardPacksListTC,
@@ -29,11 +32,16 @@ import {
 } from 'redux/thunk/thunkPacksList/thunkPacksList';
 
 export const PageCard: React.FC = () => {
+  const [value, setValue] = useState('');
   const dispatch = useDispatch();
+
   const cards = useSelector(getCards);
   const cardPacksTotalCount = useSelector(getCardPacksTotalCount);
   const pageCount = useSelector(getPageCount);
-  const [value, setValue] = useState('');
+  const statusLoading = useSelector(getStatusLoading);
+  const sortPacks = useSelector(getSortPacks);
+  const page = useSelector(getPage);
+
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
 
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -41,7 +49,7 @@ export const PageCard: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, []);
+  }, [sortPacks, page, pageCount]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
@@ -73,6 +81,16 @@ export const PageCard: React.FC = () => {
   };
   const filteredValue = searchFn(debouncedSearch, cards);
 
+  if (statusLoading === 'loading') {
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src="https://i.gifer.com/origin/26/264162db570a4614c8fd7dc15c757b8e_w200.webp"
+          alt="gif loading"
+        />
+      </div>
+    );
+  }
   return (
     <div className={style.packsList}>
       <div className={style.cardCount}>

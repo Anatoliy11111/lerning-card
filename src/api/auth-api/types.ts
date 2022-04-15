@@ -77,6 +77,7 @@ export type CreateNewPasswordResponse = {
 };
 
 //= =================================== PacksList ============================================ //
+export type StatusLoadingType = 'loading' | 'succeeded';
 
 export type ResponseGetPacksList = {
   cardPacks: GetPacksListCard[];
@@ -87,8 +88,10 @@ export type ResponseGetPacksList = {
   pageCount: number;
   token: string;
   tokenDeathTime: number;
-  maxCount?: number;
-  minCount?: number;
+  max: number;
+  min: number;
+  sortPacks: string;
+  statusLoading: string | StatusLoadingType;
 };
 
 export type GetPacksListCard = {
@@ -113,4 +116,23 @@ export type ResponseMe = {
   verified: boolean;
   rememberMe: boolean;
   error?: string;
+};
+export type ResponseAddAndDeletePacksListType = {
+  cardsCount: number;
+  created: string;
+  grade: number;
+  more_id: string;
+  name: string;
+  path: string;
+  private: false;
+  rating: number;
+  shots: number;
+  type: string;
+  updated: string;
+  user_id: string;
+  user_name: string;
+  __v: number;
+  _id: string;
+  token: string;
+  tokenDeathTime: number;
 };
