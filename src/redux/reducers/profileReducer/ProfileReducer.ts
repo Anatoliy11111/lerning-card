@@ -8,20 +8,6 @@ export type ProfileType = {
   isLoggedIn: boolean;
 };
 
-// avatar: null
-// created: "2022-04-03T12:08:46.884Z"
-// email: "canatolij@list.ru"
-// isAdmin: false
-// name: "сосиска-бориска"
-// publicCardPacksCount: 3
-// rememberMe: true
-// token: "e0c1a050-bbea-11ec-9bd0-ad312a505023"
-// tokenDeathTime: 1650542600917
-// updated: "2022-04-14T12:03:20.917Z"
-// verified: true
-// __v: 0
-// _id: "62498e4e4290fe2becd03da0"
-
 const initState = {
   _id: '',
   name: '',
