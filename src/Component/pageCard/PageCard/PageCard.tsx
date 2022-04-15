@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,10 +16,12 @@ import {
   sortCreatedCardPacksListAC,
   sortNamePacksListAC,
   sortUpdatedCardPacksListAC,
+  setPacNameAC,
 } from 'redux/reducers';
 import {
   getCardPacksTotalCount,
   getCards,
+  getPackName,
   getPage,
   getPageCount,
   getSortPacks,
@@ -36,6 +38,7 @@ export const PageCard: React.FC = () => {
   const dispatch = useDispatch();
 
   const cards = useSelector(getCards);
+  const packName = useSelector(getPackName);
   const cardPacksTotalCount = useSelector(getCardPacksTotalCount);
   const pageCount = useSelector(getPageCount);
   const statusLoading = useSelector(getStatusLoading);
@@ -43,19 +46,25 @@ export const PageCard: React.FC = () => {
   const page = useSelector(getPage);
 
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
-
+  const setName = (): void => {
+    dispatch(setPacNameAC(value));
+  };
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 1500);
+  const debouncedSearch = useDebounce(value, 750, setName);
 
   useEffect(() => {
     dispatch(getPacksListTC());
-  }, [sortPacks, page, pageCount]);
+  }, [packName, sortPacks, page, pageCount]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
   };
   const fetchPageCb = (num: number): void => {
     dispatch(getNewPageTC(num));
+  };
+  const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
+    setValue(e.currentTarget.value);
+    debouncedSearch();
   };
   const onSortNameCardClick = (): void => {
     dispatch(sortNamePacksListAC());
@@ -70,16 +79,16 @@ export const PageCard: React.FC = () => {
   const onSortCreatedCardClick = (): void => {
     dispatch(sortCreatedCardPacksListAC());
   };
-  const searchFn = (
-    searchValue: string,
-    itemsList: GetPacksListCard[],
-  ): GetPacksListCard[] => {
-    if (!searchValue) {
-      return itemsList;
-    }
-    return itemsList.filter(el => el.user_name.includes(searchValue));
-  };
-  const filteredValue = searchFn(debouncedSearch, cards);
+  // const searchFn = (
+  //   searchValue: string,
+  //   itemsList: GetPacksListCard[],
+  // ): GetPacksListCard[] => {
+  //   if (!searchValue) {
+  //     return itemsList;
+  //   }
+  //   return itemsList.filter(el => el.user_name.includes(searchValue));
+  // };
+  // const filteredValue = searchFn(debouncedSearch, cards);
 
   if (statusLoading === 'loading') {
     return (
@@ -104,12 +113,12 @@ export const PageCard: React.FC = () => {
             id="34"
             name="text"
             value={value}
-            changeInputCallback={e => setValue(e.currentTarget.value)}
+            changeInputCallback={e => onChangeSearching(e)}
           />
           <GeneralButton
             onClickCallback={onCreateCardClick}
             type="button"
-            value="Add new pack"
+            value="Add pack"
           />
         </div>
 
@@ -124,7 +133,7 @@ export const PageCard: React.FC = () => {
             </div>
           </div>
           <div className={style.cards}>
-            {filteredValue.map(card => (
+            {cards.map(card => (
               <Card /* eslint-disable-next-line no-underscore-dangle */
                 key={card._id} /* eslint-disable-next-line no-underscore-dangle */
                 _id={card._id}
@@ -145,4 +154,6 @@ export const PageCard: React.FC = () => {
       </div>
     </div>
   );
+  // filteredValue
+
 };

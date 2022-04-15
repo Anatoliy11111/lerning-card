@@ -88,10 +88,11 @@ export type ResponseGetPacksList = {
   pageCount: number;
   token: string;
   tokenDeathTime: number;
-  max: number;
-  min: number;
-  sortPacks: string;
-  statusLoading: string | StatusLoadingType;
+  maxCount?: number;
+  minCount?: number;
+  sortPacks?: string;
+  statusLoading?: string | StatusLoadingType;
+  packName?: string;
 };
 
 export type GetPacksListCard = {

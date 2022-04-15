@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 
+import { instance } from 'api/auth-api/auth-api';
 import { packsListAPI } from 'api/auth-api/packsList-api';
 import {
   setPacksListAC,
@@ -8,16 +9,18 @@ import {
 } from 'redux/reducers';
 import { store } from 'redux/store/Store';
 
+
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));
-    const { sortPacks, page, pageCount, max, min } = store.getState().packsListReducer;
+    const { sortPacks, page, pageCount, max, min, packName } = store.getState().packsListReducer;
     const promise = await packsListAPI.getPacksList({
       sortPacks,
       page,
       pageCount,
       max,
       min,
+      packName,
     });
     dispatch(setStatusLoadingPacksListAC('succeeded'));
     dispatch(setPacksListAC(promise.data.cardPacks));

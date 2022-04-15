@@ -9,6 +9,8 @@ export const getCardPacksTotalCount = (state: RootState): number =>
   state.packsListReducer.cardPacksTotalCount;
 export const getPageCount = (state: RootState): number =>
   state.packsListReducer.pageCount;
+export const getPackName = (state: RootState): string | undefined =>
+  state.packsListReducer.packName;
 export const getMaxCount = (state: RootState): number =>
   state.packsListReducer.maxCardsCount;
 export const getMinCount = (state: RootState): number =>

@@ -14,6 +14,7 @@ const initialState = {
       updated: '',
     },
   ],
+  packName: '',
   cardPacksTotalCount: 0,
   maxCardsCount: 60,
   minCardsCount: 1,
@@ -74,6 +75,9 @@ export const packsListReducer = (
         ...state,
         sortPacks: '1updated',
       };
+    }
+    case 'packsList/SET-NAME-PACK': {
+      return { ...state, packName: action.packName };
     }
 
     default:
