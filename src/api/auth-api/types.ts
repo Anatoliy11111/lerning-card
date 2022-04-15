@@ -97,8 +97,8 @@ export type ResponseGetPacksList = {
   pageCount: number;
   token: string;
   tokenDeathTime: number;
-  maxCount?: number;
-  minCount?: number;
+  maxCount: number;
+  minCount: number;
   sortPacks: SortPacksType;
   statusLoading?: string | StatusLoadingType;
   packName?: string;
@@ -114,7 +114,6 @@ export type GetPacksListCard = {
   created: string;
   updated: string;
 };
-
 
 export type ResponseAddAndDeletePacksListType = {
   cardsCount: number;

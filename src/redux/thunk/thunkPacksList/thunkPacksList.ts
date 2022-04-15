@@ -2,12 +2,18 @@ import { Dispatch } from 'redux';
 
 import { packsListAPI } from 'api/auth-api/packsList-api';
 import {
+  setMaxMinInitialCountAC,
   setPacksListAC,
   setPaginationAC,
   setStatusLoadingPacksListAC,
 } from 'redux/reducers';
 import { store } from 'redux/store/Store';
 
+export const getMaxMinCount = () => async (dispatch: Dispatch) => {
+  const { data } = await packsListAPI.getPacksList({});
+  const { maxCardsCount, minCardsCount } = data;
+  dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
+};
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));

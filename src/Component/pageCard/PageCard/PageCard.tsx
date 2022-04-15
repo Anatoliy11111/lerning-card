@@ -59,7 +59,6 @@ export const PageCard: React.FC = () => {
   useEffect(() => {
     dispatch(getPacksListTC());
   }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
-
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
   };

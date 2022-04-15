@@ -7,7 +7,7 @@ import style from './profile.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
 import { getIsLoginIn, getProfileName, getProfilePreloader } from 'redux/selectors';
-import { logOutTC, setNameTC } from 'redux/thunk';
+import { getMaxMinCount, logOutTC, setNameTC } from 'redux/thunk';
 import { setChangeProfileInfoTC } from 'redux/thunk/thunkProfile/thunkProfile';
 
 export const Profile: React.FC = () => {
@@ -17,11 +17,9 @@ export const Profile: React.FC = () => {
   const preloader = useSelector(getProfilePreloader);
   const loginStatus = useSelector(getIsLoginIn);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setNameTC());
-  }, []);
-
+  // useEffect(() => {
+  //   dispatch(getMaxMinCount());
+  // }, []);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNameValue(e.currentTarget.value);
   };

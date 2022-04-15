@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 import { authAPI } from 'api/auth-api/auth-api';
 import {
@@ -50,19 +51,20 @@ export const CreateNewPasswordPasswordTC =
     }
   };
 
-export const loginTC = (data: AuthRequestType) => async (dispatch: Dispatch) => {
-  try {
-    const promise = await authAPI.login(data);
-    dispatch(setDataAC(promise.data));
-    dispatch(setFetchNameAC(true));
-    dispatch(setIsLoggedInAC(true));
-  } catch (e: any) {
-    const error = e.response
-      ? e.response.data.error
-      : `${e.message}, more details in the console`;
-    dispatch(setErrorLoginAC(error));
-  }
-};
+export const loginTC =
+  (data: AuthRequestType) => async (dispatch: ThunkDispatch<any, any, any>) => {
+    try {
+      const promise = await authAPI.login(data);
+      dispatch(setDataAC(promise.data));
+      dispatch(setFetchNameAC(true));
+      dispatch(setIsLoggedInAC(true));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+      dispatch(setErrorLoginAC(error));
+    }
+  };
 export const logOutTC = () => async (dispatch: Dispatch) => {
   try {
     await authAPI.logOut();

@@ -22,8 +22,8 @@ const initialState: ResponseGetPacksList = {
   pageCount: 8,
   token: '',
   tokenDeathTime: 1650119451390,
-  maxCount: 100,
-  minCount: 1,
+  maxCount: 103,
+  minCount: 0,
   sortPacks: '0created',
   statusLoading: 'succeeded',
   user_id: '',
@@ -36,6 +36,15 @@ export const packsListReducer = (
   switch (action.type) {
     case 'packsList/SET-PACKS-LIST': {
       return { ...state, cardPacks: action.data };
+    }
+    case 'packsList/MAX-MIN-INITIAL-COUNT-CARD': {
+      return {
+        ...state,
+        maxCount: action.max,
+        minCount: action.min,
+        maxCardsCount: action.max,
+        minCardsCount: action.min,
+      };
     }
     case 'packsList/SET-SELECT-CARD': {
       return { ...state, user_id: action.userId };
