@@ -7,20 +7,14 @@ import { Card } from './Card/Card';
 import style from './pageCard.module.scss';
 import { SortItem } from './sortItem/SortItem';
 
+import { SortPacksType } from 'api/auth-api/types';
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
-import {
-  setCurrentNumberPageAC,
-  setPacNameAC,
-  sortCountCardPacksListAC,
-  sortCreatedCardPacksListAC,
-  sortNamePacksListAC,
-  sortUpdatedCardPacksListAC,
-} from 'redux/reducers';
-import { getProfileLoginStatus } from 'redux/selectors';
+import { setCurrentNumberPageAC, setPacNameAC, sortPacksListAC } from 'redux/reducers';
+import { getIsLoginIn } from 'redux/selectors';
 import {
   getCardPacksTotalCount,
   getCards,
@@ -52,8 +46,10 @@ export const PageCard: React.FC = () => {
   const minCardCount = useSelector(getMinCardCount);
   const maxCardCount = useSelector(getMaxCardCount);
   const isMyCard = useSelector(getIsMyCard);
-  const loginStatus = useSelector(getProfileLoginStatus);
+  const isLoginIn = useSelector(getIsLoginIn);
+
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
+
   const setName = (): void => {
     dispatch(setPacNameAC(value));
   };
@@ -77,21 +73,12 @@ export const PageCard: React.FC = () => {
     setValue(e.currentTarget.value);
     debouncedSearch();
   };
-  const onSortNameCardClick = (): void => {
-    dispatch(sortNamePacksListAC());
+  const onSortCardClick = (sortValue: SortPacksType): void => {
+    dispatch(sortPacksListAC(sortValue));
   };
 
-  const onSortCountCardClick = (): void => {
-    dispatch(sortCountCardPacksListAC());
-  };
-  const onSortUpdateCardClick = (): void => {
-    dispatch(sortUpdatedCardPacksListAC());
-  };
-  const onSortCreatedCardClick = (): void => {
-    dispatch(sortCreatedCardPacksListAC());
-  };
-  if (!loginStatus) {
-    return <Navigate to="/login" />;
+  if (!isLoginIn) {
+    return <Navigate to="/profile" />;
   }
   return (
     <div className={style.packsList}>
@@ -117,10 +104,13 @@ export const PageCard: React.FC = () => {
 
         <div className={style.packsList__cards}>
           <div className={style.packsList__sort}>
-            <SortItem callBackSort={onSortNameCardClick} title="Name" />
-            <SortItem callBackSort={onSortCountCardClick} title="Cards" />
-            <SortItem callBackSort={onSortUpdateCardClick} title="Last Updated" />
-            <SortItem callBackSort={onSortCreatedCardClick} title="Created" />
+            <SortItem callBackSort={() => onSortCardClick('0name')} title="Name" />
+            <SortItem callBackSort={() => onSortCardClick('0cardsCount')} title="Cards" />
+            <SortItem
+              callBackSort={() => onSortCardClick('0updated')}
+              title="Last Updated"
+            />
+            <SortItem callBackSort={() => onSortCardClick('0created')} title="Created" />
             <div className={style.packsList__sortItem}>
               <div>Actions</div>
             </div>
@@ -129,19 +119,8 @@ export const PageCard: React.FC = () => {
             {statusLoading === 'loading' ? (
               <Preloader />
             ) : (
-              cards.map(card => (
-                <Card /* eslint-disable-next-line no-underscore-dangle */
-                  key={card._id} /* eslint-disable-next-line no-underscore-dangle */
-                  _id={card._id}
-                  userId={card.user_id}
-                  /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-                  created={card.created.substring(0, 10)}
-                  cardsCount={card.cardsCount}
-                  name={card.user_name}
-                  /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-                  updated={card.updated.substring(0, 10)}
-                />
-              ))
+              // eslint-disable-next-line no-underscore-dangle
+              cards.map(card => <Card key={card._id} card={card} />)
             )}
           </div>
         </div>

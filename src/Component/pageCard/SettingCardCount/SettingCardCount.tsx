@@ -18,7 +18,6 @@ export const SettingCardCount: React.FC = () => {
   const maxCard = useSelector(getMaxCount);
   const [minCardCount, setMinCardCount] = useState<number>(minCard);
   const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
-
   const onClickButton = (id: string): void => {
     dispatch(setSelectCardAC(id));
   };
@@ -52,12 +51,7 @@ export const SettingCardCount: React.FC = () => {
       </div>
       <h2> Number of cards</h2>
       <div role="button" onBlur={() => {}} tabIndex={0} onMouseOut={postSettingCardCount}>
-        <DoubleRange
-          min={minCard}
-          /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-          max={maxCard === 0 ? 1 : maxCard}
-          onChange={changeCardCount}
-        />
+        <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { PacksListActionType } from './PacksListActionCreator';
 
 import { ResponseGetPacksList } from 'api/auth-api/types';
 
-const initialState = {
+const initialState: ResponseGetPacksList = {
   cardPacks: [
     {
       _id: '',
@@ -16,7 +16,7 @@ const initialState = {
   ],
   packName: '',
   cardPacksTotalCount: 0,
-  maxCardsCount: 0,
+  maxCardsCount: 60,
   minCardsCount: 0,
   page: 0,
   pageCount: 0,
@@ -24,13 +24,13 @@ const initialState = {
   tokenDeathTime: 1650119451390,
   maxCount: 100,
   minCount: 1,
-  sortPacks: '0created',
+  sortPacks: '1updated',
   statusLoading: 'succeeded',
   user_id: '',
 };
 
 export const packsListReducer = (
-  state: ResponseGetPacksList = initialState,
+  state = initialState,
   action: PacksListActionType,
 ): ResponseGetPacksList => {
   switch (action.type) {
@@ -52,30 +52,13 @@ export const packsListReducer = (
     case 'packsList/SET-CURRENT-NUMBER-PAGE': {
       return { ...state, page: action.page };
     }
-    case 'packsList/SET-SORT-NAME-PACKS-LIST': {
+    case 'packsList/SET-SORT-PACKS-LIST': {
       return {
         ...state,
-        sortPacks: '1name',
+        sortPacks: action.value,
       };
     }
-    case 'packsList/SET-SORT-COUNT-PACKS-LIST': {
-      return {
-        ...state,
-        sortPacks: '0cardsCount',
-      };
-    }
-    case 'packsList/SET-SORT-CREATED-PACKS-LIST': {
-      return {
-        ...state,
-        sortPacks: '0created',
-      };
-    }
-    case 'packsList/SET-SORT-UPDATE-PACKS-LIST': {
-      return {
-        ...state,
-        sortPacks: '1updated',
-      };
-    }
+
     case 'packsList/SET-NAME-PACK': {
       return { ...state, packName: action.packName };
     }

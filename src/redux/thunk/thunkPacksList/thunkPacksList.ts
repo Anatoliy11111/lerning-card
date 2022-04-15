@@ -40,20 +40,7 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       : `${e.message}, more details in the console`;
   }
 };
-// export const getNewPageTC = (pageNumber: number) => async (dispatch: Dispatch) => {
-//   try {
-//     // dispatch(setStatusLoadingPacksListAC('loading'));
-//     const { data } = await packsListAPI.getNewPage(pageNumber);
-//     const { cardPacks, page } = data;
-//     dispatch(setPacksListAC(cardPacks, page ));
-//     // dispatch(setPaginationAC(promise.data));
-//     // dispatch(setStatusLoadingPacksListAC('succeeded'));
-//   } catch (e: any) {
-//     const error = e.response
-//       ? e.response.data.error
-//       : `${e.message}, more details in the console`;
-//   }
-// };
+
 
 export const createCardPacksListTC = () => async (dispatch: any) => {
   try {

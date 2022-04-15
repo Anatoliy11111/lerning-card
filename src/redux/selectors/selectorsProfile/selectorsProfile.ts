@@ -1,7 +1,7 @@
 import { RootState } from 'redux/store/Store';
 
 export const getProfileName = (state: RootState): string => state.ProfileReducer.name;
-export const getProfileAvatar = (state: RootState): string => state.ProfileReducer.avatar;
+// export const getProfileAvatar = (state: RootState): string => state.ProfileReducer.avatar;
 export const getProfilePreloader = (state: RootState): boolean =>
   state.ProfileReducer.fetchName;
 export const getProfileLoginStatus = (state: RootState): boolean =>
