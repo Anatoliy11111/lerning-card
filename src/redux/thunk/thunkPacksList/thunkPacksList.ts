@@ -41,7 +41,6 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
   }
 };
 
-
 export const createCardPacksListTC = () => async (dispatch: any) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));
