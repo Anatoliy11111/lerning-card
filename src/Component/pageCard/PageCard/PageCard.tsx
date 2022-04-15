@@ -95,16 +95,6 @@ export const PageCard: React.FC = () => {
   // };
   // const filteredValue = searchFn(debouncedSearch, cards);
 
-  if (statusLoading === 'loading') {
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <img
-          src="https://i.gifer.com/origin/26/264162db570a4614c8fd7dc15c757b8e_w200.webp"
-          alt="gif loading"
-        />
-      </div>
-    );
-  }
   return (
     <div className={style.packsList}>
       <div className={style.cardCount}>
