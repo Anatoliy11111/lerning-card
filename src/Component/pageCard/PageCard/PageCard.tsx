@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import { Card } from './Card/Card';
 import style from './pageCard.module.scss';
@@ -19,6 +20,7 @@ import {
   sortNamePacksListAC,
   sortUpdatedCardPacksListAC,
 } from 'redux/reducers';
+import { getProfileLoginStatus } from 'redux/selectors';
 import {
   getCardPacksTotalCount,
   getCards,
@@ -48,6 +50,7 @@ export const PageCard: React.FC = () => {
   const page = useSelector(getPage);
   const minCardCount = useSelector(getMinCardCount);
   const maxCardCount = useSelector(getMaxCardCount);
+  const loginStatus = useSelector(getProfileLoginStatus);
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
   const setName = (): void => {
     dispatch(setPacNameAC(value));
@@ -85,7 +88,9 @@ export const PageCard: React.FC = () => {
   const onSortCreatedCardClick = (): void => {
     dispatch(sortCreatedCardPacksListAC());
   };
-
+  if (!loginStatus) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div className={style.packsList}>
       <div className={style.cardCount}>
