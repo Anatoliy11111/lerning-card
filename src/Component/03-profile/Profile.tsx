@@ -6,27 +6,20 @@ import { Navigate } from 'react-router-dom';
 import style from './profile.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
-import {
-  getProfileAvatar,
-  getProfileLoginStatus,
-  getProfileName,
-  getProfilePreloader,
-} from 'redux/selectors';
-import { logOutTC, setNameTC } from 'redux/thunk';
+import { getIsLoginIn, getProfileName, getProfilePreloader } from 'redux/selectors';
+import { getMaxMinCount, logOutTC, setNameTC } from 'redux/thunk';
 import { setChangeProfileInfoTC } from 'redux/thunk/thunkProfile/thunkProfile';
 
 export const Profile: React.FC = () => {
   const [nameValue, setNameValue] = useState<string>('');
   const name = useSelector(getProfileName);
-  const avatar = useSelector(getProfileAvatar);
+  //  const avatar = useSelector(getProfileAvatar);
   const preloader = useSelector(getProfilePreloader);
-  const loginStatus = useSelector(getProfileLoginStatus);
+  const loginStatus = useSelector(getIsLoginIn);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setNameTC());
-  }, [name]);
-
+  // useEffect(() => {
+  //   dispatch(getMaxMinCount());
+  // }, []);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNameValue(e.currentTarget.value);
   };
@@ -44,20 +37,17 @@ export const Profile: React.FC = () => {
   return (
     <div className={style.profile}>
       <div className={style.profile__profile}>
-        {!preloader ? (
-          'Загрузка данных...'
-        ) : (
-          <div className={style.profile__avatar}>
+        <div className={style.profile__avatar}>
+          {/*
             <img src={avatar} alt="avatar" />
-          </div>
-        )}
+*/}
+        </div>
+
         <div className={style.profile__changeAvatar}>
           <input type="file" />
           <button className={style.profile__changeAvatarBtn}>Change Avatar</button>
         </div>
-        <div className={style.profile__name}>
-          {!preloader ? 'Загрузка данных...' : name}
-        </div>
+        <div className={style.profile__name}>{name}</div>
         <div className={style.profile__changeName}>
           <input
             type="text"

@@ -4,8 +4,8 @@ export type AuthResponseType = {
   name: string;
   avatar?: string;
   publicCardPacksCount: number;
-  created: Date;
-  updated: Date;
+  created: string;
+  updated: string;
   isAdmin: boolean;
   verified: boolean;
   rememberMe: boolean;
@@ -78,6 +78,15 @@ export type CreateNewPasswordResponse = {
 
 //= =================================== PacksList ============================================ //
 export type StatusLoadingType = 'loading' | 'succeeded';
+export type SortPacksType =
+  | '0name'
+  | '1name'
+  | '0cardsCount'
+  | '1cardsCount'
+  | '0updated'
+  | '1updated'
+  | '0created'
+  | '1created';
 
 export type ResponseGetPacksList = {
   cardPacks: GetPacksListCard[];
@@ -88,9 +97,9 @@ export type ResponseGetPacksList = {
   pageCount: number;
   token: string;
   tokenDeathTime: number;
-  maxCount?: number;
-  minCount?: number;
-  sortPacks?: string;
+  maxCount: number;
+  minCount: number;
+  sortPacks: SortPacksType;
   statusLoading?: string | StatusLoadingType;
   packName?: string;
   user_id?: string;
@@ -106,19 +115,6 @@ export type GetPacksListCard = {
   updated: string;
 };
 
-export type ResponseMe = {
-  _id: string;
-  email: string;
-  name: string;
-  avatar?: string;
-  publicCardPacksCount: number;
-  created: Date;
-  updated: Date;
-  isAdmin: boolean;
-  verified: boolean;
-  rememberMe: boolean;
-  error?: string;
-};
 export type ResponseAddAndDeletePacksListType = {
   cardsCount: number;
   created: string;

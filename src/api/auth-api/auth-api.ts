@@ -1,15 +1,14 @@
 import axios from 'axios';
 
 import {
-  ProfileInfoType,
   AuthRequestType,
   AuthResponseType,
-  RegistrationResponseType,
-  RestorePasswordType,
-  ResponseRestorePasswordType,
   CreateNewPassword,
   CreateNewPasswordResponse,
-  ResponseMe,
+  ProfileInfoType,
+  RegistrationResponseType,
+  ResponseRestorePasswordType,
+  RestorePasswordType,
 } from './types';
 
 export const instance = axios.create({

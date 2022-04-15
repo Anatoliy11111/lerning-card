@@ -19,7 +19,6 @@ export const SettingCardCount: React.FC = () => {
 
   const [minCardCount, setMinCardCount] = useState<number>(minCard);
   const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
-
   const onClickButton = (id: string): void => {
     dispatch(setSelectCardAC(id));
   };

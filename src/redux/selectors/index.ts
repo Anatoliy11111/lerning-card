@@ -8,7 +8,7 @@ export {
 
 export { getIsLoginIn, getErrorLogin } from './selectorsLogin/selectorsLogin';
 export {
-  getProfileAvatar,
+  // getProfileAvatar,
   getProfileLoginStatus,
   getProfilePreloader,
   getProfileName,
