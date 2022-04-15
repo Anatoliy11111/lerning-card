@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lerning-card/static/css/main.4a32f382.css",
-    "main.js": "/lerning-card/static/js/main.c8e07d7d.js",
+    "main.css": "/lerning-card/static/css/main.e482979c.css",
+    "main.js": "/lerning-card/static/js/main.93c048ee.js",
     "static/js/787.370794a7.chunk.js": "/lerning-card/static/js/787.370794a7.chunk.js",
     "index.html": "/lerning-card/index.html",
-    "main.4a32f382.css.map": "/lerning-card/static/css/main.4a32f382.css.map",
-    "main.c8e07d7d.js.map": "/lerning-card/static/js/main.c8e07d7d.js.map",
+    "main.e482979c.css.map": "/lerning-card/static/css/main.e482979c.css.map",
+    "main.93c048ee.js.map": "/lerning-card/static/js/main.93c048ee.js.map",
     "787.370794a7.chunk.js.map": "/lerning-card/static/js/787.370794a7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4a32f382.css",
-    "static/js/main.c8e07d7d.js"
+    "static/css/main.e482979c.css",
+    "static/js/main.93c048ee.js"
   ]
 }
