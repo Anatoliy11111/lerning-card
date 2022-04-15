@@ -5,7 +5,8 @@
     justify-content: center;
     align-items: flex-end;
     min-height: 80px;
-    margin-top: 2rem;
+    padding-top: 2rem;
+    background-color: #EBE0E9;
 
 
 }
@@ -19,21 +20,10 @@
     font-size: 1.5rem;
     font-weight: 600;
     text-transform: uppercase;
-    border: 1px solid black;
+    background-color: #bcabba;
     width: 200px;
     height: 80px;
-    position: relative;
 
-
-}
-.active:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.3);
 
 }
 

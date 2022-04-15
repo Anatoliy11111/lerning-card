@@ -11,7 +11,7 @@ export const NavigateMenu: React.FC = () => {
   return (
     <div className={style.navigateContainer}>
       {/* <NavLink to="login" className={className}> */}
-      {/*  Login */}
+      {/* Login */}
       {/* </NavLink> */}
       {/* <NavLink to="registration" className={className}> */}
       {/*  Registration */}

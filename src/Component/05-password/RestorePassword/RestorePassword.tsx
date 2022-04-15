@@ -2,6 +2,9 @@ import React from 'react';
 
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import style from './RestorePassword.module.scss';
 
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { getMessageNewPassword } from 'redux/selectors';
@@ -37,22 +40,36 @@ link</a>
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div>
-        <GeneralInput
-          type="email"
-          id="email"
-          name="email"
-          value={formik.values.email}
-          onBlurCallback={formik.handleBlur}
-          changeInputCallback={formik.handleChange}
-        />
-        {formik.touched.email && formik.errors.email && (
-          <div style={{ color: ' red' }}>{formik.errors.email}</div>
-        )}
-        <div>
-          <GeneralButton type="submit" value="send" />
+      <div className={style.containerChangePassword}>
+        <div className={style.forgotPassword}>
+          <h1>it-incubator</h1>
+          <h2>Forgot your password?</h2>
+          <div className={style.item}>
+            <label className={style.label} htmlFor="email">
+              Email{' '}
+            </label>
+            <GeneralInput
+              type="email"
+              id="email"
+              name="email"
+              value={formik.values.email}
+              onBlurCallback={formik.handleBlur}
+              changeInputCallback={formik.handleChange}
+            />
+            {formik.touched.email && formik.errors.email && (
+              <div style={{ color: ' red' }}>{formik.errors.email}</div>
+            )}
+          </div>
+          <p>Enter your email address and we will send you further instructions </p>
+          <div className={style.btn}>
+            <GeneralButton type="submit" value="Send Instructions" />
+          </div>
+          <div>{messageSentPassword}</div>
+          <p className={style.textUnderButton}>Did you remember your password?</p>
+          <Link className={style.linkOnPageLogin} to="/login">
+            Try logging in
+          </Link>
         </div>
-        <div>{messageSentPassword}</div>
       </div>
     </form>
   );
