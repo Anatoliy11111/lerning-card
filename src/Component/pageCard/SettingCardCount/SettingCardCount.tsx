@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,31 +8,51 @@ import style from './SettingCardCount.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
 import { setMaxMinCardsCount } from 'redux/reducers';
-import { RootState } from 'redux/store/Store';
+import { getMaxCount, getMinCount } from 'redux/selectors';
 
 export const SettingCardCount: React.FC = () => {
-  const dispatch = useDispatch();
-  const minCard = useSelector<RootState, number>(
-    state => state.packsListReducer.minCardsCount,
-  );
-  const maxCard = useSelector<RootState, number>(
-    state => state.packsListReducer.maxCardsCount,
-  );
+  const [valueSelectCard, setValueSelectCard] = useState(false);
 
-  const postSettingCardCount = (): void => {};
+  const dispatch = useDispatch();
+  const minCard = useSelector(getMinCount);
+  const maxCard = useSelector(getMaxCount);
+
+  const [minCardCount, setMinCardCount] = useState<number>(minCard);
+  const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
+
+  const onClickButton = (value: boolean): void => {
+    setValueSelectCard(value);
+  };
+
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
-    dispatch(setMaxMinCardsCount(max, min));
+    setMinCardCount(min);
+    setMaxCardCount(max);
+  };
+  const postSettingCardCount = (): void => {
+    dispatch(setMaxMinCardsCount(maxCardCount, minCardCount));
   };
 
   return (
     <div className={style.containerCardCount}>
       <h2>Show packs cards</h2>
       <div className={style.buttonFilter}>
-        <GeneralButton type="button" value="My" />
-        <GeneralButton type="button" value="All" />
+        <GeneralButton
+          type="button"
+          value="My"
+          onClickCallback={() => {
+            onClickButton(true);
+          }}
+        />
+        <GeneralButton
+          type="button"
+          value="All"
+          onClickCallback={() => {
+            onClickButton(false);
+          }}
+        />
       </div>
       <h2> Number of cards</h2>
-      <div role="button" tabIndex={0} onMouseUp={postSettingCardCount}>
+      <div role="button" onBlur={() => {}} tabIndex={0} onMouseOut={postSettingCardCount}>
         <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
       </div>
     </div>

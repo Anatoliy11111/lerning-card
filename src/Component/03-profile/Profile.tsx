@@ -3,10 +3,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-// @ts-ignore
 import style from './profile.module.scss';
 
-import { authAPI } from 'api/auth-api/auth-api';
 import { GeneralButton } from 'Component/01-common';
 import {
   getProfileAvatar,
@@ -15,6 +13,7 @@ import {
   getProfilePreloader,
 } from 'redux/selectors';
 import { logOutTC, setNameTC } from 'redux/thunk';
+import { setChangeProfileInfoTC } from 'redux/thunk/thunkProfile/thunkProfile';
 
 export const Profile: React.FC = () => {
   const [nameValue, setNameValue] = useState<string>('');
@@ -25,29 +24,27 @@ export const Profile: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    authAPI.auth().then(res => {
-      dispatch(setNameTC(res.data));
-    });
-  }, []);
+    dispatch(setNameTC());
+  }, [name]);
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNameValue(e.currentTarget.value);
   };
   const onClickHandler = (): void => {
-    dispatch(setNameTC({ name: nameValue }));
+    dispatch(setChangeProfileInfoTC({ name: nameValue }));
+    setNameValue('');
   };
 
   const onLogOutClick = (): void => {
     dispatch(logOutTC());
   };
-  console.log(loginStatus);
   if (!loginStatus) {
     return <Navigate to="/login" />;
   }
   return (
     <div className={style.profile}>
       <div className={style.profile__profile}>
-        {preloader ? (
+        {!preloader ? (
           'Загрузка данных...'
         ) : (
           <div className={style.profile__avatar}>
@@ -59,7 +56,7 @@ export const Profile: React.FC = () => {
           <button className={style.profile__changeAvatarBtn}>Change Avatar</button>
         </div>
         <div className={style.profile__name}>
-          {preloader ? 'Загрузка данных...' : name}
+          {!preloader ? 'Загрузка данных...' : name}
         </div>
         <div className={style.profile__changeName}>
           <input

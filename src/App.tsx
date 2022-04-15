@@ -6,8 +6,8 @@ import { NavigateMenu, RouteMenu } from 'Component/06-navigate';
 export const App: React.FC = () => (
   <div className={style.wrapper}>
     <main className={style.page}>
+      <NavigateMenu />
       <div className={style.app__container}>
-        <NavigateMenu />
         <RouteMenu />
       </div>
     </main>
