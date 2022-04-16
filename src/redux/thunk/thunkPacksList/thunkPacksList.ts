@@ -7,6 +7,7 @@ import {
   setPaginationAC,
   setStatusLoadingPacksListAC,
 } from 'redux/reducers';
+import { setInitializeAC } from 'redux/reducers/appReducer/AppActionCreator';
 import { store } from 'redux/store/Store';
 
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
@@ -47,6 +48,7 @@ export const getMaxMinCount = () => async (dispatch: any) => {
   const { data } = await packsListAPI.getPacksList({});
   const { maxCardsCount, minCardsCount } = data;
   dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
+  dispatch(setInitializeAC(true));
 };
 
 export const createCardPacksListTC = () => async (dispatch: any) => {
