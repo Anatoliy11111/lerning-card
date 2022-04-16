@@ -9,6 +9,7 @@ import style from './NavigateMenu.module.css';
 import { Login, Registration } from 'Component/02-auth';
 import { Profile } from 'Component/03-profile/Profile';
 import { NewPassword, RestorePassword } from 'Component/05-password';
+import { SelectCard } from 'Component/pageCard/PageCard/Card/SelectCard/SelectCard';
 import { PageCard } from 'Component/pageCard/PageCard/PageCard';
 
 export const RouteMenu: React.FC = () => (
@@ -19,6 +20,7 @@ export const RouteMenu: React.FC = () => (
       <Route path="registration" element={<Registration />} />
       <Route path="restorePassword" element={<RestorePassword />} />
       <Route path="pageCard" element={<PageCard />} />
+      <Route path="selectCard" element={<SelectCard />} />
       <Route path="profile" element={<Profile />} />
       <Route path="newPassword/:token" element={<NewPassword />} />
       <Route path="authMe" element={<Login />} />
