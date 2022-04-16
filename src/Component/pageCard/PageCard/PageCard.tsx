@@ -54,12 +54,6 @@ export const PageCard: React.FC = () => {
   const setName = (): void => {
     dispatch(setPacNameAC(value));
   };
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 750, setName);
-
-  useEffect(() => {
-    dispatch(getPacksListTC());
-  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
@@ -70,16 +64,22 @@ export const PageCard: React.FC = () => {
     },
     [dispatch],
   );
+
+  const onSortCardClick = (sortValue: SortPacksType): void => {
+    dispatch(sortPacksListAC(sortValue));
+  };
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  const debouncedSearch = useDebounce(value, 750, setName);
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value);
     debouncedSearch();
   };
-  const onSortCardClick = (sortValue: SortPacksType): void => {
-    dispatch(sortPacksListAC(sortValue));
-  };
+  useEffect(() => {
+    dispatch(getPacksListTC());
+  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
 
   if (!isLoginIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/login" />;
   }
   return (
     <div className={style.packsList}>

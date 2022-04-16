@@ -9,11 +9,6 @@ import {
 } from 'redux/reducers';
 import { store } from 'redux/store/Store';
 
-export const getMaxMinCount = () => async (dispatch: Dispatch) => {
-  const { data } = await packsListAPI.getPacksList({});
-  const { maxCardsCount, minCardsCount } = data;
-  dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
-};
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));
@@ -48,9 +43,14 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
   }
 };
 
+export const getMaxMinCount = () => async (dispatch: any) => {
+  const { data } = await packsListAPI.getPacksList({});
+  const { maxCardsCount, minCardsCount } = data;
+  dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
+};
+
 export const createCardPacksListTC = () => async (dispatch: any) => {
   try {
-
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.createCardPacksList();
     dispatch(getPacksListTC());

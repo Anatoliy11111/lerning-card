@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import { ValidErrorType } from '../registration/ Registration';
 
 import { GeneralButton, GeneralCheckbox, GeneralInput } from 'Component/01-common';
 import { getErrorLogin, getIsLoginIn } from 'redux/selectors';
-import { loginTC, setNameTC } from 'redux/thunk';
+import { loginTC } from 'redux/thunk';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
