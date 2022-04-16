@@ -15,7 +15,7 @@ export const Login: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setNameTC());
-  }, []);
+  }, [dispatch]);
   const errorLogin = useSelector(getErrorLogin);
   const isLoginIn = useSelector(getIsLoginIn);
   const formik = useFormik({
