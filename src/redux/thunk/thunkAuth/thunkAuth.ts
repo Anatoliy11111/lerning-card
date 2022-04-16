@@ -65,9 +65,11 @@ export const loginTC =
       dispatch(setErrorLoginAC(error));
     }
   };
+
 export const logOutTC = () => async (dispatch: Dispatch) => {
   try {
     await authAPI.logOut();
+    debugger
     dispatch(logOutAC(false));
   } catch (e: any) {
     const error = e.response

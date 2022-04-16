@@ -37,6 +37,7 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       // eslint-disable-next-line camelcase
       user_id,
     });
+
     dispatch(setStatusLoadingPacksListAC('succeeded'));
     dispatch(setPacksListAC(promise.data.cardPacks));
     dispatch(setPaginationAC(promise.data));
@@ -49,6 +50,7 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
 
 export const createCardPacksListTC = () => async (dispatch: any) => {
   try {
+
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.createCardPacksList();
     dispatch(getPacksListTC());

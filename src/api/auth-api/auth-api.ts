@@ -27,7 +27,7 @@ export const authAPI = {
     return instance.post<RegistrationResponseType>('auth/register', data);
   },
   auth() {
-    return instance.post('auth/me', {});
+    return instance.post('auth/me');
   },
   changeProfileInfo(data: ProfileInfoType) {
     return instance.put('auth/me', data);

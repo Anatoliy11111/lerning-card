@@ -13,9 +13,7 @@ import { loginTC, setNameTC } from 'redux/thunk';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setNameTC());
-  }, []);
+
   const errorLogin = useSelector(getErrorLogin);
   const isLoginIn = useSelector(getIsLoginIn);
   const formik = useFormik({

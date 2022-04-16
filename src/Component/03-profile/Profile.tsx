@@ -28,6 +28,9 @@ export const Profile: React.FC = () => {
     setNameValue('');
   };
 
+  useEffect(() => {
+    dispatch(setNameTC());
+  }, []);
   const onLogOutClick = (): void => {
     dispatch(logOutTC());
   };
