@@ -33,7 +33,7 @@ type setCurrentNumberPage = ReturnType<typeof setCurrentNumberPageAC>;
 type setSelectCard = ReturnType<typeof setSelectCardAC>;
 type setMaxMinInitialCount = ReturnType<typeof setMaxMinInitialCountAC>; */
 
-export type PacksListActionType = SetPacksListACType;
+export type CardListActionType = SetPacksListACType;
 /*  | setMaxMinCardsCountType
   | SortNamePacksListACType
   | setCurrentNumberPage

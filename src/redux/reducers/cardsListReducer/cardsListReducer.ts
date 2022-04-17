@@ -1,5 +1,4 @@
-import { ResponseGetPacksList } from 'api/auth-api/types';
-import { PacksListActionType } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
+import { CardListActionType } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 
 export type CardsType = {
   answer: string;
@@ -46,7 +45,7 @@ const initialState: CardsInitialType = {
 
 export const cardsListReducer = (
   state: CardsInitialType = initialState,
-  action: PacksListActionType,
+  action: CardListActionType,
 ): CardsInitialType => {
   switch (action.type) {
     case 'cardsList/SET-CARDS-LIST': {
