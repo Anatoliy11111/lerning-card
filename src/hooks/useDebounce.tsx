@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import { useDispatch } from 'react-redux';
-
-import { setPacNameAC } from 'redux/reducers';
+import { useEffect } from 'react';
 
 export function useDebounce(value: string, delay: number, fn: () => void): () => void {
   useEffect(() => {

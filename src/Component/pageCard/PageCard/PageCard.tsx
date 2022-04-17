@@ -10,6 +10,7 @@ import { SortItem } from './sortItem/SortItem';
 import { SortPacksType } from 'api/auth-api/types';
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
+import { AddCardPackModal } from 'Component/modals/AddCardPackModal/AddCardPackModal';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
@@ -34,6 +35,7 @@ import {
 
 export const PageCard: React.FC = () => {
   const [value, setValue] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const dispatch = useDispatch();
 
   const cards = useSelector(getCards);
@@ -57,9 +59,9 @@ export const PageCard: React.FC = () => {
   useEffect(() => {
     dispatch(getPacksListTC());
   }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
-
-  const onCreateCardClick = (): void => {
-    dispatch(createCardPacksListTC());
+  const onCreateCardClick = (cardPackName: string): void => {
+    dispatch(createCardPacksListTC(cardPackName));
+    setModalIsOpen(false);
   };
   const fetchPageCb = useCallback(
     (num: number): void => {
@@ -67,15 +69,14 @@ export const PageCard: React.FC = () => {
     },
     [dispatch],
   );
-
-  const onSortCardClick = (sortValue: SortPacksType): void => {
-    dispatch(sortPacksListAC(sortValue));
-  };
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const debouncedSearch = useDebounce(value, 750, setName);
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value);
     debouncedSearch();
+  };
+  const onSortCardClick = (sortValue: SortPacksType): void => {
+    dispatch(sortPacksListAC(sortValue));
   };
 
   if (!isLoginIn) {
@@ -97,9 +98,16 @@ export const PageCard: React.FC = () => {
             changeInputCallback={e => onChangeSearching(e)}
           />
           <GeneralButton
-            onClickCallback={onCreateCardClick}
+            onClickCallback={() => setModalIsOpen(true)}
             type="button"
             value="Add pack"
+          />
+        </div>
+        <div>
+          <AddCardPackModal
+            saveCallback={cardPackName => onCreateCardClick(cardPackName)}
+            open={modalIsOpen}
+            closeModal={() => setModalIsOpen(false)}
           />
         </div>
 
@@ -131,5 +139,4 @@ export const PageCard: React.FC = () => {
       </div>
     </div>
   );
-  // filteredValue
 };
