@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -6,20 +6,17 @@ import { Navigate } from 'react-router-dom';
 import style from './profile.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
-import { getIsLoginIn, getProfileName, getProfilePreloader } from 'redux/selectors';
-import { getMaxMinCount, logOutTC, setNameTC } from 'redux/thunk';
+import { getIsLoginIn, getProfileName } from 'redux/selectors';
+import { getProfileAvatar } from 'redux/selectors/selectorsProfile/selectorsProfile';
+import { logOutTC } from 'redux/thunk';
 import { setChangeProfileInfoTC } from 'redux/thunk/thunkProfile/thunkProfile';
 
 export const Profile: React.FC = () => {
   const [nameValue, setNameValue] = useState<string>('');
   const name = useSelector(getProfileName);
-  //  const avatar = useSelector(getProfileAvatar);
-  const preloader = useSelector(getProfilePreloader);
-  const loginStatus = useSelector(getIsLoginIn);
+  const avatar = useSelector(getProfileAvatar);
+  const isLoginIn = useSelector(getIsLoginIn);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getMaxMinCount());
-  // }, []);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNameValue(e.currentTarget.value);
   };
@@ -28,19 +25,18 @@ export const Profile: React.FC = () => {
     setNameValue('');
   };
 
-  const onLogOutClick = (): void => {
+  const onLogOutClick = useCallback((): void => {
     dispatch(logOutTC());
-  };
-  if (!loginStatus) {
+  }, []);
+
+  if (!isLoginIn) {
     return <Navigate to="/login" />;
   }
   return (
     <div className={style.profile}>
       <div className={style.profile__profile}>
         <div className={style.profile__avatar}>
-          {/*
-            <img src={avatar} alt="avatar" />
-*/}
+          <img src={avatar} alt="avatar" />
         </div>
 
         <div className={style.profile__changeAvatar}>

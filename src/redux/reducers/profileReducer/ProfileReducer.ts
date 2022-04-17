@@ -2,11 +2,7 @@ import { ProfileActionType } from './ProfileActionCreator';
 
 import { AuthResponseType } from 'api/auth-api/types';
 
-export type ProfileType = AuthResponseType & DopeType;
-
-type DopeType = {
-  fetchName: boolean;
-};
+export type ProfileType = AuthResponseType;
 
 const initState: ProfileType = {
   _id: '',
@@ -20,7 +16,6 @@ const initState: ProfileType = {
   verified: false,
   rememberMe: false,
   error: '',
-  fetchName: false,
 };
 
 export const ProfileReducer = (
@@ -35,8 +30,6 @@ export const ProfileReducer = (
     case 'SET-ID':
       // eslint-disable-next-line no-underscore-dangle
       return { ...state, _id: action._id };
-    case 'SET-FETCH-NAME':
-      return { ...state, fetchName: action.value };
     default:
       return state;
   }

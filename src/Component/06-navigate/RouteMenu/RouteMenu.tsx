@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { Mistake } from '../../04-mistake/Mistake';
 
@@ -11,6 +12,7 @@ import { Profile } from 'Component/03-profile/Profile';
 import { NewPassword, RestorePassword } from 'Component/05-password';
 import { SelectCard } from 'Component/pageCard/PageCard/Card/SelectCard/SelectCard';
 import { PageCard } from 'Component/pageCard/PageCard/PageCard';
+import { getIsLoginIn } from 'redux/selectors';
 
 export const RouteMenu: React.FC = () => (
   <div className={style.routesContainer}>

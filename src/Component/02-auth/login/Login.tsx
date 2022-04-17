@@ -9,13 +9,11 @@ import { ValidErrorType } from '../registration/ Registration';
 
 import { GeneralButton, GeneralCheckbox, GeneralInput } from 'Component/01-common';
 import { getErrorLogin, getIsLoginIn } from 'redux/selectors';
-import { loginTC, setNameTC } from 'redux/thunk';
+import { loginTC } from 'redux/thunk';
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setNameTC());
-  }, [dispatch]);
+
   const errorLogin = useSelector(getErrorLogin);
   const isLoginIn = useSelector(getIsLoginIn);
   const formik = useFormik({
