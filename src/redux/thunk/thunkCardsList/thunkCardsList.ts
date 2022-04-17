@@ -1,10 +1,9 @@
 import { Dispatch } from 'redux';
 
 import { cardsListAPI } from 'api/auth-api/cardsList-api';
-import { setPaginationAC, setStatusLoadingPacksListAC } from 'redux/reducers';
+import { setStatusLoadingPacksListAC } from 'redux/reducers';
 import { setCardsListAC } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 
-// eslint-disable-next-line camelcase
 export const getCardstTC = (cardsPack_id: string) => async (dispatch: Dispatch) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));
