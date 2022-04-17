@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 
 import { cardsListAPI } from 'api/auth-api/cardsList-api';
 import { setPaginationAC, setStatusLoadingPacksListAC } from 'redux/reducers';
+import { setCardsListAC } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 
 // eslint-disable-next-line camelcase
 export const getCardstTC = (cardsPack_id: string) => async (dispatch: Dispatch) => {
@@ -13,8 +14,9 @@ export const getCardstTC = (cardsPack_id: string) => async (dispatch: Dispatch) 
       cardsPack_id,
     });
     dispatch(setStatusLoadingPacksListAC('succeeded'));
-    //  dispatch(setCardsListAC(promise.data.cardPacks));
-    dispatch(setPaginationAC(promise.data));
+    dispatch(setCardsListAC(promise.data.cards));
+
+    // dispatch(setPaginationAC(promise.data));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error

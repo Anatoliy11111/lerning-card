@@ -14,7 +14,6 @@ export const setNameTC = () => (dispatch: ThunkDispatch<any, any, any>) => {
     .then(res => {
       dispatch(setDataAC(res.data));
       dispatch(setInitializeAC(true));
-      dispatch(setIsLoggedInAC(true));
       dispatch(getMaxMinCount());
     })
     .catch(() => {
