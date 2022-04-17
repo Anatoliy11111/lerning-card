@@ -3,7 +3,6 @@ import React from 'react';
 import style from 'Component/modals/DeleteModal/DeleteModal.module.scss';
 
 type ModalProps = {
-  children: React.ReactNode;
   name: string;
   deleteCallback: () => void;
   open: boolean;
