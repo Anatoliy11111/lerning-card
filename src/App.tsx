@@ -7,7 +7,7 @@ import style from 'App.module.scss';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { NavigateMenu, RouteMenu } from 'Component/06-navigate';
 import { RootState } from 'redux/store/Store';
-import { setNameTC } from 'redux/thunk';
+import { setAuthInitialTC } from 'redux/thunk';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,14 +15,14 @@ export const App: React.FC = () => {
     state => state.AppReducer.isInitialize,
   );
   useEffect(() => {
-    dispatch(setNameTC());
+    dispatch(setAuthInitialTC());
   }, []);
 
   const location = useLocation();
   const path =
     location.pathname === '/profile' ||
     location.pathname === '/pageCard' ||
-    location.pathname === '/selectCard';
+    location.pathname === '/card/:id';
   if (!isInitialize) {
     return <Preloader />;
   }
