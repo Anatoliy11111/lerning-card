@@ -47,12 +47,12 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
   }
 };
 
-export const createCardPacksListTC = () => async (dispatch: any) => {
+export const createCardPacksListTC = (cardPackName: string) => async (dispatch: any) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));
-    await packsListAPI.createCardPacksList();
+    await packsListAPI.createCardPacksList(cardPackName);
     dispatch(getPacksListTC());
-    dispatch(setStatusLoadingPacksListAC('succeeded'));
+    // dispatch(setStatusLoadingPacksListAC('succeeded'));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error
@@ -65,7 +65,7 @@ export const deleteCardFromPacksListTC = (idCard: string) => async (dispatch: an
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.deleteCardFromPacksList(idCard);
     dispatch(getPacksListTC());
-    dispatch(setStatusLoadingPacksListAC('succeeded'));
+    // dispatch(setStatusLoadingPacksListAC('succeeded'));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error

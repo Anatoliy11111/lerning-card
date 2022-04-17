@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import style from './card.module.scss';
 
 import { GetPacksListCard } from 'api/auth-api/types';
 import { GeneralButton } from 'Component/01-common';
+import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
 
@@ -14,6 +15,8 @@ type CardType = {
   card: GetPacksListCard;
 };
 export const Card = memo(({ card }: CardType) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   // eslint-disable-next-line camelcase
   const { user_id, _id, name, cardsCount, created, updated } = card;
   const myId = useSelector(getMyId);
@@ -21,6 +24,7 @@ export const Card = memo(({ card }: CardType) => {
 
   const onDeleteCardClick = (idCard: string): void => {
     dispatch(deleteCardFromPacksListTC(idCard));
+    setModalIsOpen(false);
   };
 
   // eslint-disable-next-line camelcase
@@ -76,7 +80,8 @@ export const Card = memo(({ card }: CardType) => {
         <div className={style.button}>
           <GeneralButton
             type="button"
-            onClickCallback={e => onDeleteCardClick(_id)}
+            // onClickCallback={() => onDeleteCardClick(_id)}
+            onClickCallback={() => setModalIsOpen(true)}
             disabled={false}
             value="delete"
           />
@@ -93,6 +98,17 @@ export const Card = memo(({ card }: CardType) => {
             value="Learn"
           />
         </div>
+      </div>
+      <div>
+        <DeleteModal
+          name={name}
+          open={modalIsOpen}
+          deleteCallback={() => onDeleteCardClick(_id)}
+          closeModal={() => setModalIsOpen(false)}
+        >
+          Do you really want to remove {name}? <br />
+          All cards will be excluded from this course.
+        </DeleteModal>
       </div>
     </div>
   );

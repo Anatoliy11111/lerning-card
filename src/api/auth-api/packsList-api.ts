@@ -18,9 +18,9 @@ export const packsListAPI = {
   deleteCardFromPacksList(idCard: string) {
     return instance.delete<ResponseAddAndDeletePacksListType>(`cards/pack/?id=${idCard}`);
   },
-  createCardPacksList() {
+  createCardPacksList(cardPackName: string) {
     return instance.post<ResponseAddAndDeletePacksListType>(`cards/pack/`, {
-      cardsPack: { name: 'x' },
+      cardsPack: { name: cardPackName },
     });
   },
   updateNameCardPacksList(name: string, id: string) {
