@@ -55,6 +55,10 @@ export const PageCard: React.FC = () => {
     dispatch(setPacNameAC(value));
   };
 
+  useEffect(() => {
+    dispatch(getPacksListTC());
+  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
+
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());
   };
@@ -74,9 +78,6 @@ export const PageCard: React.FC = () => {
     setValue(e.currentTarget.value);
     debouncedSearch();
   };
-  useEffect(() => {
-    dispatch(getPacksListTC());
-  }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
 
   if (!isLoginIn) {
     return <Navigate to="/login" />;
