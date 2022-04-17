@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import style from 'Component/modals/DeleteModal/DeleteModal.module.scss';
+import style from 'Component/modals/AddCardPackModal/AddCardPackModal.module.scss';
 
 type AddCardPackModalProps = {
   saveCallback: (cardPackName: string) => void;
@@ -36,20 +36,23 @@ export const AddCardPackModal: React.FC<AddCardPackModalProps> = ({
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className={style.overlay} onClick={onClickCloseHandler} />
       <div className={style.modal_style}>
-        <div>
-          Add new pack
+        <div className={style.headerModal}>
+          <h2>Add new pack</h2>
           <button className={style.closeBtn} onClick={onClickCloseHandler}>
             X
           </button>
         </div>
-        <div>
+        <div className={style.InputInModal}>
+          <label className={style.label} htmlFor="name">
+            Name pack{' '}
+          </label>
           <input
-            placeholder="Type name of card pack"
+            placeholder="Name Pack"
             value={inputValue}
             onChange={e => onChangeInputValueHandler(e)}
           />
         </div>
-        <div>
+        <div className={style.buttonContainer}>
           <button onClick={onClickCloseHandler}>Cancel</button>
           <button onClick={onClickSaveHandler}>Save</button>
         </div>

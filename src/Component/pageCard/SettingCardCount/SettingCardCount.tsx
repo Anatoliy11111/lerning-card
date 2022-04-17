@@ -16,11 +16,12 @@ export const SettingCardCount: React.FC = () => {
   const dispatch = useDispatch();
   const minCard = useSelector(getMinCount);
   const maxCard = useSelector(getMaxCount);
-
+  const [isDoubleRangeShow, setIsDoubleRangeShow] = useState(true);
   const [minCardCount, setMinCardCount] = useState<number>(minCard);
   const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
-  const onClickButton = (id: string): void => {
+  const onClickButton = (id: string, show: boolean): void => {
     dispatch(setSelectCardAC(id));
+    setIsDoubleRangeShow(show);
   };
 
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
@@ -38,21 +39,30 @@ export const SettingCardCount: React.FC = () => {
           type="button"
           value="My"
           onClickCallback={() => {
-            onClickButton(myID);
+            onClickButton(myID, false);
           }}
         />
         <GeneralButton
           type="button"
           value="All"
           onClickCallback={() => {
-            onClickButton('');
+            onClickButton('', true);
           }}
         />
       </div>
-      <h2> Number of cards</h2>
-      <div role="button" onBlur={() => {}} tabIndex={0} onMouseOut={postSettingCardCount}>
-        <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
-      </div>
+      {isDoubleRangeShow && (
+        <>
+          <h2> Number of cards</h2>
+          <div
+            role="button"
+            onBlur={() => {}}
+            tabIndex={0}
+            onMouseOut={postSettingCardCount}
+          >
+            <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
+          </div>
+        </>
+      )}
     </div>
   );
 };
