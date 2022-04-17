@@ -28,6 +28,7 @@ import {
   getStatusLoading,
 } from 'redux/selectors/selectorsPacksList/selectorsPacksList';
 import { setNameTC } from 'redux/thunk';
+import { getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 import {
   createCardPacksListTC,
   getPacksListTC,
@@ -58,6 +59,8 @@ export const PageCard: React.FC = () => {
   useEffect(() => {
     dispatch(getPacksListTC());
   }, [packName, sortPacks, page, pageCount, minCardCount, maxCardCount, isMyCard]);
+
+
 
   const onCreateCardClick = (): void => {
     dispatch(createCardPacksListTC());

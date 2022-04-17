@@ -10,6 +10,7 @@ import { GeneralButton } from 'Component/01-common';
 import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
+import { getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type CardType = {
   card: GetPacksListCard;
@@ -24,6 +25,12 @@ export const Card = memo(({ card }: CardType) => {
     dispatch(deleteCardFromPacksListTC(idCard));
   };
 
+    // const onGetCarsListClick = (cardsId: string): void => {
+    //     dispatch(getCardstTC(cardsId));
+    // };
+    // to={`/card/id=${user_id}`}
+    // onClick={e => onGetCarsListClick(_id)}
+    // className={style.name}
   // eslint-disable-next-line camelcase
   if (myId !== user_id) {
     return (

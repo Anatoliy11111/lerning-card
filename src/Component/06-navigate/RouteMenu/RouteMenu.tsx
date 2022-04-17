@@ -13,6 +13,7 @@ import { NewPassword, RestorePassword } from 'Component/05-password';
 import { SelectCard } from 'Component/pageCard/PageCard/Card/SelectCard/SelectCard';
 import { PageCard } from 'Component/pageCard/PageCard/PageCard';
 import { getIsLoginIn } from 'redux/selectors';
+import {CardsList} from 'Component/pageCard/PageCard/cardsList/CardsList';
 
 export const RouteMenu: React.FC = () => (
   <div className={style.routesContainer}>
@@ -22,7 +23,7 @@ export const RouteMenu: React.FC = () => (
       <Route path="registration" element={<Registration />} />
       <Route path="restorePassword" element={<RestorePassword />} />
       <Route path="pageCard" element={<PageCard />} />
-      <Route path="selectCard" element={<SelectCard />} />
+      <Route path="card/:id" element={<CardsList />} />
       <Route path="profile" element={<Profile />} />
       <Route path="newPassword/:token" element={<NewPassword />} />
       <Route path="authMe" element={<Login />} />
