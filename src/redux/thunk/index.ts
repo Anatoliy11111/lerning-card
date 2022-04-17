@@ -6,5 +6,5 @@ export {
   logOutTC,
 } from './thunkAuth/thunkAuth';
 
-export { setNameTC } from './thunkProfile/thunkProfile';
+export { setAuthInitialTC } from './thunkProfile/thunkProfile';
 export * from './thunkPacksList/thunkPacksList';

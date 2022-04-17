@@ -7,14 +7,11 @@ import {
   CreateNewPassword,
   RestorePasswordType,
 } from 'api/auth-api/types';
-import {
-  registrationAC,
-  setErrorRegistrationMessage,
-  setFetchNameAC,
-} from 'redux/reducers';
+import { registrationAC, setErrorRegistrationMessage } from 'redux/reducers';
 import {
   ErrorCreateNewPassword,
   isCreateNewPassword,
+  setInitializeAC,
   setMessageRestorePassword,
 } from 'redux/reducers/appReducer/AppActionCreator';
 import {
@@ -56,15 +53,17 @@ export const loginTC =
     try {
       const promise = await authAPI.login(data);
       dispatch(setDataAC(promise.data));
-      dispatch(setFetchNameAC(true));
       dispatch(setIsLoggedInAC(true));
     } catch (e: any) {
       const error = e.response
         ? e.response.data.error
         : `${e.message}, more details in the console`;
       dispatch(setErrorLoginAC(error));
+    } finally {
+      dispatch(setInitializeAC(true));
     }
   };
+
 export const logOutTC = () => async (dispatch: Dispatch) => {
   try {
     await authAPI.logOut();

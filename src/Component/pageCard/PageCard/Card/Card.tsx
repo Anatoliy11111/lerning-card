@@ -8,6 +8,7 @@ import style from './card.module.scss';
 import { GetPacksListCard } from 'api/auth-api/types';
 import { GeneralButton } from 'Component/01-common';
 import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
+import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
 
@@ -17,7 +18,6 @@ type CardType = {
 export const Card = memo(({ card }: CardType) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // eslint-disable-next-line camelcase
   const { user_id, _id, name, cardsCount, created, updated } = card;
   const myId = useSelector(getMyId);
   const dispatch = useDispatch();
@@ -27,36 +27,16 @@ export const Card = memo(({ card }: CardType) => {
     setModalIsOpen(false);
   };
 
-  // eslint-disable-next-line camelcase
   if (myId !== user_id) {
     return (
-      <div className={style.card}>
-        <div className={style.cardItem}>
-          <Link to="/cards" className={style.name}>
-            {' '}
-            {name}
-          </Link>
-        </div>
-        <div className={style.cardItem}>
-          <div className={style.count}>{cardsCount}</div>
-        </div>
-        <div className={style.cardItem}>
-          <div className={style.date}>{created}</div>
-        </div>
-        <div className={style.cardItem}>
-          <div className={style.date}>{updated}</div>
-        </div>
-        <div className={style.cardItem}>
-          <div className={style.button}>
-            <GeneralButton
-              type="button"
-              onClickCallback={() => {}}
-              disabled={false}
-              value="Learn"
-            />
-          </div>
-        </div>
-      </div>
+      <NotMyCard
+        cardsCount={cardsCount}
+        name={name}
+        created={created}
+        updated={updated}
+        user_id={user_id}
+        _id={_id}
+      />
     );
   }
   return (
@@ -80,7 +60,6 @@ export const Card = memo(({ card }: CardType) => {
         <div className={style.button}>
           <GeneralButton
             type="button"
-            // onClickCallback={() => onDeleteCardClick(_id)}
             onClickCallback={() => setModalIsOpen(true)}
             disabled={false}
             value="delete"

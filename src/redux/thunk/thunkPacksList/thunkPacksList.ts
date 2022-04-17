@@ -7,12 +7,14 @@ import {
   setPaginationAC,
   setStatusLoadingPacksListAC,
 } from 'redux/reducers';
+import { setInitializeAC } from 'redux/reducers/appReducer/AppActionCreator';
 import { store } from 'redux/store/Store';
 
 export const getMaxMinCount = () => async (dispatch: Dispatch) => {
   const { data } = await packsListAPI.getPacksList({});
   const { maxCardsCount, minCardsCount } = data;
   dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
+  dispatch(setInitializeAC(true));
 };
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
@@ -21,7 +23,6 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       sortPacks,
       page,
       pageCount,
-      // eslint-disable-next-line camelcase
       user_id,
       minCount: min,
       maxCount: max,
@@ -34,7 +35,6 @@ export const getPacksListTC = () => async (dispatch: Dispatch) => {
       min,
       max,
       packName,
-      // eslint-disable-next-line camelcase
       user_id,
     });
     dispatch(setStatusLoadingPacksListAC('succeeded'));
@@ -52,7 +52,6 @@ export const createCardPacksListTC = (cardPackName: string) => async (dispatch: 
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.createCardPacksList(cardPackName);
     dispatch(getPacksListTC());
-    // dispatch(setStatusLoadingPacksListAC('succeeded'));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error
@@ -65,7 +64,6 @@ export const deleteCardFromPacksListTC = (idCard: string) => async (dispatch: an
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.deleteCardFromPacksList(idCard);
     dispatch(getPacksListTC());
-    // dispatch(setStatusLoadingPacksListAC('succeeded'));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error

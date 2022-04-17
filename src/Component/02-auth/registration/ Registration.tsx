@@ -50,49 +50,51 @@ export const Registration: React.FC = memo(() => {
     return <Navigate to="/Login" />;
   }
   return (
-    <form onSubmit={formik.handleSubmit} className={style.form}>
-      <h2 className={style.form__title}>IT-Incubator</h2>
-      <h2 className={style.form__subtitle}>Sing In</h2>
-      <div>
-        <div className={style.form__body}>
-          <div className={style.form__item}>
-            <label className={style.form__label} htmlFor="email">
-              Email{' '}
-            </label>
-            <GeneralInput
-              value={formik.values.email}
-              onBlurCallback={formik.handleBlur}
-              changeInputCallback={formik.handleChange}
-              type="email"
-              id="email"
-              name="email"
-            />
-          </div>
-          {formik.touched.email && formik.errors.email && (
-            <p style={{ color: 'red' }}>{formik.errors.email}</p>
-          )}
-          <div className={style.form__item}>
-            <label className={style.form__label} htmlFor="password">
-              Password{' '}
-            </label>
-            <GeneralInput
-              value={formik.values.password}
-              changeInputCallback={formik.handleChange}
-              onBlurCallback={formik.handleBlur}
-              type="password"
-              id="password"
-              name="password"
-            />
-            {formik.touched.password && formik.errors.password && (
-              <p style={{ color: 'red' }}>{formik.errors.password}</p>
+    <div className={style.login}>
+      <form onSubmit={formik.handleSubmit} className={style.form}>
+        <h2 className={style.form__title}>IT-Incubator</h2>
+        <h2 className={style.form__subtitle}>Sing In</h2>
+        <div>
+          <div className={style.form__body}>
+            <div className={style.form__item}>
+              <label className={style.form__label} htmlFor="email">
+                Email{' '}
+              </label>
+              <GeneralInput
+                value={formik.values.email}
+                onBlurCallback={formik.handleBlur}
+                changeInputCallback={formik.handleChange}
+                type="email"
+                id="email"
+                name="email"
+              />
+            </div>
+            {formik.touched.email && formik.errors.email && (
+              <p style={{ color: 'red' }}>{formik.errors.email}</p>
             )}
+            <div className={style.form__item}>
+              <label className={style.form__label} htmlFor="password">
+                Password{' '}
+              </label>
+              <GeneralInput
+                value={formik.values.password}
+                changeInputCallback={formik.handleChange}
+                onBlurCallback={formik.handleBlur}
+                type="password"
+                id="password"
+                name="password"
+              />
+              {formik.touched.password && formik.errors.password && (
+                <p style={{ color: 'red' }}>{formik.errors.password}</p>
+              )}
+            </div>
+          </div>
+          <div className={style.form__error}>{errorRegistration}</div>
+          <div className={style.form__btn}>
+            <GeneralButton type="submit" value="Register" />
           </div>
         </div>
-        <div className={style.form__error}>{errorRegistration}</div>
-        <div className={style.form__btn}>
-          <GeneralButton type="submit" value="Register" />
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 });

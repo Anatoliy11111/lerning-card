@@ -1,7 +1,8 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
 import { AppReducer } from 'redux/reducers';
+import { cardsListReducer } from 'redux/reducers/cardsListReducer/cardsListReducer';
 import { loginReducer } from 'redux/reducers/loginReducer/loginReducer';
 import { packsListReducer } from 'redux/reducers/packsListReducer/packsListReducer';
 import { ProfileReducer } from 'redux/reducers/profileReducer/ProfileReducer';
@@ -11,8 +12,16 @@ export const reducerRoot = combineReducers({
   loginReducer,
   ProfileReducer,
   packsListReducer,
+  cardsListReducer,
 });
 
-export const store = createStore(reducerRoot, applyMiddleware(thunk));
+/* export const store = createStore(reducerRoot, applyMiddleware(thunk)); */
+
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(
+  reducerRoot,
+  composeEnhancers(applyMiddleware(thunkMiddleware)),
+);
 
 export type RootState = ReturnType<typeof reducerRoot>;

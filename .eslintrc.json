@@ -24,7 +24,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-
+    "camelcase": "off",
     "no-shadow": "off",
     "no-console": "error",
     "no-alert": "error",

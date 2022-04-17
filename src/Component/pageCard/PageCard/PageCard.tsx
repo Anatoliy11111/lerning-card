@@ -55,8 +55,6 @@ export const PageCard: React.FC = () => {
   const setName = (): void => {
     dispatch(setPacNameAC(value));
   };
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 750, setName);
 
   useEffect(() => {
     dispatch(getPacksListTC());
@@ -71,6 +69,8 @@ export const PageCard: React.FC = () => {
     },
     [dispatch],
   );
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  const debouncedSearch = useDebounce(value, 750, setName);
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value);
     debouncedSearch();
@@ -80,7 +80,7 @@ export const PageCard: React.FC = () => {
   };
 
   if (!isLoginIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/login" />;
   }
   return (
     <div className={style.packsList}>
@@ -98,7 +98,6 @@ export const PageCard: React.FC = () => {
             changeInputCallback={e => onChangeSearching(e)}
           />
           <GeneralButton
-            // onClickCallback={onCreateCardClick}
             onClickCallback={() => setModalIsOpen(true)}
             type="button"
             value="Add pack"
@@ -140,5 +139,4 @@ export const PageCard: React.FC = () => {
       </div>
     </div>
   );
-  // filteredValue
 };
