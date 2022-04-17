@@ -23,7 +23,6 @@ export const App: React.FC = () => {
     location.pathname === '/profile' ||
     location.pathname === '/pageCard' ||
     location.pathname === '/selectCard';
-
   if (!isInitialize) {
     return <Preloader />;
   }
