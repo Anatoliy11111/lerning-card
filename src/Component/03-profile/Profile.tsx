@@ -17,6 +17,7 @@ export const Profile: React.FC = () => {
   const avatar = useSelector(getProfileAvatar);
   const isLoginIn = useSelector(getIsLoginIn);
   const dispatch = useDispatch();
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNameValue(e.currentTarget.value);
   };

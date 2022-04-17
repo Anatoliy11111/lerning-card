@@ -10,3 +10,5 @@ export const createNewPassword = (state: RootState): boolean =>
   state.AppReducer.isCreateNewPassword;
 export const errorCreateNewPassword = (state: RootState): string =>
   state.AppReducer.errorCreateNewPassword;
+export const getIsinitiolazed = (state: RootState): boolean =>
+  state.AppReducer.isInitialize;
