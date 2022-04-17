@@ -4,7 +4,9 @@
    left: 50%;
    transform: translate(-50%, -50%);
    background-color: #fff;
-   padding: 50px;
+   width: 395px;
+   height: 221px;
+   padding: 5px;
    z-index: 1000;
    transition-duration: 1000ms;
  }
@@ -20,3 +22,6 @@
    transition-duration: 1000ms;
  }
 
+ .closeBtn{
+
+ }
