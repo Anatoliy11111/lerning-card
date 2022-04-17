@@ -7,8 +7,8 @@ import style from './card.module.scss';
 
 import { GetPacksListCard } from 'api/auth-api/types';
 import { GeneralButton } from 'Component/01-common';
-import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
+import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
 

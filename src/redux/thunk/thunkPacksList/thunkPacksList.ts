@@ -14,7 +14,7 @@ export const getMaxMinCount = () => async (dispatch: Dispatch) => {
   const { data } = await packsListAPI.getPacksList({});
   const { maxCardsCount, minCardsCount } = data;
   dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
-  dispatch(setInitializeAC(true))
+  dispatch(setInitializeAC(true));
 };
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
@@ -64,7 +64,6 @@ export const deleteCardFromPacksListTC = (idCard: string) => async (dispatch: an
     dispatch(setStatusLoadingPacksListAC('loading'));
     await packsListAPI.deleteCardFromPacksList(idCard);
     dispatch(getPacksListTC());
-    dispatch(setStatusLoadingPacksListAC('succeeded'));
   } catch (e: any) {
     const error = e.response
       ? e.response.data.error
