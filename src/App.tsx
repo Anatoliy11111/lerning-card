@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useLocation } from 'react-router-dom';
 
 import style from 'App.module.scss';
@@ -10,17 +9,14 @@ import { NavigateMenu, RouteMenu } from 'Component/06-navigate';
 import { RootState } from 'redux/store/Store';
 import { setNameTC } from 'redux/thunk';
 
-
-
-
 export const App: React.FC = () => {
-    const dispatch = useDispatch();
-    const isInitialize = useSelector<RootState, boolean>(
-        state => state.AppReducer.isInitialize,
-    );
-    useEffect(() => {
-        dispatch(setNameTC());
-    }, []);
+  const dispatch = useDispatch();
+  const isInitialize = useSelector<RootState, boolean>(
+    state => state.AppReducer.isInitialize,
+  );
+  useEffect(() => {
+    dispatch(setNameTC());
+  }, []);
 
   const location = useLocation();
   const path =
@@ -28,9 +24,9 @@ export const App: React.FC = () => {
     location.pathname === '/pageCard' ||
     location.pathname === '/selectCard';
 
-    if (!isInitialize) {
-        return <Preloader />;
-    }
+  if (!isInitialize) {
+    return <Preloader />;
+  }
   return (
     <div className={style.wrapper}>
       <main className={style.page}>
@@ -42,4 +38,3 @@ export const App: React.FC = () => {
     </div>
   );
 };
-
