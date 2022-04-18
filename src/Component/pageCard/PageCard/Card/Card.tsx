@@ -32,8 +32,10 @@ export const Card = memo(({ card }: CardType) => {
       <NotMyCard
         cardsCount={cardsCount}
         name={name}
-        created={created}
-        updated={updated}
+        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+        created={created.substring(0, 10)}
+        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+        updated={updated.substring(0, 10)}
         user_id={user_id}
         _id={_id}
       />
@@ -51,10 +53,12 @@ export const Card = memo(({ card }: CardType) => {
         <div className={style.count}>{cardsCount}</div>
       </div>
       <div className={style.cardItem}>
-        <div className={style.date}>{created}</div>
+        {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
+        <div className={style.date}>{created.substring(0, 10)}</div>
       </div>
       <div className={style.cardItem}>
-        <div className={style.date}>{updated}</div>
+        {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
+        <div className={style.date}>{updated.substring(0, 10)}</div>
       </div>
       <div className={style.cardItem}>
         <div className={style.button}>

@@ -11,6 +11,7 @@ export const getCardstTC = (cardsPack_id: string) => async (dispatch: Dispatch) 
     const promise = await cardsListAPI.getCardsList({
       // eslint-disable-next-line camelcase
       cardsPack_id,
+      pageCount: 8,
     });
     dispatch(setStatusLoadingPacksListAC('succeeded'));
     dispatch(setCardsListAC(promise.data.cards));
