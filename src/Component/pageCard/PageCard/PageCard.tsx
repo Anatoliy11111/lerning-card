@@ -86,7 +86,7 @@ export const PageCard: React.FC = () => {
   if (learnCard) {
     return (
       <div className={style.LearnCardContainer}>
-        <LearnCard />
+        <LearnCard setLearnCard={setLearnCard} />
       </div>
     );
   }

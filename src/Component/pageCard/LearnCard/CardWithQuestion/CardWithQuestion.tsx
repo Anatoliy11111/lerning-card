@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Navigate } from 'react-router-dom';
+import style from './CardWithQuestion.module.scss';
 
-import style from 'Component/pageCard/LearnCard/LearnCard.module.scss';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 
 type cardWithQuestionType = {
   packName: string;
   cards: CardsType[];
   setQuestion: (answer: boolean) => void;
+  setLearnCard: (isBack: boolean) => void;
 };
 
 export const CardWithQuestion: React.FC<cardWithQuestionType> = ({
   packName,
   cards,
   setQuestion,
+  setLearnCard,
 }) => {
-  const [isBack, setIsBack] = useState(false);
   const onClickCancel = (): void => {
-    setIsBack(true);
+    setLearnCard(false);
   };
-  if (isBack) {
-    return <Navigate to="/profile" />;
-  }
   return (
     <div className={style.questionCardContainer}>
       <div className={style.cardName}>Learn: {packName} </div>

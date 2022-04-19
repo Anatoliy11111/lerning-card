@@ -31,6 +31,7 @@ export const NotMyCard = memo(
     const onGetCarsListClick = (cardsId: string): void => {
       dispatch(getCardstTC(cardsId));
     };
+    const valueForDisabled = 0;
     return (
       <div className={style.card}>
         <div className={style.cardItem}>
@@ -57,7 +58,7 @@ export const NotMyCard = memo(
             <GeneralButton
               type="button"
               onClickCallback={() => onClickLearnCard(true)}
-              disabled={false}
+              disabled={cardsCount === valueForDisabled}
               value="Learn"
             />
           </div>

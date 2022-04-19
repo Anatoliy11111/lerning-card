@@ -7,7 +7,11 @@ import { CardWithQuestion } from 'Component/pageCard/LearnCard/CardWithQuestion/
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 import { RootState } from 'redux/store/Store';
 
-export const LearnCard: React.FC = () => {
+type LearnCardType = {
+  setLearnCard: (isBack: boolean) => void;
+};
+
+export const LearnCard: React.FC<LearnCardType> = ({ setLearnCard }) => {
   const [question, setQuestion] = useState(true);
   const cards = useSelector<RootState, CardsType[]>(
     state => state.cardsListReducer.cards,
@@ -17,8 +21,13 @@ export const LearnCard: React.FC = () => {
   );
   if (question) {
     return (
-      <CardWithQuestion packName={packName} cards={cards} setQuestion={setQuestion} />
+      <CardWithQuestion
+        packName={packName}
+        cards={cards}
+        setQuestion={setQuestion}
+        setLearnCard={setLearnCard}
+      />
     );
   }
-  return <CardWithAnswer cards={cards} packName={packName} />;
+  return <CardWithAnswer cards={cards} packName={packName} setLearnCard={setLearnCard} />;
 };

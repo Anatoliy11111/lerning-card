@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-
-import { Navigate } from 'react-router-dom';
+import React from 'react';
 
 import style from './CardWithAnswer.module.scss';
 
@@ -9,6 +7,7 @@ import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 type CardWithAnswerType = {
   packName: string;
   cards: CardsType[];
+  setLearnCard: (isBAck: boolean) => void;
 };
 const grade = [
   'Did not know',
@@ -18,14 +17,15 @@ const grade = [
   'Knew the answer',
 ];
 
-export const CardWithAnswer: React.FC<CardWithAnswerType> = ({ packName, cards }) => {
-  const [isBack, setIsBack] = useState(false);
+export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
+  packName,
+  cards,
+  setLearnCard,
+}) => {
   const onClickCancel = (): void => {
-    setIsBack(true);
+    setLearnCard(false);
   };
-  if (isBack) {
-    return <Navigate to="/profile" />;
-  }
+
   return (
     <div className={style.answerContainer}>
       <div className={style.packName}>Learn: {packName}</div>

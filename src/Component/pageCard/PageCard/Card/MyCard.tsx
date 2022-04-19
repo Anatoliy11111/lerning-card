@@ -22,45 +22,48 @@ export const MyCard = memo(
     setModalIsOpen,
     onClickLearnCard,
     name,
-  }: MyCardType) => (
-    <>
-      <div className={style.cardItem}>
-        <Link to="/cards" className={style.name}>
-          {' '}
-          {name}
-        </Link>
-      </div>
-      <div className={style.cardItem}>
-        <div className={style.count}>{cardsCount}</div>
-      </div>
-      <div className={style.cardItem}>
-        <div className={style.date}>{created}</div>
-      </div>
-      <div className={style.cardItem}>
-        <div className={style.date}>{updated}</div>
-      </div>
-      <div className={style.cardItem}>
-        <div className={style.button}>
-          <GeneralButton
-            type="button"
-            onClickCallback={() => setModalIsOpen(true)}
-            disabled={false}
-            value="delete"
-          />
-          <GeneralButton
-            type="button"
-            onClickCallback={() => {}}
-            disabled={false}
-            value="Edit"
-          />
-          <GeneralButton
-            type="button"
-            onClickCallback={() => onClickLearnCard(true)}
-            disabled={false}
-            value="Learn"
-          />
+  }: MyCardType) => {
+    const valueForDisabled = 0;
+    return (
+      <>
+        <div className={style.cardItem}>
+          <Link to="/cards" className={style.name}>
+            {' '}
+            {name}
+          </Link>
         </div>
-      </div>
-    </>
-  ),
+        <div className={style.cardItem}>
+          <div className={style.count}>{cardsCount}</div>
+        </div>
+        <div className={style.cardItem}>
+          <div className={style.date}>{created}</div>
+        </div>
+        <div className={style.cardItem}>
+          <div className={style.date}>{updated}</div>
+        </div>
+        <div className={style.cardItem}>
+          <div className={style.button}>
+            <GeneralButton
+              type="button"
+              onClickCallback={() => setModalIsOpen(true)}
+              disabled={false}
+              value="delete"
+            />
+            <GeneralButton
+              type="button"
+              onClickCallback={() => {}}
+              disabled={false}
+              value="Edit"
+            />
+            <GeneralButton
+              type="button"
+              onClickCallback={() => onClickLearnCard(true)}
+              disabled={cardsCount === valueForDisabled}
+              value="Learn"
+            />
+          </div>
+        </div>
+      </>
+    );
+  },
 );
