@@ -11,6 +11,7 @@ import { SortPacksType } from 'api/auth-api/types';
 import { GeneralButton, GeneralInput } from 'Component/01-common';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { AddCardPackModal } from 'Component/modals/AddCardPackModal/AddCardPackModal';
+import { LearnCard } from 'Component/pageCard/LearnCard/LearnCard';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
@@ -36,6 +37,7 @@ import {
 export const PageCard: React.FC = () => {
   const [value, setValue] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [learnCard, setLearnCard] = useState(false);
   const dispatch = useDispatch();
 
   const cards = useSelector(getCards);
@@ -49,9 +51,7 @@ export const PageCard: React.FC = () => {
   const maxCardCount = useSelector(getMaxCardCount);
   const isMyCard = useSelector(getIsMyCard);
   const isLoginIn = useSelector(getIsLoginIn);
-
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
-
   const setName = (): void => {
     dispatch(setPacNameAC(value));
   };
@@ -81,6 +81,14 @@ export const PageCard: React.FC = () => {
 
   if (!isLoginIn) {
     return <Navigate to="/login" />;
+  }
+
+  if (learnCard) {
+    return (
+      <div className={style.LearnCardContainer}>
+        <LearnCard />
+      </div>
+    );
   }
   return (
     <div className={style.packsList}>
@@ -128,8 +136,10 @@ export const PageCard: React.FC = () => {
             {statusLoading === 'loading' ? (
               <Preloader />
             ) : (
-              // eslint-disable-next-line no-underscore-dangle
-              cards.map(card => <Card key={card._id} card={card} />)
+              cards.map(card => (
+                // eslint-disable-next-line no-underscore-dangle
+                <Card key={card._id} card={card} setLearnCard={setLearnCard} />
+              ))
             )}
           </div>
         </div>

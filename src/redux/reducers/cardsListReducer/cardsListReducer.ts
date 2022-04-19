@@ -19,6 +19,7 @@ type CardsInitialType = {
   page: number;
   pageCount: number;
   packUserId: string;
+  packName: string;
 };
 
 const initialState: CardsInitialType = {
@@ -41,6 +42,7 @@ const initialState: CardsInitialType = {
   page: 1,
   pageCount: 4,
   packUserId: '',
+  packName: '',
 };
 
 export const cardsListReducer = (
@@ -51,40 +53,9 @@ export const cardsListReducer = (
     case 'cardsList/SET-CARDS-LIST': {
       return { ...state, cards: action.data };
     }
-    /*    case 'packsList/MAX-MIN-INITIAL-COUNT-CARD': {
-      return {
-        ...state,
-        maxCount: action.max,
-        minCount: action.min,
-        maxCardsCount: action.max,
-        minCardsCount: action.min,
-      };
-    } */
-    /*  case 'packsList/SET-SELECT-CARD': {
-      return { ...state, user_id: action.userId };
-    } */
-    /*    case 'packsList/SET-PAGINATION': {
-      return { ...state, ...action.data };
+    case 'cardsList/SET-PACK-NAME': {
+      return { ...state, packName: action.name };
     }
-    case 'packsList/SET-MAX-MIN-CARDS-COUNT': {
-      return { ...state, maxCount: action.max, minCount: action.min };
-    }
-    case 'packsList/SET-STATUS-LOADING': {
-      return { ...state, statusLoading: action.value };
-    }
-    case 'packsList/SET-CURRENT-NUMBER-PAGE': {
-      return { ...state, page: action.page };
-    } */
-    /*    case 'packsList/SET-SORT-PACKS-LIST': {
-      return {
-        ...state,
-        sortPacks: action.value,
-      };
-    } */
-
-    /*  case 'packsList/SET-NAME-PACK': {
-      return { ...state, packName: action.packName };
-    } */
 
     default:
       return state;

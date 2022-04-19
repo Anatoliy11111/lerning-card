@@ -7,6 +7,7 @@ type initialStateType = {
   isCreateNewPassword: boolean;
   errorCreateNewPassword: string;
   isInitialize: boolean;
+  idCard: string;
 };
 
 const initialState: initialStateType = {
@@ -16,6 +17,7 @@ const initialState: initialStateType = {
   isCreateNewPassword: false,
   errorCreateNewPassword: '',
   isInitialize: false,
+  idCard: '',
 };
 
 export const AppReducer = (
@@ -25,6 +27,9 @@ export const AppReducer = (
   switch (action.type) {
     case 'IS-INITIALIZATION': {
       return { ...state, isInitialize: action.isInitialized };
+    }
+    case 'IS-LEARN-CARD': {
+      return { ...state, idCard: action.id };
     }
     case 'IS-REGISTRATION': {
       return { ...state, isRegistration: action.isRegistration };

@@ -20,12 +20,14 @@ export const App: React.FC = () => {
 
   const location = useLocation();
   const path =
+    location.pathname === '/' ||
     location.pathname === '/profile' ||
     location.pathname === '/pageCard' ||
     location.pathname === '/card/:id';
   if (!isInitialize) {
     return <Preloader />;
   }
+
   return (
     <div className={style.wrapper}>
       <main className={style.page}>

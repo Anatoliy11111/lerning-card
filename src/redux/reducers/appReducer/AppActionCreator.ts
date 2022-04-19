@@ -4,8 +4,10 @@ export type setMessageRestorePasswordType = ReturnType<typeof setMessageRestoreP
 export type isCreateNewPasswordType = ReturnType<typeof isCreateNewPassword>;
 export type ErrorCreateNewPasswordType = ReturnType<typeof ErrorCreateNewPassword>;
 export type SetInitializeACType = ReturnType<typeof setInitializeAC>;
+export type isLearnCardType = ReturnType<typeof isLearnCard>;
 
 export type AppActionType =
+  | isLearnCardType
   | registrationACType
   | isErrorRegistrationACType
   | setMessageRestorePasswordType
@@ -13,6 +15,11 @@ export type AppActionType =
   | SetInitializeACType
   | ErrorCreateNewPasswordType;
 
+export const isLearnCard = (id: string) =>
+  ({
+    type: 'IS-LEARN-CARD',
+    id,
+  } as const);
 export const registrationAC = (isRegistration: boolean) =>
   ({
     type: 'IS-REGISTRATION',

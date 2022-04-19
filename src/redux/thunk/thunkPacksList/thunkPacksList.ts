@@ -16,6 +16,7 @@ export const getMaxMinCount = () => async (dispatch: Dispatch) => {
   dispatch(setMaxMinInitialCountAC(maxCardsCount, minCardsCount));
   dispatch(setInitializeAC(true));
 };
+
 export const getPacksListTC = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));

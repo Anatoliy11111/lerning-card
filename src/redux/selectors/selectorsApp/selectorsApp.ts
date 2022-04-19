@@ -12,3 +12,4 @@ export const errorCreateNewPassword = (state: RootState): string =>
   state.AppReducer.errorCreateNewPassword;
 export const getIsinitiolazed = (state: RootState): boolean =>
   state.AppReducer.isInitialize;
+export const setIdCard = (state: RootState): string => state.AppReducer.idCard;
