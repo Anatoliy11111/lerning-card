@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import style from '../auth.module.scss';
 
 import { GeneralButton, GeneralInput } from 'Component/01-common';
+import { RouteLink } from 'enum/enum';
 import { getErrorRegistration, getIsRegistration } from 'redux/selectors';
 import { isRegistrationTC } from 'redux/thunk';
 
@@ -47,7 +48,7 @@ export const Registration: React.FC = memo(() => {
   });
 
   if (isRegistration) {
-    return <Navigate to="/Login" />;
+    return <Navigate to={RouteLink.login} />;
   }
   return (
     <div className={style.login}>

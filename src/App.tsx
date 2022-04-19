@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import style from 'App.module.scss';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { NavigateMenu, RouteMenu } from 'Component/06-navigate';
+import { RouteLink } from 'enum/enum';
 import { RootState } from 'redux/store/Store';
 import { setAuthInitialTC } from 'redux/thunk';
 
@@ -21,9 +22,9 @@ export const App: React.FC = () => {
   const location = useLocation();
   const path =
     location.pathname === '/' ||
-    location.pathname === '/profile' ||
-    location.pathname === '/pageCard' ||
-    location.pathname === '/card/:id';
+    location.pathname === RouteLink.profile ||
+    location.pathname === RouteLink.pageCard ||
+    location.pathname === RouteLink.card;
   if (!isInitialize) {
     return <Preloader />;
   }

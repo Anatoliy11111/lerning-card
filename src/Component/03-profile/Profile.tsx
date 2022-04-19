@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 import style from './profile.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
+import { RouteLink } from 'enum/enum';
 import { getIsLoginIn, getProfileName } from 'redux/selectors';
 import { getProfileAvatar } from 'redux/selectors/selectorsProfile/selectorsProfile';
 import { logOutTC } from 'redux/thunk';
@@ -31,7 +32,7 @@ export const Profile: React.FC = () => {
   }, []);
 
   if (!isLoginIn) {
-    return <Navigate to="/login" />;
+    return <Navigate to={RouteLink.login} />;
   }
   return (
     <div className={style.profile}>

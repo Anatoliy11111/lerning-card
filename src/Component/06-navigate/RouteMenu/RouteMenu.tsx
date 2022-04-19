@@ -11,19 +11,20 @@ import { Profile } from 'Component/03-profile/Profile';
 import { NewPassword, RestorePassword } from 'Component/05-password';
 import { CardsList } from 'Component/pageCard/PageCard/cardsList/CardsList';
 import { PageCard } from 'Component/pageCard/PageCard/PageCard';
+import { RouteLink } from 'enum/enum';
 
 export const RouteMenu: React.FC = () => (
   <div className={style.routesContainer}>
     <Routes>
       <Route path="/" element={<Profile />} />
-      <Route path="login" element={<Login />} />
-      <Route path="registration" element={<Registration />} />
-      <Route path="restorePassword" element={<RestorePassword />} />
-      <Route path="pageCard" element={<PageCard />} />
-      <Route path="card/:id" element={<CardsList />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="newPassword/:token" element={<NewPassword />} />
-      <Route path="authMe" element={<Login />} />
+      <Route path={RouteLink.login} element={<Login />} />
+      <Route path={RouteLink.registration} element={<Registration />} />
+      <Route path={RouteLink.restorePassword} element={<RestorePassword />} />
+      <Route path={RouteLink.pageCard} element={<PageCard />} />
+      <Route path={RouteLink.card} element={<CardsList />} />
+      <Route path={RouteLink.profile} element={<Profile />} />
+      <Route path={RouteLink.newPassword} element={<NewPassword />} />
+      <Route path={RouteLink.login} element={<Login />} />
       <Route path="*" element={<Mistake />} />
     </Routes>
   </div>

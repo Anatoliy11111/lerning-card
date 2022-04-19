@@ -2,11 +2,12 @@ import React from 'react';
 
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import style from '../RestorePassword/RestorePassword.module.scss';
 
 import { GeneralButton, GeneralInput } from 'Component/01-common';
+import { RouteLink } from 'enum/enum';
 import { createNewPassword, errorCreateNewPassword } from 'redux/selectors';
 import { CreateNewPasswordPasswordTC } from 'redux/thunk';
 
@@ -36,7 +37,7 @@ export const NewPassword: React.FC = () => {
     },
   });
   if (isNewPassword) {
-    navigate('/Login');
+    navigate(RouteLink.login);
   }
 
   return (

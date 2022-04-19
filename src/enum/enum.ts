@@ -27,3 +27,14 @@ export enum ResultMethodeSort {
   Descending = -1,
   Ascending = 1,
 }
+
+export enum RouteLink {
+  login = '/login',
+  registration = '/registration',
+  restorePassword = '/restorePassword',
+  pageCard = '/pageCard',
+  card = '/card/:id',
+  profile = '/profile',
+  newPassword = '/newPassword/:token',
+  authMe = '/authMe',
+}
