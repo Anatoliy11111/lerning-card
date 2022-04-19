@@ -8,6 +8,7 @@ import {
   RestorePasswordType,
 } from 'api/auth-api/types';
 import { registrationAC, setErrorRegistrationMessage } from 'redux/reducers';
+import { AllActionCreatorsType } from 'redux/reducers/allActionCreatorsType';
 import {
   ErrorCreateNewPassword,
   isCreateNewPassword,
@@ -20,6 +21,7 @@ import {
   setIsLoggedInAC,
 } from 'redux/reducers/loginReducer/LoginActionCreator';
 import { setDataAC } from 'redux/reducers/profileReducer/ProfileActionCreator';
+import { RootState } from 'redux/store/Store';
 
 export const isRegistrationTC = (data: AuthRequestType) => async (dispatch: Dispatch) => {
   try {
@@ -49,7 +51,8 @@ export const CreateNewPasswordPasswordTC =
   };
 
 export const loginTC =
-  (data: AuthRequestType) => async (dispatch: ThunkDispatch<any, any, any>) => {
+  (data: AuthRequestType) =>
+  async (dispatch: ThunkDispatch<RootState, unknown, AllActionCreatorsType>) => {
     try {
       const promise = await authAPI.login(data);
       dispatch(setDataAC(promise.data));
