@@ -13,6 +13,7 @@ import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { AddCardPackModal } from 'Component/modals/AddCardPackModal/AddCardPackModal';
 import { LearnCard } from 'Component/pageCard/LearnCard/LearnCard';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
+import { UniversalSearch } from 'Component/pageCard/Search/UniversalSearch';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
 import { useDebounce } from 'hooks/useDebounce';
 import { setCurrentNumberPageAC, setPacNameAC, sortPacksListAC } from 'redux/reducers';
@@ -69,12 +70,7 @@ export const PageCard: React.FC = () => {
     },
     [dispatch],
   );
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 750, setName);
-  const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.currentTarget.value);
-    debouncedSearch();
-  };
+
   const onSortCardClick = (sortValue: SortPacksType): void => {
     dispatch(sortPacksListAC(sortValue));
   };
@@ -98,13 +94,7 @@ export const PageCard: React.FC = () => {
       <div className={style.packListContainer}>
         <h1 className={style.title}>PacksList</h1>
         <div className={style.form}>
-          <GeneralInput
-            type="text"
-            id="34"
-            name="text"
-            value={value}
-            changeInputCallback={e => onChangeSearching(e)}
-          />
+          <UniversalSearch value={value} setValue={setValue} />
           <GeneralButton
             onClickCallback={() => setModalIsOpen(true)}
             type="button"
