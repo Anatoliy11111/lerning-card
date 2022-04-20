@@ -2,9 +2,10 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import starDefault from '../../../../../assets/images/starDefault.png';
+
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
-import Star from 'Component/pageCard/PageCard/cardsList/Star/Star';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 import { changeCardTC, deleteCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
