@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -8,15 +8,14 @@ import style from './pageCard.module.scss';
 import { SortItem } from './sortItem/SortItem';
 
 import { SortPacksType } from 'api/auth-api/types';
-import { GeneralButton, GeneralInput } from 'Component/01-common';
+import { GeneralButton } from 'Component/01-common';
 import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { AddCardPackModal } from 'Component/modals/AddCardPackModal/AddCardPackModal';
 import { LearnCard } from 'Component/pageCard/LearnCard/LearnCard';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { UniversalSearch } from 'Component/pageCard/Search/UniversalSearch';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
-import { useDebounce } from 'hooks/useDebounce';
-import { setCurrentNumberPageAC, setPacNameAC, sortPacksListAC } from 'redux/reducers';
+import { setCurrentNumberPageAC, sortPacksListAC } from 'redux/reducers';
 import { getIsLoginIn } from 'redux/selectors';
 import {
   getCardPacksTotalCount,
@@ -53,9 +52,6 @@ export const PageCard: React.FC = () => {
   const isMyCard = useSelector(getIsMyCard);
   const isLoginIn = useSelector(getIsLoginIn);
   const pagesCount = Math.ceil(cardPacksTotalCount / pageCount);
-  const setName = (): void => {
-    dispatch(setPacNameAC(value));
-  };
 
   useEffect(() => {
     dispatch(getPacksListTC());
