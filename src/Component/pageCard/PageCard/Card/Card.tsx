@@ -64,8 +64,7 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
           deleteCallback={() => onDeleteCardClick(_id)}
           closeModal={() => setModalIsOpen(false)}
         >
-          Do you really want to remove {name}? <br />
-          All cards will be excluded from this course.
+          {name}
         </DeleteModal>
       </div>
     </div>
