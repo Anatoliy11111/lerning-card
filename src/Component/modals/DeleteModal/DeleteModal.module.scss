@@ -1,27 +1,79 @@
- .modal_style {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   background-color: #fff;
-   width: 395px;
-   height: 221px;
-   padding: 5px;
-   z-index: 1000;
-   transition-duration: 1000ms;
- }
+.modal_style {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 395px;
+  height: 221px;
+  padding: 5px;
+  z-index: 1000;
+  transition-duration: 1000ms;
+  border-radius: 2px;
 
- .overlay {
-   position: fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background-color: rgba(0, 0, 0, 0.7);
-   z-index: 1000;
-   transition-duration: 1000ms;
- }
+  .closeCard {
+    margin: 15px 24px;
+    display: flex;
+    justify-content: space-between;
 
- .closeBtn{
+    h2 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #2D2E46;
+    }
 
- }
+    button {
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      color: #2D2E46;
+      box-shadow: none;
+    }
+  }
+
+  .messageAboutDelete {
+    margin: 27px 28px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+
+    span {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+
+  .btnContainer {
+    margin: 0 24px;
+    display: flex;
+    justify-content: space-between;
+
+    :nth-child(1) {
+      padding: 9px 37px;
+      color: #21268F;
+      background-color: #D7D8EF;
+      box-shadow: none;
+    }
+
+    :nth-child(2) {
+      padding: 9px 37px;
+      color: #ECECF9;
+      background-color: #F1453D;
+    }
+
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  transition-duration: 1000ms;
+}

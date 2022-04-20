@@ -24,15 +24,21 @@ export const DeleteModal: React.FC<ModalProps> = ({
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className={style.overlay} onClick={closeModal} />
       <div className={style.modal_style}>
-        <div>
-          Delete {name} Pack?
+        <div className={style.closeCard}>
+          <h2> Delete {name} Pack?</h2>
           <button className={style.closeBtn} onClick={closeModal}>
             X
           </button>
         </div>
-        <div>{children}</div>
-        <button onClick={closeModal}>Cancel</button>
-        <button onClick={deleteCallback}>Delete</button>
+        <div className={style.messageAboutDelete}>
+          Do you really want to remove <span>Pack Name - {children}?</span>
+          <br />
+          All cards will be excluded from this course.
+        </div>
+        <div className={style.btnContainer}>
+          <button onClick={closeModal}>Cancel</button>
+          <button onClick={deleteCallback}>Delete</button>
+        </div>
       </div>
     </>
   );
