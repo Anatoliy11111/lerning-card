@@ -11,6 +11,7 @@ import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
 import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
+import { createCardTC, getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type CardType = {
   card: GetPacksListCard;
@@ -26,7 +27,14 @@ export const Card = memo(({ card }: CardType) => {
     dispatch(deleteCardFromPacksListTC(idCard));
     setModalIsOpen(false);
   };
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const onAddCardClick = (_id: string): void => {
+    dispatch(createCardTC(_id));
+  };
 
+  const onGetCarsListClick = (cardsId: string): void => {
+    dispatch(getCardstTC(cardsId));
+  };
   if (myId !== user_id) {
     return (
       <NotMyCard
@@ -44,7 +52,11 @@ export const Card = memo(({ card }: CardType) => {
   return (
     <div className={style.card}>
       <div className={style.cardItem}>
-        <Link to="/cards" className={style.name}>
+        <Link
+          to={`/card/id=${user_id}`}
+          onClick={() => onGetCarsListClick(_id)}
+          className={style.name}
+        >
           {' '}
           {name}
         </Link>
@@ -79,6 +91,11 @@ export const Card = memo(({ card }: CardType) => {
             onClickCallback={() => {}}
             disabled={false}
             value="Learn"
+          />
+          <GeneralButton
+            onClickCallback={() => onAddCardClick(_id)}
+            type="button"
+            value="Add card"
           />
         </div>
       </div>

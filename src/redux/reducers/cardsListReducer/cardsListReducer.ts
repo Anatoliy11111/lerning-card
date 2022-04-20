@@ -82,7 +82,7 @@ export const cardsListReducer = (
       };
     } */
 
-    /*  case 'packsList/SET-NAME-PACK': {
+    /*  case 'packsList/DELETE-NAME-PACK': {
       return { ...state, packName: action.packName };
     } */
 

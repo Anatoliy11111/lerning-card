@@ -1,0 +1,19 @@
+.cardsList{
+  background: #FEFEFF;
+  border-radius: 8px;
+  padding: 24px;
+}
+.cardsBlock{
+  box-shadow: 0 0 10px 0 rgba(45, 46, 70, 0.53);
+}
+.titleBlock {
+  display: flex;
+  padding: 0 24px;
+  height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  background: #ECECF9;
+}
+.titleBlock__item{
+flex: 0 1 20%;
+}
