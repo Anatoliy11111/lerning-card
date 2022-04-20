@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,18 +7,24 @@ import { DoubleRange, onChangeCountRangeType } from '../DoubleRange/DoubleRange'
 import style from './SettingCardCount.module.scss';
 
 import { GeneralButton } from 'Component/01-common';
+import { useSettingCardCount } from 'hooks';
 import { setMaxMinCardsCount, setSelectCardAC } from 'redux/reducers';
 import { getMaxCount, getMinCount, getMyId } from 'redux/selectors';
 
 export const SettingCardCount: React.FC = () => {
-  const myID = useSelector(getMyId);
-
   const dispatch = useDispatch();
+  const myID = useSelector(getMyId);
   const minCard = useSelector(getMinCount);
   const maxCard = useSelector(getMaxCount);
-  const [isDoubleRangeShow, setIsDoubleRangeShow] = useState(true);
-  const [minCardCount, setMinCardCount] = useState<number>(minCard);
-  const [maxCardCount, setMaxCardCount] = useState<number>(maxCard);
+
+  const {
+    isDoubleRangeShow,
+    setIsDoubleRangeShow,
+    maxCardCount,
+    minCardCount,
+    setMinCardCount,
+    setMaxCardCount,
+  } = useSettingCardCount(minCard, maxCard);
   const onClickButton = (id: string, show: boolean): void => {
     dispatch(setSelectCardAC(id));
     setIsDoubleRangeShow(show);

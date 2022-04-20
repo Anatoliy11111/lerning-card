@@ -52,7 +52,6 @@ export const CardsPacks: React.FC = () => {
       setCards(res.data.cardPacks);
       setPageContentCount(res.data.pageCount);
       setCardPacksTotalCount(res.data.cardPacksTotalCount);
-      console.log(res);
     });
   }, []); // При монтировании компоненты сетает в стейт паки карточек,
   // количество выводимых паков на страницу, и общее количество паков на сервере.

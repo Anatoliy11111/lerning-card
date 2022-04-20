@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useCallback, useEffect } from 'react';
 
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from 'Component/pageCard/DoubleRange/DobleRanges.module.scss';
 import { DoubleRangeNumber } from 'enum/enum';
+import { useDoubleRange } from 'hooks';
 
 export type onChangeCountRangeType = {
   min: number;
@@ -18,11 +19,8 @@ type DoubleRangeType = {
 };
 
 export const DoubleRange: FC<DoubleRangeType> = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef<HTMLInputElement>(null);
-  const maxValRef = useRef<HTMLInputElement>(null);
-  const range = useRef<HTMLDivElement>(null);
+  const { range, minVal, setMinVal, minValRef, maxValRef, setMaxVal, maxVal } =
+    useDoubleRange(min, max);
 
   const getPercent = useCallback(
     (value: number) =>

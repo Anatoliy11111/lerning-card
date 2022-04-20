@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { Preloader } from 'Component/01-common/preloader/Preloader';
-import { CardWithAnswer } from 'Component/pageCard/LearnCard/CardWithAnswer/CardWithAnswer';
-import { CardWithQuestion } from 'Component/pageCard/LearnCard/CardWithQuestion/CardWithQuestion';
+import { CardWithAnswer } from './CardWithAnswer/CardWithAnswer';
+import { CardWithQuestion } from './CardWithQuestion/CardWithQuestion';
+
+import { Preloader } from 'Component/01-common';
 import { Lern } from 'enum/enum';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 import { getStatusLoading } from 'redux/selectors';

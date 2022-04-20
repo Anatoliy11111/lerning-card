@@ -30,10 +30,10 @@ export const Pagination: React.FC<PaginationProps> = memo(
     return (
       <div className={style.pages}>
         {page.map(el => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <div
             role="button"
             tabIndex={0}
+            onKeyDown={() => onClickHandler(el)}
             onClick={() => onClickHandler(el)}
             className={currentPage === el ? style.current_page : style.page}
             key={`${el}_2`}
