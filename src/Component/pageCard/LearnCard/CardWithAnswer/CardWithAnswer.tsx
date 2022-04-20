@@ -41,7 +41,7 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
     <div className={style.answerContainer}>
       <div className={style.packName}>Learn: {packName}</div>
       <div className={style.question}>
-        Question: <span>{card.answer}</span>
+        Question: <span>{card.question}</span>
       </div>
       <div className={style.answer}>
         Answer:<span>{card.answer}</span>{' '}
