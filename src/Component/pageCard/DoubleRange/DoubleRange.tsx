@@ -71,7 +71,6 @@ export const DoubleRange: FC<DoubleRangeType> = ({ min, max, onChange }) => {
             maxVal - DoubleRangeNumber.minDistance,
           );
           setMinVal(value);
-          // eslint-disable-next-line no-param-reassign
           event.currentTarget.value = value.toString();
         }}
         className={classnames(`${style.thumb} ${style['thumb--zIndex-3']}`, {
@@ -90,7 +89,6 @@ export const DoubleRange: FC<DoubleRangeType> = ({ min, max, onChange }) => {
             minVal + DoubleRangeNumber.minDistance,
           );
           setMaxVal(value);
-          // eslint-disable-next-line no-param-reassign
           event.currentTarget.value = value.toString();
         }}
         className={`${style.thumb} ${style['thumb--zIndex-4']}`}

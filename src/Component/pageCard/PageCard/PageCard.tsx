@@ -123,7 +123,6 @@ export const PageCard: React.FC = () => {
               <Preloader />
             ) : (
               cards.map(card => (
-                // eslint-disable-next-line no-underscore-dangle
                 <Card key={card._id} card={card} setLearnCard={setLearnCard} />
               ))
             )}

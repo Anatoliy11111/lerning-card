@@ -24,6 +24,8 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-param-reassign": "off",
+    "no-underscore-dangle": [2, { "allow": ["_id"] }],
     "camelcase": "off",
     "no-shadow": "off",
     "no-console": "error",

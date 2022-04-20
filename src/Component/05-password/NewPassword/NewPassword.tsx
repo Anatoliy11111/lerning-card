@@ -72,36 +72,3 @@ export const NewPassword: React.FC = () => {
     </form>
   );
 };
-// <form onSubmit={formik.handleSubmit}>
-//   <div className={style.containerChangePassword}>
-//     <div className={style.forgotPassword}>
-//       <h1>it-incubator</h1>
-//       <h2>Forgot your password?</h2>
-//       <div className={style.item}>
-//         <label className={style.label} htmlFor="email">
-//           Email{' '}
-//         </label>
-//         <GeneralInput
-//             type="email"
-//             id="email"
-//             name="email"
-//             value={formik.values.email}
-//             onBlurCallback={formik.handleBlur}
-//             changeInputCallback={formik.handleChange}
-//         />
-//         {formik.touched.email && formik.errors.email && (
-//             <div style={{ color: ' red' }}>{formik.errors.email}</div>
-//         )}
-//       </div>
-//       <p>Enter your email address and we will send you further instructions </p>
-//       <div className={style.btn}>
-//         <GeneralButton type="submit" value="Send Instructions" />
-//       </div>
-//       <div>{messageSentPassword}</div>
-//       <p className={style.textUnderButton}>Did you remember your password?</p>
-//       <Link className={style.linkOnPageLogin} to="/login">
-//         Try logging in
-//       </Link>
-//     </div>
-//   </div>
-// </form>

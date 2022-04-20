@@ -16,9 +16,9 @@ export const UniversalSearch: React.FC<UniversalSearchProps> = ({ value, setValu
   const setName = (): void => {
     dispatch(setPacNameAC(value));
   };
+  const timeBeforeStartWork = 750;
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-  const debouncedSearch = useDebounce(value, 750, setName);
+  const debouncedSearch = useDebounce(value, timeBeforeStartWork, setName);
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.currentTarget.value);
     debouncedSearch();

@@ -33,8 +33,7 @@ export const AddCardPackModal: React.FC<AddCardPackModalProps> = ({
   }
   return (
     <>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className={style.overlay} onClick={onClickCloseHandler} />
+      <div role="none" className={style.overlay} onClick={onClickCloseHandler} />
       <div className={style.modal_style}>
         <div className={style.headerModal}>
           <h2>Add new pack</h2>
