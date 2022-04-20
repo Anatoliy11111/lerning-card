@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { Preloader } from 'Component/01-common/preloader/Preloader';
 import { CardWithAnswer } from 'Component/pageCard/LearnCard/CardWithAnswer/CardWithAnswer';
 import { CardWithQuestion } from 'Component/pageCard/LearnCard/CardWithQuestion/CardWithQuestion';
 import { Lern } from 'enum/enum';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
+import { getStatusLoading } from 'redux/selectors';
 import { RootState } from 'redux/store/Store';
 
 type LearnCardType = {
@@ -34,15 +36,18 @@ export const LearnCard: React.FC<LearnCardType> = ({ setLearnCard }) => {
   const cards = useSelector<RootState, CardsType[]>(
     state => state.cardsListReducer.cards,
   );
+  const startLearn = useSelector(getStatusLoading);
   const [question, setQuestion] = useState(true);
   const [card, setCard] = useState<CardsType>(cards[Lern.initialValue]);
-
   const packName = useSelector<RootState, string>(
     state => state.cardsListReducer.packName,
   );
   useEffect(() => {
     setCard(getCard(cards));
-  }, []);
+  }, [cards]);
+  if (startLearn === 'loading') {
+    return <Preloader />;
+  }
   if (question) {
     return (
       <CardWithQuestion

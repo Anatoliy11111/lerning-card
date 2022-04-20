@@ -21,8 +21,7 @@ export const DeleteModal: React.FC<ModalProps> = ({
   }
   return (
     <>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className={style.overlay} onClick={closeModal} />
+      <div role="none" className={style.overlay} onClick={closeModal} />
       <div className={style.modal_style}>
         <div className={style.closeCard}>
           <h2> Delete {name} Pack?</h2>
