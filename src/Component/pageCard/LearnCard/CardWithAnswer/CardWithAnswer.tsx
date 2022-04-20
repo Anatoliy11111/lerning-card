@@ -6,8 +6,12 @@ import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 
 type CardWithAnswerType = {
   packName: string;
+  card: CardsType;
   cards: CardsType[];
   setLearnCard: (isBAck: boolean) => void;
+  setCard: (card: CardsType) => void;
+  getCard: (cards: CardsType[]) => CardsType;
+  setQuestion: (answer: boolean) => void;
 };
 const grade = [
   'Did not know',
@@ -19,23 +23,28 @@ const grade = [
 
 export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
   packName,
-  cards,
+  card,
   setLearnCard,
+  setCard,
+  cards,
+  getCard,
+  setQuestion,
 }) => {
   const onClickCancel = (): void => {
     setLearnCard(false);
   };
-
+  const onNext = (): void => {
+    setCard(getCard(cards));
+    setQuestion(true);
+  };
   return (
     <div className={style.answerContainer}>
       <div className={style.packName}>Learn: {packName}</div>
       <div className={style.question}>
-        {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
-        Question: <span>{cards[0].answer}</span>
+        Question: <span>{card.answer}</span>
       </div>
       <div className={style.answer}>
-        {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
-        Answer:<span>{cards[0].answer}</span>{' '}
+        Answer:<span>{card.answer}</span>{' '}
       </div>
       <div className={style.radio}>
         <h3>Rate yourself: </h3>
@@ -49,7 +58,7 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
       </div>
       <div className={style.cardButton}>
         <button onClick={onClickCancel}>Cancel</button>
-        <button>Next</button>
+        <button onClick={onNext}>Next</button>
       </div>
     </div>
   );

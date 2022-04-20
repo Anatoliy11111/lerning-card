@@ -38,3 +38,10 @@ export enum RouteLink {
   newPassword = '/newPassword/:token',
   authMe = '/authMe',
 }
+
+export enum Lern {
+  initialValue = 0,
+  acc = 0,
+  numberSmart = 6,
+  validValue = 1,
+}

@@ -6,14 +6,14 @@ import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 
 type cardWithQuestionType = {
   packName: string;
-  cards: CardsType[];
+  card: CardsType;
   setQuestion: (answer: boolean) => void;
   setLearnCard: (isBack: boolean) => void;
 };
 
 export const CardWithQuestion: React.FC<cardWithQuestionType> = ({
   packName,
-  cards,
+  card,
   setQuestion,
   setLearnCard,
 }) => {
@@ -25,8 +25,7 @@ export const CardWithQuestion: React.FC<cardWithQuestionType> = ({
       <div className={style.cardName}>Learn: {packName} </div>
       <div className={style.cardQuestion}>
         <h3>
-          {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
-          Question:<span>{cards[0].question}</span>
+          Question:<span>{card.question}</span>
         </h3>
       </div>
       <div className={style.cardButton}>
