@@ -23,7 +23,7 @@ export const packsListAPI = {
       cardsPack: { name: cardPackName },
     });
   },
-  updateNameCardPacksList(name: string, id: string) {
-    return instance.put(`cards/pack/`, { cardsPack: { name, id } });
+  updateNameCardPacksList(name: string, _id: string) {
+    return instance.put(`cards/pack/`, { cardsPack: { name, _id } });
   },
 };

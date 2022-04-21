@@ -1,18 +1,18 @@
 import React, { memo } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
-import { createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type MyCardType = {
   name: string;
   cardsCount: number;
   created: string;
   updated: string;
-  setModalIsOpen: (setModalIsOpen: boolean) => void;
+  setDeleteModalIsOpen: (setModalIsOpen: boolean) => void;
+  setEditModalIsOpen: (value: boolean) => void;
+  setAddCardModalIsOpen: (value: boolean) => void;
   onClickLearnCard: (learningCard: boolean) => void;
   id: string;
 };
@@ -22,15 +22,13 @@ export const MyCard = memo(
     cardsCount,
     created,
     updated,
-    setModalIsOpen,
+    setDeleteModalIsOpen,
+    setEditModalIsOpen,
+    setAddCardModalIsOpen,
     onClickLearnCard,
     name,
     id,
   }: MyCardType) => {
-    const dispatch = useDispatch();
-    const onAddCardClick = (_id: string): void => {
-      dispatch(createCardTC(_id));
-    };
     const valueForDisabled = 0;
     const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
     return (
@@ -44,7 +42,7 @@ export const MyCard = memo(
           <div className={style.count}>{cardsCount}</div>
           <span>
             <GeneralButton
-              onClickCallback={() => onAddCardClick(id)}
+              onClickCallback={() => setAddCardModalIsOpen(true)}
               type="button"
               value="+"
             />
@@ -60,13 +58,13 @@ export const MyCard = memo(
           <div className={style.button}>
             <GeneralButton
               type="button"
-              onClickCallback={() => setModalIsOpen(true)}
+              onClickCallback={() => setDeleteModalIsOpen(true)}
               disabled={false}
               value="delete"
             />
             <GeneralButton
               type="button"
-              onClickCallback={() => {}}
+              onClickCallback={() => setEditModalIsOpen(true)}
               disabled={false}
               value="Edit"
             />

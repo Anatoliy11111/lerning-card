@@ -26,11 +26,11 @@ export const getCardsTC = (cardsPack_id: string) => async (dispatch: Dispatch) =
 };
 
 export const createCardTC =
-  (cardsPackId: string) =>
+  (cardsPackId: string, question: string, answer: string) =>
   async (dispatch: ThunkDispatch<RootState, unknown, AllActionCreatorsType>) => {
     try {
       dispatch(setStatusLoadingPacksListAC('loading'));
-      await cardsListAPI.createCard(cardsPackId);
+      await cardsListAPI.createCard(cardsPackId, question, answer);
       dispatch(getPacksListTC());
       dispatch(setStatusLoadingPacksListAC('succeeded'));
     } catch (e: any) {

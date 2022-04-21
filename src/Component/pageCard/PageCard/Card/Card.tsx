@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './card.module.scss';
 
 import { GetPacksListCard } from 'api/auth-api/types';
+import { AddCardModal } from 'Component/modals/AddCardModal/AddCardModal';
 import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
+import { EditModal } from 'Component/modals/EditModal/EditModal';
 import { MyCard } from 'Component/pageCard/PageCard/Card/MyCard';
 import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { Data } from 'enum/enum';
@@ -20,12 +22,14 @@ type CardType = {
 };
 export const Card = memo(({ card, setLearnCard }: CardType) => {
   const { user_id, _id, name, cardsCount, created, updated } = card;
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
+  const [addCardModalIsOpen, setAddCardModalIsOpen] = useState(false);
   const myId = useSelector(getMyId);
   const dispatch = useDispatch();
   const onDeleteCardClick = (idCard: string): void => {
     dispatch(deleteCardFromPacksListTC(idCard));
-    setModalIsOpen(false);
+    setDeleteModalIsOpen(false);
   };
   const createdCard = created.substring(Data.start, Data.finish);
   const updatedCard = updated.substring(Data.start, Data.finish);
@@ -55,19 +59,31 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
         cardsCount={cardsCount}
         created={createdCard}
         updated={updatedCard}
-        setModalIsOpen={setModalIsOpen}
+        setDeleteModalIsOpen={setDeleteModalIsOpen}
+        setEditModalIsOpen={setEditModalIsOpen}
+        setAddCardModalIsOpen={setAddCardModalIsOpen}
         onClickLearnCard={onClickLearnCard}
         id={_id}
       />
       <div>
         <DeleteModal
           name={name}
-          open={modalIsOpen}
+          open={deleteModalIsOpen}
           deleteCallback={() => onDeleteCardClick(_id)}
-          closeModal={() => setModalIsOpen(false)}
+          closeModal={() => setDeleteModalIsOpen(false)}
         >
           {name}
         </DeleteModal>
+        <EditModal
+          open={editModalIsOpen}
+          closeModal={() => setEditModalIsOpen(false)}
+          id={_id}
+        />
+        <AddCardModal
+          open={addCardModalIsOpen}
+          closeModal={() => setAddCardModalIsOpen(false)}
+          id={_id}
+        />
       </div>
     </div>
   );
