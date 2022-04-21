@@ -8,10 +8,11 @@ import { GetPacksListCard } from 'api/auth-api/types';
 import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
 import { MyCard } from 'Component/pageCard/PageCard/Card/MyCard';
 import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
+import { Data } from 'enum/enum';
 import { setPackName } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
-import { getCardstTC, createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
+import { getCardsTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type CardType = {
   card: GetPacksListCard;
@@ -26,31 +27,22 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
     dispatch(deleteCardFromPacksListTC(idCard));
     setModalIsOpen(false);
   };
-
-  // const onAddCardClick = (_id: string): void => {
-  //   dispatch(createCardTC(_id));
-  // };
-
+  const createdCard = created.substring(Data.start, Data.finish);
+  const updatedCard = updated.substring(Data.start, Data.finish);
   const onClickLearnCard = (learningCard: boolean): void => {
     setLearnCard(learningCard);
-    dispatch(getCardstTC(_id));
+    dispatch(getCardsTC(_id));
     dispatch(setPackName(name));
   };
 
-  const onGetCarsListClick = (cardsId: string): void => {
-    dispatch(getCardstTC(cardsId));
-  };
   if (myId !== user_id) {
     return (
       <NotMyCard
         onClickLearnCard={onClickLearnCard}
         cardsCount={cardsCount}
         name={name}
-        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-        created={created.substring(0, 10)}
-        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
-        updated={updated.substring(0, 10)}
-        user_id={user_id}
+        created={createdCard}
+        updated={updatedCard}
         _id={_id}
       />
     );
@@ -61,10 +53,11 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
       <MyCard
         name={name}
         cardsCount={cardsCount}
-        created={created}
-        updated={updated}
+        created={createdCard}
+        updated={updatedCard}
         setModalIsOpen={setModalIsOpen}
         onClickLearnCard={onClickLearnCard}
+        id={_id}
       />
       <div>
         <DeleteModal
@@ -79,8 +72,3 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
     </div>
   );
 });
-// <GeneralButton
-//     onClickCallback={() => onAddCardClick(_id)}
-//     type="button"
-//     value="Add card"
-// />

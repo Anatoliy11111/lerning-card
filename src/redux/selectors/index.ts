@@ -15,3 +15,4 @@ export {
 } from './selectorsProfile/selectorsProfile';
 
 export * from './selectorsPacksList/selectorsPacksList';
+export * from './selectorsCardList/selectorsCardList';

@@ -39,9 +39,14 @@ export enum RouteLink {
   authMe = '/authMe',
 }
 
-export enum Lern {
+export enum Learn {
   initialValue = 0,
   acc = 0,
   numberSmart = 6,
   validValue = 1,
+}
+
+export enum Data {
+  start = 0,
+  finish = 10,
 }

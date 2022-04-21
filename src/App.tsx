@@ -20,15 +20,16 @@ export const App: React.FC = () => {
   }, []);
 
   const location = useLocation();
+  const pageCard = location.pathname.includes('card');
   const path =
     location.pathname === '/' ||
     location.pathname === RouteLink.profile ||
     location.pathname === RouteLink.pageCard ||
-    location.pathname === RouteLink.card;
+    location.pathname === RouteLink.card ||
+    pageCard;
   if (!isInitialize) {
     return <Preloader />;
   }
-
   return (
     <div className={style.wrapper}>
       <main className={style.page}>

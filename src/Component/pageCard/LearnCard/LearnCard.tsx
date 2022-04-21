@@ -6,7 +6,7 @@ import { CardWithAnswer } from './CardWithAnswer/CardWithAnswer';
 import { CardWithQuestion } from './CardWithQuestion/CardWithQuestion';
 
 import { Preloader } from 'Component/01-common';
-import { Lern } from 'enum/enum';
+import { Learn } from 'enum/enum';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
 import { getStatusLoading } from 'redux/selectors';
 import { RootState } from 'redux/store/Store';
@@ -18,19 +18,19 @@ type LearnCardType = {
 const getCard = (cards: CardsType[]): any => {
   const sum = cards.reduce(
     (acc, card) =>
-      acc + (Lern.numberSmart - card.grade) * (Lern.numberSmart - card.grade),
-    Lern.acc,
+      acc + (Learn.numberSmart - card.grade) * (Learn.numberSmart - card.grade),
+    Learn.acc,
   );
   const rand = Math.random() * sum;
   const res = cards.reduce(
     (acc: { sum: number; id: number }, card, i) => {
       const newSum =
-        acc.sum + (Lern.numberSmart - card.grade) * (Lern.numberSmart - card.grade);
+        acc.sum + (Learn.numberSmart - card.grade) * (Learn.numberSmart - card.grade);
       return { sum: newSum, id: newSum < rand ? i : acc.id };
     },
     { sum: 0, id: -1 },
   );
-  return cards[res.id + Lern.validValue];
+  return cards[res.id + Learn.validValue];
 };
 
 export const LearnCard: React.FC<LearnCardType> = ({ setLearnCard }) => {
@@ -39,7 +39,7 @@ export const LearnCard: React.FC<LearnCardType> = ({ setLearnCard }) => {
   );
   const startLearn = useSelector(getStatusLoading);
   const [question, setQuestion] = useState(true);
-  const [card, setCard] = useState<CardsType>(cards[Lern.initialValue]);
+  const [card, setCard] = useState<CardsType>(cards[Learn.initialValue]);
   const packName = useSelector<RootState, string>(
     state => state.cardsListReducer.packName,
   );

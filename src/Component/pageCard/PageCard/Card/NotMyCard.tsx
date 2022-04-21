@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
-import { createCardTC, getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type NotMyCardPropsType = {
   name: string;
@@ -13,33 +11,17 @@ type NotMyCardPropsType = {
   cardsCount: number;
   created: string;
   updated: string;
-  user_id: string;
   _id: string;
 };
 
 export const NotMyCard = memo(
-  ({
-    onClickLearnCard,
-    cardsCount,
-    created,
-    updated,
-    name,
-    user_id,
-    _id,
-  }: NotMyCardPropsType) => {
-    const dispatch = useDispatch();
-    const onGetCarsListClick = (cardsId: string): void => {
-      dispatch(getCardstTC(cardsId));
-    };
+  ({ onClickLearnCard, cardsCount, created, updated, name, _id }: NotMyCardPropsType) => {
     const valueForDisabled = 0;
+    const validLink = cardsCount > valueForDisabled ? `/card/${_id}` : '';
     return (
       <div className={style.card}>
         <div className={style.cardItem}>
-          <Link
-            to={`/card/id=${user_id}`}
-            onClick={() => onGetCarsListClick(_id)}
-            className={style.name}
-          >
+          <Link to={validLink} className={style.name}>
             {name}
           </Link>
         </div>

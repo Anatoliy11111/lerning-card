@@ -18,6 +18,7 @@ export const reducerRoot = combineReducers({
 /* export const store = createStore(reducerRoot, applyMiddleware(thunk)); */
 
 // @ts-ignore
+// eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(
   reducerRoot,

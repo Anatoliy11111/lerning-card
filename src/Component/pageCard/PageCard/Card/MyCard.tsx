@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
 
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
+import { createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type MyCardType = {
   name: string;
@@ -12,6 +14,7 @@ type MyCardType = {
   updated: string;
   setModalIsOpen: (setModalIsOpen: boolean) => void;
   onClickLearnCard: (learningCard: boolean) => void;
+  id: string;
 };
 
 export const MyCard = memo(
@@ -22,18 +25,30 @@ export const MyCard = memo(
     setModalIsOpen,
     onClickLearnCard,
     name,
+    id,
   }: MyCardType) => {
+    const dispatch = useDispatch();
+    const onAddCardClick = (_id: string): void => {
+      dispatch(createCardTC(_id));
+    };
     const valueForDisabled = 0;
+    const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
     return (
       <>
         <div className={style.cardItem}>
-          <Link to="/cards" className={style.name}>
-            {' '}
+          <Link to={validLink} className={style.name}>
             {name}
           </Link>
         </div>
         <div className={style.cardItem}>
           <div className={style.count}>{cardsCount}</div>
+          <span>
+            <GeneralButton
+              onClickCallback={() => onAddCardClick(id)}
+              type="button"
+              value="+"
+            />
+          </span>
         </div>
         <div className={style.cardItem}>
           <div className={style.date}>{created}</div>

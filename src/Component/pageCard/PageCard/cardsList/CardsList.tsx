@@ -1,27 +1,32 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import styles from './cardsList.module.scss';
 
+import { Preloader } from 'Component/01-common';
 import { CardItem } from 'Component/pageCard/PageCard/cardsList/cardItem/CardItem';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { setCurrentNumberPageAC } from 'redux/reducers';
-import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
-import { RootState } from 'redux/store/Store';
+import {
+  getCardsList,
+  getCardsPageCount,
+  getCardsTotalCount,
+  getStatusLoading,
+} from 'redux/selectors';
+import { getCardsTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
-export const CardsList = (): any => {
+export const CardsList: React.FC = () => {
+  const { id }: any = useParams();
   const dispatch = useDispatch();
-
-  const cardsList = useSelector<RootState, CardsType[]>(
-    state => state.cardsListReducer.cards,
-  );
-  const cardsTotalCount = useSelector<RootState, number>(
-    state => state.cardsListReducer.cardsTotalCount,
-  );
-  const pageCount = useSelector<RootState, number>(
-    state => state.cardsListReducer.pageCount,
-  );
+  const cardsList = useSelector(getCardsList);
+  const cardsTotalCount = useSelector(getCardsTotalCount);
+  const pageCount = useSelector(getCardsPageCount);
+  const preloader = useSelector(getStatusLoading);
+  useEffect(() => {
+    dispatch(getCardsTC(id));
+  }, []);
   const pagesCount = Math.ceil(cardsTotalCount / pageCount);
 
   const fetchPageCb = useCallback(
@@ -31,19 +36,8 @@ export const CardsList = (): any => {
     [dispatch],
   );
 
-  if (!cardsList.length) {
-    return (
-      <div
-        style={{
-          textAlign: 'center',
-          fontSize: '4rem',
-          fontWeight: '700',
-          paddingTop: '3rem',
-        }}
-      >
-        нет карточек :(
-      </div>
-    );
+  if (preloader === 'loading') {
+    return <Preloader />;
   }
   return (
     <div className={styles.cardsList}>
@@ -68,7 +62,6 @@ export const CardsList = (): any => {
           </div>
         </div>
         {cardsList.map(card => (
-          // eslint-disable-next-line no-underscore-dangle
           <CardItem key={card._id} card={card} />
         ))}
       </div>
