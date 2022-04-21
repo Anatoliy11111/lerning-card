@@ -4,17 +4,22 @@ import { useDispatch } from 'react-redux';
 
 import { GeneralInput } from 'Component/01-common';
 import { useDebounce } from 'hooks/useDebounce';
-import { setPacNameAC } from 'redux/reducers';
 
 type UniversalSearchProps = {
   value: string;
   setValue: (value: string) => void;
+  AC: (value: string) => void;
 };
 
-export const UniversalSearch: React.FC<UniversalSearchProps> = ({ value, setValue }) => {
+export const UniversalSearch: React.FC<UniversalSearchProps> = ({
+  AC,
+  value,
+  setValue,
+}) => {
   const dispatch = useDispatch();
   const setName = (): void => {
-    dispatch(setPacNameAC(value));
+    dispatch(AC(value));
+    /*   dispatch(setPacNameAC(value)); */
   };
   const timeBeforeStartWork = 750;
 
