@@ -1,8 +1,4 @@
 import { instance } from 'api/auth-api/auth-api';
-import {
-  ResponseAddAndDeletePacksListType,
-  ResponseGetPacksList,
-} from 'api/auth-api/types';
 
 export const cardsListAPI = {
   getCardsList(params: any) {
@@ -12,11 +8,16 @@ export const cardsListAPI = {
   },
 
   deleteCard(idCard: string) {
-    return instance.delete<ResponseAddAndDeletePacksListType>(`cards/card/?id=${idCard}`);
+    return instance.delete(`cards/card/?id=${idCard}`);
   },
-  createCard() {
-    return instance.post<ResponseAddAndDeletePacksListType>(`cards/card/`, {
-      cardsPack: { name: 'x' },
+  createCard(idCard: string) {
+    return instance.post(`cards/card/`, {
+      card: { cardsPack_id: idCard },
+    });
+  },
+  changeCard(idCard: string) {
+    return instance.put(`cards/card/`, {
+      card: { _id: idCard, question: 'Who is best team in the incubator?' },
     });
   },
 };

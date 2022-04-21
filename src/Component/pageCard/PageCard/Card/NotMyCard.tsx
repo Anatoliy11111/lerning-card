@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
-import { getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
+import { createCardTC, getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type NotMyCardPropsType = {
   name: string;
@@ -40,7 +40,6 @@ export const NotMyCard = memo(
             onClick={() => onGetCarsListClick(_id)}
             className={style.name}
           >
-            {' '}
             {name}
           </Link>
         </div>

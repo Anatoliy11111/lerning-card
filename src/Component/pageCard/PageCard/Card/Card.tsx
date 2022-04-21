@@ -11,7 +11,7 @@ import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { setPackName } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 import { getMyId } from 'redux/selectors';
 import { deleteCardFromPacksListTC } from 'redux/thunk';
-import { getCardstTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
+import { getCardstTC, createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type CardType = {
   card: GetPacksListCard;
@@ -27,20 +27,29 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
     setModalIsOpen(false);
   };
 
+  // const onAddCardClick = (_id: string): void => {
+  //   dispatch(createCardTC(_id));
+  // };
+
   const onClickLearnCard = (learningCard: boolean): void => {
     setLearnCard(learningCard);
     dispatch(getCardstTC(_id));
     dispatch(setPackName(name));
   };
 
+  const onGetCarsListClick = (cardsId: string): void => {
+    dispatch(getCardstTC(cardsId));
+  };
   if (myId !== user_id) {
     return (
       <NotMyCard
         onClickLearnCard={onClickLearnCard}
         cardsCount={cardsCount}
         name={name}
-        created={created}
-        updated={updated}
+        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+        created={created.substring(0, 10)}
+        /* eslint-disable-next-line @typescript-eslint/no-magic-numbers */
+        updated={updated.substring(0, 10)}
         user_id={user_id}
         _id={_id}
       />
@@ -70,3 +79,8 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
     </div>
   );
 });
+// <GeneralButton
+//     onClickCallback={() => onAddCardClick(_id)}
+//     type="button"
+//     value="Add card"
+// />
