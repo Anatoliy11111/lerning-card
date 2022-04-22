@@ -30,7 +30,7 @@ export const CardWithQuestion: React.FC<cardWithQuestionType> = ({
       </div>
       <div className={style.cardButton}>
         <button onClick={onClickCancel}>Cancel</button>
-        <button onClick={() => setQuestion(false)}>Sow Answer</button>
+        <button onClick={() => setQuestion(false)}>Show Answer</button>
       </div>
     </div>
   );
