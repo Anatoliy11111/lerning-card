@@ -6,6 +6,7 @@ export type CardsType = {
   cardsPack_id: string;
   grade: number;
   shots: number;
+  card_id: string;
   user_id: string;
   created: string;
   updated: string;
@@ -29,6 +30,7 @@ const initialState: CardsInitialType = {
       question: '',
       cardsPack_id: '',
       grade: 1,
+      card_id: '',
       shots: 1,
       user_id: '',
       created: '',
@@ -55,6 +57,14 @@ export const cardsListReducer = (
     }
     case 'cardsList/SET-PACK-NAME': {
       return { ...state, packName: action.name };
+    }
+    case 'cardsList/SET-NEW-GRADE': {
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card._id === action.id ? { ...card, grade: action.grade } : card,
+        ),
+      };
     }
 
     default:

@@ -1,4 +1,5 @@
 import { instance } from 'api/auth-api/auth-api';
+import { UpdatedGrade } from 'api/auth-api/types';
 
 export const cardsListAPI = {
   getCardsList(params: any) {
@@ -18,6 +19,12 @@ export const cardsListAPI = {
   changeCard(idCard: string) {
     return instance.put(`cards/card/`, {
       card: { _id: idCard, question: 'Who is best team in the incubator?' },
+    });
+  },
+  sendGrande(card_id: string, myGrade: number) {
+    return instance.put<UpdatedGrade>(`cards/grade`, {
+      card_id,
+      grade: myGrade,
     });
   },
 };

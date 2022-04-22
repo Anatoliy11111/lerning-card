@@ -1,8 +1,12 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import style from './CardWithAnswer.module.scss';
 
+import { Numbers } from 'enum/enum';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
+import { sendGradeTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type CardWithAnswerType = {
   packName: string;
@@ -30,12 +34,16 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
   getCard,
   setQuestion,
 }) => {
+  const dispatch = useDispatch();
   const onClickCancel = (): void => {
     setLearnCard(false);
   };
   const onNext = (): void => {
     setCard(getCard(cards));
     setQuestion(true);
+  };
+  const onSendGradeClick = (myGrade: number): void => {
+    dispatch(sendGradeTC(card._id, myGrade));
   };
   return (
     <div className={style.answerContainer}>
@@ -48,10 +56,15 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
       </div>
       <div className={style.radio}>
         <h3>Rate yourself: </h3>
-        {grade.map(g => (
+        {grade.map((g, i) => (
           <div key={g}>
             {' '}
-            <input type="radio" value={g} />
+            <input
+              type="radio"
+              name="grade"
+              value={g}
+              onClick={() => onSendGradeClick(i + Numbers.One)}
+            />
             <span>{g}</span>
           </div>
         ))}
