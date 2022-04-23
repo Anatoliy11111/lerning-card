@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import { Rating } from '../rating/Raiting';
+
 import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
 import { Data } from 'enum/enum';
@@ -35,7 +37,9 @@ export const CardItem: React.FC<CardItemType> = ({ card }) => {
       <div className={style.cardItem}>
         <div className={style.date}>{updated.substring(Data.start, Data.finish)}</div>
       </div>
-      <div className={style.cardItem}>{grade}</div>
+      <div className={style.cardItem}>
+        <Rating activeStars={grade} />
+      </div>
       <div className={style.cardItem}>
         <div className={style.button}>
           <GeneralButton

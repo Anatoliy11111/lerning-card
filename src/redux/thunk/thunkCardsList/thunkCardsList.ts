@@ -2,7 +2,11 @@ import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { cardsListAPI } from 'api/auth-api/cardsList-api';
-import { setPaginationAC, setStatusLoadingPacksListAC } from 'redux/reducers';
+import {
+  setNewGrade,
+  setPaginationAC,
+  setStatusLoadingPacksListAC,
+} from 'redux/reducers';
 import { AllActionCreatorsType } from 'redux/reducers/allActionCreatorsType';
 import { setCardsListAC } from 'redux/reducers/cardsListReducer/CardsListActionCreator';
 import { RootState } from 'redux/store/Store';
@@ -62,6 +66,23 @@ export const changeCardTC =
       dispatch(setStatusLoadingPacksListAC('loading'));
       await cardsListAPI.changeCard(idCard);
       dispatch(getCardsTC(cardsPack_id));
+      dispatch(setStatusLoadingPacksListAC('succeeded'));
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+    }
+  };
+
+export const sendGradeTC =
+  (card_id: string, myGrade: number) => async (dispatch: Dispatch) => {
+    try {
+      dispatch(setStatusLoadingPacksListAC('loading'));
+      const { data } = await cardsListAPI.sendGrande(card_id, myGrade);
+      if (data) {
+        dispatch(setNewGrade(data.updatedGrade.card_id, data.updatedGrade.grade));
+      }
+
       dispatch(setStatusLoadingPacksListAC('succeeded'));
     } catch (e: any) {
       const error = e.response

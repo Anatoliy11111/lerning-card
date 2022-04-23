@@ -1,0 +1,1 @@
+export { NumberStars } from './NumberStars';
