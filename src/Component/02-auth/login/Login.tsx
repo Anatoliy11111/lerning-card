@@ -115,7 +115,6 @@ export const Login: React.FC = () => {
             Sing In
           </Link>
         </div>
-        <p>1qazxcvBG</p>
       </form>
     </div>
   );
