@@ -10,9 +10,9 @@ export const cardsListAPI = {
   deleteCard(idCard: string) {
     return instance.delete(`cards/card/?id=${idCard}`);
   },
-  createCard(idCard: string) {
+  createCard(idCard: string, question: string, answer: string) {
     return instance.post(`cards/card/`, {
-      card: { cardsPack_id: idCard },
+      card: { cardsPack_id: idCard, question, answer },
     });
   },
   changeCard(idCard: string) {
