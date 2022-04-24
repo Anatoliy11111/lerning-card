@@ -8,16 +8,18 @@ import { RouteLink } from 'enum/enum';
 
 export const NavigateMenu: React.FC = () => {
   const className = ({ isActive }: any): string | undefined =>
-    isActive ? style.active : style.NotActive;
+    isActive ? style.active : style.notActive;
 
   return (
-    <div className={style.navigateContainer}>
-      <NavLink to={RouteLink.pageCard} className={className}>
-        Packs List
-      </NavLink>
-      <NavLink to={RouteLink.profile} className={className}>
-        Profile
-      </NavLink>
-    </div>
+    <header>
+      <nav className={style.navigateContainer}>
+        <NavLink to={RouteLink.pageCard} className={className}>
+          Packs List
+        </NavLink>
+        <NavLink to={RouteLink.profile} className={className}>
+          Profile
+        </NavLink>
+      </nav>
+    </header>
   );
 };

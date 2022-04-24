@@ -77,12 +77,15 @@ h1, h2, h3, h4, h5, h6 {
 //variables
 $mainColor: #2D2E46;
 $mainFont: 'Poppins', sans-serif;
-$backgroundColor: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%) ;
+$backgroundColor: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
 
 body {
   color: $mainColor;
   font-family: $mainFont;
   font-size: 14px;
+  @media (max-width: 767px) {
+    font-size: 10px;
+  }
 }
 
 .wrapper {
@@ -99,7 +102,7 @@ body {
 }
 
 .app__container {
-  max-width: 1440px;
+  max-width: 1020px;
   padding: 0 10px;
   margin: 0 auto;
   width: 100%;

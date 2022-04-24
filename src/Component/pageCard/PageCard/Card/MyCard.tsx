@@ -3,7 +3,6 @@ import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
 import { createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
@@ -35,47 +34,57 @@ export const MyCard = memo(
     const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
     return (
       <>
-        <div className={style.cardItem}>
+        <div className={`${style.cardItem} ${style.cardItemName}`}>
           <Link to={validLink} className={style.name}>
             {name}
           </Link>
         </div>
-        <div className={style.cardItem}>
+        <div className={`${style.cardItem} ${style.cardItemCount}`}>
           <div className={style.count}>{cardsCount}</div>
-          <span>
-            <GeneralButton
-              onClickCallback={() => onAddCardClick(id)}
-              type="button"
-              value="+"
-            />
-          </span>
         </div>
-        <div className={style.cardItem}>
+        <div className={`${style.cardItem} ${style.cardItemDate}`}>
           <div className={style.date}>{created}</div>
         </div>
-        <div className={style.cardItem}>
+        <div className={`${style.cardItem} ${style.cardItemDate}`}>
           <div className={style.date}>{updated}</div>
         </div>
-        <div className={style.cardItem}>
+        <div className={`${style.cardItem} ${style.cardItemActions}`}>
           <div className={style.button}>
-            <GeneralButton
-              type="button"
-              onClickCallback={() => setModalIsOpen(true)}
-              disabled={false}
-              value="delete"
-            />
-            <GeneralButton
-              type="button"
-              onClickCallback={() => {}}
-              disabled={false}
-              value="Edit"
-            />
-            <GeneralButton
-              type="button"
-              onClickCallback={() => onClickLearnCard(true)}
-              disabled={cardsCount === valueForDisabled}
-              value="Learn"
-            />
+            <div className={style.buttonDelete}>
+              <button
+                className={style.button}
+                onClick={() => setModalIsOpen(true)}
+                disabled={false}
+              >
+                ✘{' '}
+              </button>
+            </div>
+
+            <div className={style.buttonEdit}>
+              <button className={style.button} disabled={false}>
+                ✎{' '}
+              </button>
+            </div>
+
+            <div className={style.buttonLearn}>
+              <button
+                className={style.button}
+                onClick={() => onClickLearnCard(true)}
+                disabled={cardsCount === valueForDisabled}
+              >
+                🕮{' '}
+              </button>
+            </div>
+
+            <div className={style.buttonAdd}>
+              <button
+                className={style.button}
+                onClick={() => onAddCardClick(id)}
+                disabled={cardsCount === valueForDisabled}
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
       </>

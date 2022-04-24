@@ -1,6 +1,9 @@
 .slider {
   position: relative;
   width: 200px;
+  @media (max-width: 820px) {
+    width: 150px;
+  }
 
 
   .slider__track,
@@ -54,6 +57,10 @@
   height: 0;
   width: 200px;
   outline: none;
+  @media (max-width: 820px) {
+    width: 150px;
+  }
+
 
   &::-webkit-slider-thumb {
     background-color: #f1f5f7;

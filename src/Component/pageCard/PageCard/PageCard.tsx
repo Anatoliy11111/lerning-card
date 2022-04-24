@@ -15,7 +15,7 @@ import { LearnCard } from 'Component/pageCard/LearnCard/LearnCard';
 import { Pagination } from 'Component/pageCard/Pagination/Pagination';
 import { UniversalSearch } from 'Component/pageCard/Search/UniversalSearch';
 import { SettingCardCount } from 'Component/pageCard/SettingCardCount/SettingCardCount';
-import { setCurrentNumberPageAC, sortPacksListAC, setPacNameAC } from 'redux/reducers';
+import { setCurrentNumberPageAC, setPacNameAC, sortPacksListAC } from 'redux/reducers';
 import { getIsLoginIn } from 'redux/selectors';
 import {
   getCardPacksTotalCount,
@@ -90,12 +90,16 @@ export const PageCard: React.FC = () => {
       <div className={style.packListContainer}>
         <h1 className={style.title}>PacksList</h1>
         <div className={style.form}>
-          <UniversalSearch value={value} AC={setPacNameAC} setValue={setValue} />
-          <GeneralButton
-            onClickCallback={() => setModalIsOpen(true)}
-            type="button"
-            value="Add pack"
-          />
+          <div className={style.formInput}>
+            <UniversalSearch value={value} AC={setPacNameAC} setValue={setValue} />
+          </div>
+          <div className={style.formButton}>
+            <GeneralButton
+              onClickCallback={() => setModalIsOpen(true)}
+              type="button"
+              value="Add pack"
+            />
+          </div>
         </div>
         <div>
           <AddCardPackModal

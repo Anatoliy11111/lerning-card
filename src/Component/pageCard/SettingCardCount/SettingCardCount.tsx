@@ -39,26 +39,28 @@ export const SettingCardCount: React.FC = () => {
   };
   return (
     <div className={style.containerCardCount}>
-      <h2>Show packs cards</h2>
-      <div className={style.buttonFilter}>
-        <GeneralButton
-          type="button"
-          value="My"
-          onClickCallback={() => {
-            onClickButton(myID, false);
-          }}
-        />
-        <GeneralButton
-          type="button"
-          value="All"
-          onClickCallback={() => {
-            onClickButton('', true);
-          }}
-        />
+      <div className={style.containerCardCountColumn}>
+        <h2 className={style.title}>Show packs cards</h2>
+        <div className={style.buttonFilter}>
+          <GeneralButton
+            type="button"
+            value="My"
+            onClickCallback={() => {
+              onClickButton(myID, false);
+            }}
+          />
+          <GeneralButton
+            type="button"
+            value="All"
+            onClickCallback={() => {
+              onClickButton('', true);
+            }}
+          />
+        </div>
       </div>
       {isDoubleRangeShow && (
-        <>
-          <h2> Number of cards</h2>
+        <div className={style.containerCardCountColumn}>
+          <h2 className={style.title}> Number of cards</h2>
           <div
             role="button"
             onBlur={() => {}}
@@ -67,7 +69,7 @@ export const SettingCardCount: React.FC = () => {
           >
             <DoubleRange min={minCard} max={maxCard} onChange={changeCardCount} />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import { Rating } from '../rating/Raiting';
 
-import { GeneralButton } from 'Component/01-common';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
 import { Data } from 'enum/enum';
 import { CardsType } from 'redux/reducers/cardsListReducer/cardsListReducer';
@@ -42,18 +41,25 @@ export const CardItem: React.FC<CardItemType> = ({ card }) => {
       </div>
       <div className={style.cardItem}>
         <div className={style.button}>
-          <GeneralButton
-            type="button"
-            onClickCallback={() => onDeleteCardClick(_id)}
-            disabled={false}
-            value="delete"
-          />
-          <GeneralButton
-            type="button"
-            onClickCallback={() => onChangeCardClick(_id)}
-            disabled={false}
-            value="Edit"
-          />
+          <div className={style.buttonDelete}>
+            <button
+              className={style.button}
+              onClick={() => onChangeCardClick(_id)}
+              disabled={false}
+            >
+              ✘{' '}
+            </button>
+          </div>
+
+          <div className={style.buttonEdit}>
+            <button
+              className={style.button}
+              onClick={() => onDeleteCardClick(_id)}
+              disabled={false}
+            >
+              ✎{' '}
+            </button>
+          </div>
         </div>
       </div>
     </div>

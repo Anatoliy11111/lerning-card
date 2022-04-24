@@ -36,12 +36,18 @@ export const NotMyCard = memo(
         </div>
         <div className={style.cardItem}>
           <div className={style.button}>
-            <GeneralButton
-              type="button"
-              onClickCallback={() => onClickLearnCard(true)}
-              disabled={cardsCount === valueForDisabled}
-              value="Learn"
-            />
+            <div className={style.buttonEdit}>
+              {/*     <GeneralButton
+                type="button"
+                onClickCallback={() => {}}
+                disabled={false}
+                value="Edit"
+              /> */}
+
+              <button className={style.button} disabled={false}>
+                ✎{' '}
+              </button>
+            </div>
           </div>
         </div>
       </div>

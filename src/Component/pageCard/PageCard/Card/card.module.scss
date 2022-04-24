@@ -1,41 +1,51 @@
 .card {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   min-height: 48px;
   padding: 16px 24px;
-  justify-content: space-between;
-
+  @media (max-width: 820px) {
+    padding: 10px;
+  }
   &:nth-child(odd) {
     background: #ECECF9;
   }
 
   .button {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: flex-end;
+    width: 100%;
 
-    button {
-      padding: 0 5px;
-
-    }
+   button{
+     padding: 0 2px;
+     height: 20px;
+   }
   }
 }
 
 .cardItem {
   flex: 0 1 20%;
   display: flex;
-
-
-  div {
-    padding: 0 5px;
-  }
-span{
-  button {
-    color:#7f76b9;
-    height: 0;
+  @media (max-width: 767px) {
+    svg{
+      width: 7px;
+    }
   }
 
 }
+.cardItem.cardItemName{
+}
+.cardItemCount{
 
+}
+.cardItemDate{
+
+}
+.cardItemActions{
+
+}
+.buttonEdit,
+.buttonLearn,
+.buttonAdd{
+  margin-left: 2px;
 }
