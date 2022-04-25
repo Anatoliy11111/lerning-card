@@ -32,9 +32,6 @@ export const MyCard = memo(
     const valueForDisabled = 0;
     const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
 
-    const onChangeNameChange = (idPack: string): void => {
-      dispatch(changeCardPacksListTC('igor', idPack));
-    };
     const onAddCardClick = (_id: string): void => {
       dispatch(createCardTC(_id));
     };
@@ -69,7 +66,7 @@ export const MyCard = memo(
             <div className={style.buttonEdit}>
               <button
                 className={style.button}
-                onClick={() => onChangeNameChange(id)}
+                onClick={() => setModalIsOpen(true)}
                 disabled={false}
               >
                 ✎{' '}
