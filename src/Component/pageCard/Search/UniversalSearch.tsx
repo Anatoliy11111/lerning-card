@@ -21,7 +21,7 @@ export const UniversalSearch: React.FC<UniversalSearchProps> = ({
     dispatch(AC(value));
     /*   dispatch(setPacNameAC(value)); */
   };
-  const timeBeforeStartWork = 750;
+  const timeBeforeStartWork = 3000;
 
   const debouncedSearch = useDebounce(value, timeBeforeStartWork, setName);
   const onChangeSearching = (e: ChangeEvent<HTMLInputElement>): void => {

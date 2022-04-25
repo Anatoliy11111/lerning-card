@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
+import { changeCardPacksListTC } from 'redux/thunk';
 import { createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
 
 type MyCardType = {
@@ -31,6 +32,9 @@ export const MyCard = memo(
     const valueForDisabled = 0;
     const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
 
+    const onChangeNameChange = (idPack: string): void => {
+      dispatch(changeCardPacksListTC('igor', idPack));
+    };
     const onAddCardClick = (_id: string): void => {
       dispatch(createCardTC(_id));
     };
@@ -63,7 +67,11 @@ export const MyCard = memo(
             </div>
 
             <div className={style.buttonEdit}>
-              <button className={style.button} disabled={false}>
+              <button
+                className={style.button}
+                onClick={() => onChangeNameChange(id)}
+                disabled={false}
+              >
                 ✎{' '}
               </button>
             </div>

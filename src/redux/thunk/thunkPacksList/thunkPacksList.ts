@@ -60,6 +60,19 @@ export const createCardPacksListTC = (cardPackName: string) => async (dispatch: 
   }
 };
 
+export const changeCardPacksListTC =
+  (cardPackName: string, id: string) => async (dispatch: any) => {
+    try {
+      dispatch(setStatusLoadingPacksListAC('loading'));
+      await packsListAPI.updateNameCardPacksList(cardPackName, id);
+      dispatch(getPacksListTC());
+    } catch (e: any) {
+      const error = e.response
+        ? e.response.data.error
+        : `${e.message}, more details in the console`;
+    }
+  };
+
 export const deleteCardFromPacksListTC = (idCard: string) => async (dispatch: any) => {
   try {
     dispatch(setStatusLoadingPacksListAC('loading'));

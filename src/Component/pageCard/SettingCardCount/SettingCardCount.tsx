@@ -32,12 +32,10 @@ export const SettingCardCount: React.FC = () => {
   };
 
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
-    debugger;
     setMinCardCount(min);
     setMaxCardCount(max);
   };
   const postSettingCardCount = (): void => {
-    debugger;
     dispatch(setMaxMinCardsCount(maxCardCount, minCardCount));
   };
   return (
