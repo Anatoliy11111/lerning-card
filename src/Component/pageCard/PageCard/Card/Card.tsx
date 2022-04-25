@@ -6,6 +6,7 @@ import style from './card.module.scss';
 
 import { GetPacksListCard } from 'api/auth-api/types';
 import { DeleteModal } from 'Component/modals/DeleteModal/DeleteModal';
+import { EditModal } from 'Component/modals/EditModal/EditModal';
 import { MyCard } from 'Component/pageCard/PageCard/Card/MyCard';
 import { NotMyCard } from 'Component/pageCard/PageCard/Card/NotMyCard';
 import { Data } from 'enum/enum';
@@ -49,7 +50,7 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
   }
 
   return (
-    <div className={style.card}>
+    /*    <div className={style.card}>
       <MyCard
         name={name}
         cardsCount={cardsCount}
@@ -69,6 +70,40 @@ export const Card = memo(({ card, setLearnCard }: CardType) => {
           {name}
         </DeleteModal>
       </div>
-    </div>
+    </div> */
+    /*   <div className={style.card}>
+      <MyCard
+        name={name}
+        cardsCount={cardsCount}
+        created={createdCard}
+        updated={updatedCard}
+        setDeleteModalIsOpen={setDeleteModalIsOpen}
+        setEditModalIsOpen={setEditModalIsOpen}
+        setAddCardModalIsOpen={setAddCardModalIsOpen}
+        onClickLearnCard={onClickLearnCard}
+        id={_id}
+      />
+      <div>
+        <DeleteModal
+          name={name}
+          open={deleteModalIsOpen}
+          deleteCallback={() => onDeleteCardClick(_id)}
+          closeModal={() => setDeleteModalIsOpen(false)}
+        >
+          {name}
+        </DeleteModal>
+        <EditModal
+          open={editModalIsOpen}
+          closeModal={() => setEditModalIsOpen(false)}
+          id={_id}
+        />
+        <AddCardModal
+          open={addCardModalIsOpen}
+          closeModal={() => setAddCardModalIsOpen(false)}
+          id={_id}
+        />
+      </div>
+    </div> */
+    <div />
   );
 });
