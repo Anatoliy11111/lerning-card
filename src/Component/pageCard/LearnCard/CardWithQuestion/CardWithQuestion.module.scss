@@ -1,29 +1,25 @@
 .questionCardContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 413px;
-  height: 300px;
   background-color: #F9F9FE;
   border-radius: 8px;
+  padding: 36px 30px 60px;
+  max-width: 420px;
+  width: 100%;
 
   .cardName {
-    font-size: 22px;
+    font-size: 1.5rem;
     font-weight: 600;
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
   }
 
   .cardQuestion {
-    width: 80%;
-    display: flex;
-    justify-content: flex-start;
-    padding-bottom: 30px;
-
+    margin-bottom: 4rem;
 
     h3 {
-      font-size: 20px;
+      font-size: 1.2rem;
+      line-height: 1.5;
       font-weight: 600;
-      color: #2D2E46;
 
       span {
         margin-left: 5px;
@@ -34,24 +30,32 @@
   }
 
   .cardButton {
-    width: 80%;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 22px;
-
+    flex-wrap: wrap;
+    @media (max-width: 400px){
+      justify-content: center;
+    }
     :nth-child(1) {
       box-shadow: none;
       background: #D7D8EF;
       border-radius: 30px;
       padding: 9px 36px;
-      color: #21268F
+      color: #21268F;
+      @media (max-width: 400px){
+        flex: 0 1 100%;
+        margin-bottom: 1rem;
+      }
     }
 
     :nth-child(2) {
       background-color: #21268F;
       border-radius: 30px;
       padding: 9px 40px;
-      color: #ECECF9
+      color: #ECECF9;
+      @media (max-width: 400px){
+        flex: 0 1 100%;
+      }
     }
   }
 

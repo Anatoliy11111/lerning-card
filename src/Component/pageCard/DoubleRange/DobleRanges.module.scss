@@ -33,6 +33,10 @@
     font-size: 20px;
     margin-top: 20px;
     position: absolute;
+    @media (max-width: 767px) {
+      font-size: 14px;
+      margin-top: 10px;
+    }
 
   }
 
@@ -61,7 +65,6 @@
     width: 150px;
   }
 
-
   &::-webkit-slider-thumb {
     background-color: #f1f5f7;
     border: none;
@@ -73,6 +76,10 @@
     margin-top: 4px;
     pointer-events: all;
     position: relative;
+    @media (max-width: 767px) {
+      height: 12px;
+      width: 12px;
+    }
   }
 
   &::-moz-range-thumb {
@@ -86,6 +93,7 @@
     margin-top: 4px;
     pointer-events: all;
     position: relative;
+
   }
 
 }

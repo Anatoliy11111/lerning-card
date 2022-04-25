@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -34,6 +34,7 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
   getCard,
   setQuestion,
 }) => {
+  const [myGrade, setMyGrade] = useState(Numbers.One);
   const dispatch = useDispatch();
   const onClickCancel = (): void => {
     setLearnCard(false);
@@ -41,10 +42,9 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
   const onNext = (): void => {
     setCard(getCard(cards));
     setQuestion(true);
-  };
-  const onSendGradeClick = (myGrade: number): void => {
     dispatch(sendGradeTC(card._id, myGrade));
   };
+
   return (
     <div className={style.answerContainer}>
       <div className={style.packName}>Learn: {packName}</div>
@@ -63,7 +63,7 @@ export const CardWithAnswer: React.FC<CardWithAnswerType> = ({
               type="radio"
               name="grade"
               value={g}
-              onClick={() => onSendGradeClick(i + Numbers.One)}
+              onClick={() => setMyGrade(i + Numbers.One)}
             />
             <span>{g}</span>
           </div>

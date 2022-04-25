@@ -44,8 +44,12 @@ export const NotMyCard = memo(
                 value="Edit"
               /> */}
 
-              <button className={style.button} disabled={false}>
-                ✎{' '}
+              <button
+                className={style.button}
+                onClick={() => onClickLearnCard(true)}
+                disabled={cardsCount === valueForDisabled}
+              >
+                🕮{' '}
               </button>
             </div>
           </div>

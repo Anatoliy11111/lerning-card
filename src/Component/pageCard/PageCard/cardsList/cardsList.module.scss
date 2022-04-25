@@ -1,40 +1,61 @@
-.cardsList{
+.cardsList {
   background: #FEFEFF;
   border-radius: 8px;
   padding: 24px;
 }
-.searchBlock{
+
+.searchBlock {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
-  @media (max-width: 767px){
-    margin-bottom: 1rem;
+  @media (max-width: 767px) {
+    margin-bottom: 0.7rem;
   }
 }
-.searchBlockItem{
-  display: flex;
-  margin-right: 1rem;
-  align-items: flex-end;
-  @media (max-width: 767px){
-    margin-bottom: 1rem;
-  }
-  input{
-    background: #ECECF9;
 
-    border: 1px solid rgba(99, 93, 128, 0.5);
+.searchBlockItem {
+  display: flex;
+  align-items: flex-end;
+  flex: 0 1 50%;
+  @media (max-width: 767px) {
+    margin-bottom: 0.5rem;
+    flex: 0 1 100%;
+  }
+
+  input {
+    background: #ECECF9;
     border-radius: 2px;
     padding: 0 10px;
     height: 2rem;
+    border: 1px solid transparent;
+
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.44);
+    }
+
+    @media (max-width: 767px) {
+      height: 1.5rem;
+    }
   }
 }
-.searchBlockLabel{
+
+.searchBlockLabel {
   margin-right: 1rem;
   font-size: 1.2rem;
+  @media (max-width: 992px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 767px) {
+    font-size: 0.7rem;
+  }
 }
-.cardsBlock{
+
+.cardsBlock {
   box-shadow: 0 0 10px 0 rgba(45, 46, 70, 0.53);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+
 }
+
 .titleBlock {
   display: flex;
   padding: 0 24px;
@@ -42,11 +63,12 @@
   align-items: center;
   justify-content: space-between;
   background: #ECECF9;
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     padding: 0 10px;
   }
 }
-.titleBlock__item{
-flex: 0 1 20%;
+
+.titleBlock__item {
+  flex: 0 1 20%;
   font-weight: 700;
 }

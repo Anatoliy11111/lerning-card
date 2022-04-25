@@ -1,94 +1,82 @@
 .answerContainer {
-  width: 413px;
-  min-height: 534px;
-  display: flex;
+  max-width: 420px;
+  display: flex;width: 100%;
   flex-direction: column;
+  padding: 30px 30px 60px;
   border-radius: 8px;
-  align-items: center;
   background-color: #F9F9FE;
 
   .packName {
-    margin-top: 36px;
-    font-size: 22px;
+    font-size: 1.5rem;
     font-weight: 600;
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
   }
-
+  .answer,
   .question {
-    margin-top: 33px;
-    width: 80%;
-    display: flex;
-    justify-content: flex-start;
-    font-size: 19px;
+    font-size: 1.2rem;
+    line-height: 1.5;
     font-weight: 600;
-    color: #2D2E46;
-
     span {
-      font-size: 18px;
       font-weight: 400;
       margin-left: 5px;
     }
   }
 
-  .answer {
-    width: 80%;
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 12px;
-    font-size: 19px;
-    font-weight: 600;
-    color: #2D2E46;
-
-    span {
-      font-size: 18px;
-      font-weight: 400;
-      margin-left: 5px;
-    }
+  .answer{
+    margin-bottom: 2.5rem;
   }
-
   .radio {
-    margin-top: 48px;
-    width: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-
-    h3 {
-      font-size: 19px;
+    margin-bottom: 4rem;
+    h3{
+      font-size: 1.4rem;
       font-weight: 600;
-      color: #2D2E46;
+      margin-bottom: 0.8rem;
     }
 
     div {
-      margin-top: 15px;
 
       span {
+        display: inline-block;
         font-weight: 400;
-        margin-left: 12px;
-        font-size: 18px;
+        margin: 0 0 1rem 1rem;
+        font-size: 1.2rem;
+
       }
     }
   }
 
   .cardButton {
-    width: 80%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 48px;
-    margin-bottom: 20px;
-
+    font-size: 1.1rem;
+    @media (max-width: 400px){
+      justify-content: center;
+    }
     :nth-child(1) {
       box-shadow: none;
       background: #D7D8EF;
       border-radius: 30px;
       padding: 9px 36px;
-      color: #21268F
+      color: #21268F;
+      @media (max-width: 400px){
+       flex: 0 1 100%;
+        margin-bottom: 1rem;
+      }
     }
 
     :nth-child(2) {
       background-color: #21268F;
       border-radius: 30px;
       padding: 9px 70px;
-      color: #ECECF9
+      color: #ECECF9;
+      @media (max-width: 400px){
+        flex: 0 1 100%;
+      }
     }
   }
 }

@@ -27,11 +27,13 @@ export const MyCard = memo(
     id,
   }: MyCardType) => {
     const dispatch = useDispatch();
+
+    const valueForDisabled = 0;
+    const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
+
     const onAddCardClick = (_id: string): void => {
       dispatch(createCardTC(_id));
     };
-    const valueForDisabled = 0;
-    const validLink = cardsCount > valueForDisabled ? `/card/${id}` : '';
     return (
       <>
         <div className={`${style.cardItem} ${style.cardItemName}`}>
@@ -79,8 +81,10 @@ export const MyCard = memo(
             <div className={style.buttonAdd}>
               <button
                 className={style.button}
-                onClick={() => onAddCardClick(id)}
-                disabled={cardsCount === valueForDisabled}
+                onClick={() => {
+                  onAddCardClick(id);
+                }}
+                disabled={false}
               >
                 +
               </button>

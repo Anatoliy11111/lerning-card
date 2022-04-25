@@ -5,6 +5,7 @@
     min-height: 60px;
     background-color: #EBE0E9;
     margin-bottom: 1.6rem;
+
 }
 
 .notActive,
@@ -13,7 +14,6 @@
     justify-content: center;
     align-items: center;
     font-size: 1.1rem;
-    height: 60px;
     opacity: 0.4;
     padding: 0 40px;
     color: inherit;
@@ -27,4 +27,11 @@
 
 .NotActive:hover {
     color: inherit;
+}
+
+@media (max-width: 767px) {
+    .navigateContainer {
+        min-height: 40px;
+        margin-bottom: 1rem;
+    }
 }
