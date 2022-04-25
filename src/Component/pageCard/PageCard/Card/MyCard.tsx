@@ -3,6 +3,7 @@ import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { EditModal } from 'Component/modals/EditModal/EditModal';
 import style from 'Component/pageCard/PageCard/Card/card.module.scss';
 import { changeCardPacksListTC } from 'redux/thunk';
 import { createCardTC } from 'redux/thunk/thunkCardsList/thunkCardsList';
