@@ -25,16 +25,19 @@ export const SettingCardCount: React.FC = () => {
     setMinCardCount,
     setMaxCardCount,
   } = useSettingCardCount(minCard, maxCard);
+
   const onClickButton = (id: string, show: boolean): void => {
     dispatch(setSelectCardAC(id));
     setIsDoubleRangeShow(show);
   };
 
   const changeCardCount = ({ min, max }: onChangeCountRangeType): void => {
+    debugger;
     setMinCardCount(min);
     setMaxCardCount(max);
   };
   const postSettingCardCount = (): void => {
+    debugger;
     dispatch(setMaxMinCardsCount(maxCardCount, minCardCount));
   };
   return (
