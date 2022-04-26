@@ -15,6 +15,7 @@ type MyCardType = {
   updated: string;
   setModalIsOpen: (setModalIsOpen: boolean) => void;
   onClickLearnCard: (learningCard: boolean) => void;
+  setDeleteModalIsOpen: (setDeleteModalIsOpen: boolean) => void;
   id: string;
 };
 
@@ -25,6 +26,7 @@ export const MyCard = memo(
     updated,
     setModalIsOpen,
     onClickLearnCard,
+    setDeleteModalIsOpen,
     name,
     id,
   }: MyCardType) => {
@@ -57,7 +59,7 @@ export const MyCard = memo(
             <div className={style.buttonDelete}>
               <button
                 className={style.button}
-                onClick={() => setModalIsOpen(true)}
+                onClick={() => setDeleteModalIsOpen(true)}
                 disabled={false}
               >
                 ✘{' '}
